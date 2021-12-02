@@ -19,5 +19,36 @@
     border-radius: $border-radius !important
     border-width: $border-width !important
     border-style: solid !important
-  .message-container
-    color: map-read($config_palette, "accent-secondary-color") !important
+  .message-header
+    > *
+      $padding: 0px 10px
+      $margin: 5px
+      $font: "Typo Round"
+      $font-size: 12px
+      $font-weight: 800
+      $font-spacing: 2px
+      $font-color: map-read($config_palette, "accent-tertiary-color")
+      $background-color: map-read($config_palette, "wrapper-secondary-color")
+      padding: $padding !important
+      margin-left: $margin !important
+      white-space: nowrap !important
+      font-family: $font !important
+      font-size: $font-size !important
+      font-weight: $font-weight !important
+      letter-spacing: $font-spacing !important
+      color: $font-color !important
+      background-color: $background-color !important
+      border-radius: 7px !important
+      &:first-child
+        margin-left: 0px !important
+    .owner-tag
+      $font-color: map-read($config_palette, "wrapper-secondary-color")
+      $background-color: map-read($config_palette, "accent-secondary-color")
+      color: $font-color !important
+      background-color: $background-color !important  
+    .timestamp-tag
+      margin-left: 0px !important
+      background-color: rgba(0, 0, 0, 0) !important
+  .message-body
+    $font-color: map-read($config_palette, "accent-secondary-color")
+    color: $font-color !important
