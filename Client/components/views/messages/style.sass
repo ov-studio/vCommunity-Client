@@ -68,14 +68,16 @@
     $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 0.9)
     background-color: $background-color !important
     .content-container
-      $padding: 10px 10px
-      padding: $padding !important
+      $padding: 5px
+      padding: $padding*2 $padding*2 !important
+      margin-bottom: $padding !important
+      overflow-x: hidden !important
+      overflow-y: scroll !important
       .widget-chatbox-container
         margin-top: 15px !important
         &:first-child
           margin-top: 0px !important
 
-    
     .action-container
       padding: 15px 35px !important
       padding-top: 0px !important
