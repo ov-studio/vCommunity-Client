@@ -1,0 +1,35 @@
+<!---------------------------------------------------------------
+     Resource: vClient (Server)
+     Script: components: views: contacts.vue
+     Author: vStudio
+     Developer(s): Aviril, Mario, Tron
+     DOC: 23/11/2021
+     Desc: View -- Contacts
+----------------------------------------------------------------->
+
+
+<!------------
+-- Template --
+------------->
+
+<template>
+  <div class="position-relative w-100 min-w-100 max-w-100 d-flex flex-column align-items-center overflow-hidden disable-selection view-contacts-container">
+    <!---- Navigation Manager ---->
+    <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-row align-self-start hide-scroller navigation-container">
+      <div v-for="(navigationData, navigationIndex) in navigations" :key="navigationIndex" :navigationIndex="navigationIndex" class="navigation" @click.prevent="onClientChangeNavigation(navigationIndex)">{{navigationIndex}} ({{onClientGetNavigationLength(navigationIndex)}})</div>
+    </div>
+
+    <!---- Navigation Renderer ---->
+    <div class="w-100 min-w-100 max-w-100 d-flex flex-column align-self-start align-items-center justify-content-start hide-scroller contacts-container">
+      <widget-contactbar v-for="(contactData, contactUID) in contactDatas.contacts" :key="contactUID" :contactUID="contactUID" :contactName="contactData.name" :contactAvatar="contactData.avatar" :contactOptions="contactDatas.options" :contactOptionHandler="onClientProcessOption"/>
+    </div>
+  </div>
+</template>
+
+
+<!----------------
+-- Dependencies --
+----------------->
+
+<script src="./script.js"/>
+<style scoped lang="sass" src="./style.sass"/>

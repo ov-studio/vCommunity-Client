@@ -1,0 +1,23 @@
+@import "@/assets/import"
+
+.widget-chatbox-container
+  .owner-avatar
+    $margin-horizontal: 8px
+    $size: map-read($config_element, "contact-bar", "avatar", "size")*1.75
+    $border-radius: 50%
+    $border-width: 3px
+    $border-color: map-read($config_palette, "wrapper-primary-color")
+    width: $size !important
+    min-width: $size !important
+    max-width: $size !important
+    height: $size !important
+    min-height: $size !important
+    max-height: $size !important
+    margin-right: $margin-horizontal !important
+    background-color: rgba(0, 0, 0, 0) !important
+    object-fit: cover !important
+    border-radius: $border-radius !important
+    border-width: $border-width !important
+    border-style: solid !important
+  .message-container
+    color: map-read($config_palette, "accent-secondary-color") !important

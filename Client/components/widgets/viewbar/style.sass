@@ -1,0 +1,36 @@
+@import "@/assets/import"
+
+.widget-viewbar-container
+  $height: map-read($config_element, "side-bar", "size")
+  $background-color: map-read($config_palette, "wrapper-primary-color")
+  top: 0 !important
+  height: $height !important
+  max-height: $height !important
+  background-color: $background-color !important
+  overflow-x: scroll !important
+  overflow-y: hidden !important
+  .menu-headerIcon
+    $font-size: 12px
+    $font-color: map-read($config_palette, "accent-primary-color")
+    height: $height !important
+    line-height: $height !important
+    font-size: $font-size !important
+    color: $font-color !important
+    stroke-width: 2px !important
+    color: $font-color !important
+    stroke: $font-color !important
+  .menu-header
+    $padding: 0px 5px
+    $font: "Megi Sans"
+    $font-size: 12px
+    $font-spacing: 2px
+    $font-color: map-read($config_palette, "accent-primary-color")
+    padding: $padding !important
+    height: $height !important
+    line-height: $height !important
+    font-family: $font !important
+    font-size: $font-size !important
+    letter-spacing: $font-spacing !important
+    font-weight: 800 !important
+    color: $font-color !important
+    +vendor("text-transform", "uppercase !important")

@@ -1,0 +1,47 @@
+// Config: Styles: Generic
+/*----------------------------------------------------------------
+     Resource: vClient (Server)
+     Script: assets: configs: styles: generic.scss
+     Author: vStudio
+     Developer(s): Aviril, Mario, Tron
+     DOC: 23/11/2021
+     Desc: Generic Config
+----------------------------------------------------------------*/
+
+
+/*------------------
+-- Configurations --
+------------------*/
+
+$config_theme: "dark";
+
+$config_fonts: (
+  "Origin Tech": "@/assets/fonts/origin_tech.ttf",
+  "Typo Round": "@/assets/fonts/typo_round.otf",
+  "Quick Kiss": "@/assets/fonts/quick_kiss.ttf",
+  "Megi Sans": "@/assets/fonts/megi_sans.ttf"
+);
+
+$config_element: (
+  "side-bar": (
+    size: 45px
+  ),
+  "content-bar": (
+    size: 250px
+  ),
+  "contact-bar": (
+    size: 35px,
+    avatar: (
+      size: 30px
+    )
+  )
+);
+
+$config_palette: (
+  "accent-primary-color": rgba(255, 80, 80, 1),
+  "accent-secondary-color": rgba(200, 200, 200, 1),
+  "accent-tertiary-color": rgba(100, 100, 100, 1),
+  "wrapper-primary-color": rgba(10, 10, 10, 1),
+  "wrapper-secondary-color": rgba(0, 0, 0, 1),
+  "wrapper-tertiary-color": rgba(25, 25, 25, 1)
+);
