@@ -33,16 +33,12 @@ export const actions = {
 }
 
 export const mutations = {
-  /*
-  onSyncContacts(state, contacts) {
-    Object.entries(contacts).forEach(async function(contactCategory) {
-      vue.set(state.userContacts, contactCategory[0], {})
-      Object.entries(contactCategory[1]).forEach(async function(contactData) {
-        state.userContacts[(contactCategory[0])][(contactData[0])] = {name: contactData[0], avatar: "https://hi-static.z-dn.net/files/d60/c746efb8807770ea7ad2af25ee7ed2ab.jpg"}
-      })
+  onSyncGroup(state, groupData) {
+    if (!state.personalGroups[(groupData.UID)]) vue.set(state.personalGroups, groupData.UID, {})
+    Object.entries(groupData.messages).forEach(async function(messageData) {
+      state.personalGroups[(groupData.UID)].messages[(messageData[0])] = {name: messageData[0], message: messageData[1].message}
     })
   }
-  */
 }
 
 
@@ -52,14 +48,11 @@ export const mutations = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  /*
-  appSocket.socket.on("App:onSyncContacts", function(contacts) {
-    $nuxt.$store.commit("views/contacts/onSyncContacts", contacts)
+  appSocket.socket.on("App:onSyncPersonalGroup", function(groupData) {
+    $nuxt.$store.commit("groups/personal/onSyncGroup", groupData)
   })
-  */
   // TODO: ... WIP
   appSocket.socket.on("roomTestEmit", function(something) {
-      console.log("WOW TIS STARTED? ")
-    //$nuxt.$store.commit("views/contacts/onSyncContacts", contacts)
+      console.log("Room Test STARTED? ")
   })
 }, false)
