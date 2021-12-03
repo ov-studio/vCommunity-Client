@@ -53,6 +53,6 @@ addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   })
   // TODO: ... WIP
   appSocket.socket.on("roomTestEmit", function(something) {
-      console.log("Room Test STARTED? ")
+    console.log("Room Test STARTED? ")
   })
 }, false)
