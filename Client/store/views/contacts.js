@@ -51,4 +51,9 @@ addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   appSocket.socket.on("App:onSyncContacts", function(contacts) {
     $nuxt.$store.commit("views/contacts/onSyncContacts", contacts)
   })
+  // TODO: ... WIP
+  appSocket.socket.on("roomTestEmit", function(something) {
+      console.log("WOW TIS STARTED? ")
+    //$nuxt.$store.commit("views/contacts/onSyncContacts", contacts)
+  })
 }, false)

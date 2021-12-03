@@ -71,8 +71,10 @@ setInterval(function() {
   $nuxt.$store.commit("auth/onRefreshAuthNetwork")
   let __isAppNetworked = importedJS.Library.Socket.isConnected("app")
   if ($nuxt.$store.state.auth.userCredentials && !isAppNetworked && __isAppNetworked) {
+    const appSocket = importedJS.Library.Socket.getSocket("app")
+    appSocket.socket.removeAllListeners()
     dispatchEvent(importedJS.Generic.eventDatas.app.connection.event)
-    importedJS.Library.Socket.getSocket("app").socket.emit("App:onClientConnect", $nuxt.$store.state.auth.userCredentials.UID)
+    appSocket.socket.emit("App:onClientConnect", $nuxt.$store.state.auth.userCredentials.UID)
   }
   isAppNetworked = __isAppNetworked
 }, 250)
