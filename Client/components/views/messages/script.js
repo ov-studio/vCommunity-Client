@@ -6,10 +6,18 @@ export default {
   mounted() {},
 
   computed: {
-    groupDatas() {
+    personalGroups() {
       return this.$store.state.groups.personal.personalGroups || false
     }
   },
 
-  methods: {}
+  methods: {
+    getParticipantDatas(participantUID) {
+      console.log(participantUID)
+      if (this.$store.state.views.contacts.userContacts["friends"] && this.$store.state.views.contacts.userContacts["friends"][participantUID]) {
+        return this.$store.state.views.contacts.userContacts["friends"][participantUID]
+      }
+      return false
+    }
+  }
 }

@@ -34,7 +34,12 @@ export const actions = {
 
 export const mutations = {
   onSyncGroups(state, groupData) {
-    if (!state.personalGroups[(groupData.groupUID)]) vue.set(state.personalGroups, groupData.groupUID, {})
+    console.log(groupData)
+    if (!state.personalGroups[(groupData.groupUID)]) {
+      const groupUID = groupData.groupUID
+      delete groupData.groupUID 
+      vue.set(state.personalGroups, groupUID, groupData)
+    }
     Object.entries(groupData.groupMessages).forEach(async function(messageData) {
       state.personalGroups[(groupData.groupUID)].messages[(messageData[0])] = {UID: messageData[0], message: messageData[1].message}
     })
