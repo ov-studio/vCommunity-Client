@@ -77,7 +77,6 @@
         margin-top: 15px !important
         &:first-child
           margin-top: 0px !important
-
     .action-container
       $border-width: 1px
       $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
@@ -87,21 +86,20 @@
       border-style: solid !important
       border-color: $border-color !important
       .chat-input
-        $font: "Megi Sans"
-        $font-size: 13px
-        $font-weight: 700
-        $font-spacing: 2px
+        $padding: 10px 10px
+        $height: 27px
+        $font-size: 15px
+        $font-weight: 600
         $font-color: map-read($config_palette, "accent-secondary-color")
-        $background-color: rgba(map-read($config_palette, "wrapper-primary-color"), 0.85)
+        $background-color: map-read($config_palette, "wrapper-secondary-color")
         $border-radius: 5px
         $border-width: 4px
         $border-color: map-read($config_palette, "accent-primary-color")
-        height: 27px !important
-        padding: 10px !important
-        //font-family: $font !important
-        //font-size: $font-size !important
-        //font-weight: $font-weight !important
-        //letter-spacing: $font-spacing !important
+        padding: $padding !important
+        height: $height !important
+        line-height: $height !important
+        font-size: $font-size !important
+        font-weight: $font-weight !important
         color: $font-color !important
         background: $background-color !important
         border-width: 0px !important
