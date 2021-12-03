@@ -12,7 +12,7 @@
 -- Imports --
 -----------*/
 
-//import vue from "vue"
+import vue from "vue"
 import * as importedJS from "@/assets/import"
 
 
@@ -33,10 +33,10 @@ export const actions = {
 }
 
 export const mutations = {
-  onSyncGroup(state, groupData) {
-    if (!state.personalGroups[(groupData.UID)]) vue.set(state.personalGroups, groupData.UID, {})
-    Object.entries(groupData.messages).forEach(async function(messageData) {
-      state.personalGroups[(groupData.UID)].messages[(messageData[0])] = {name: messageData[0], message: messageData[1].message}
+  onSyncGroups(state, groupData) {
+    if (!state.personalGroups[(groupData.groupUID)]) vue.set(state.personalGroups, groupData.groupUID, {})
+    Object.entries(groupData.groupMessages).forEach(async function(messageData) {
+      state.personalGroups[(groupData.groupUID)].messages[(messageData[0])] = {UID: messageData[0], message: messageData[1].message}
     })
   }
 }
@@ -48,8 +48,8 @@ export const mutations = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  appSocket.socket.on("App:onSyncPersonalGroup", function(groupData) {
-    $nuxt.$store.commit("groups/personal/onSyncGroup", groupData)
+  appSocket.socket.on("App:onSyncPersonalGroups", function(groupData) {
+    $nuxt.$store.commit("groups/personal/onSyncGroups", groupData)
   })
   // TODO: ... WIP
   appSocket.socket.on("roomTestEmit", function(something) {

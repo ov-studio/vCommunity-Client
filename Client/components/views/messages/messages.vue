@@ -21,7 +21,7 @@
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start disable-selection overflow-hidden navigation-container">
       <div class="navigation-header">Private Messages</div>
       <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller contacts-container">
-        <widget-contactbar isSelected="true" v-for="(contactData, contactUID) in contactDatas.contacts" :key="contactUID" :contactUID="contactUID" :contactName="contactData.name" :contactAvatar="contactData.avatar"/>
+        <widget-contactbar isSelected="true" v-for="(groupData, groupUID) in groupDatas" :key="groupUID" :contactUID="groupUID" :contactName="groupUID" :contactAvatar="groupData.avatar"/>
       </div>
     </div>
 

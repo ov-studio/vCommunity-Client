@@ -6,8 +6,8 @@ export default {
   mounted() {},
 
   computed: {
-    contactDatas() {
-      return {contacts: this.$store.state.views.contacts.userContacts["friends"] || false}
+    groupDatas() {
+      return this.$store.state.groups.personal.personalGroups || false
     }
   },
 
