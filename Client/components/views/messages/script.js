@@ -11,8 +11,7 @@ export default {
 
   computed: {
     personalGroups() {
-      const initialGroup = Object.entries(this.$store.state.groups.personal.personalGroups)[0]
-      this.selections.personalGroup = (this.selections.personalGroup && this.$store.state.groups.personal.personalGroups[(this.selections.personalGroup)]) || (initialGroup && initialGroup[0]) || false
+      this.onClientChangeSelection("personalGroup", this.selections.personalGroup)
       return this.$store.state.groups.personal.personalGroups || false
     }
   },
@@ -23,6 +22,13 @@ export default {
         return this.$store.state.views.contacts.userContacts["friends"][participantUID]
       }
       return false
+    },
+
+    onClientChangeSelection(selectionType, selection) {
+      if (selectionType == "personalGroup") {
+        const initialGroup = Object.entries(this.$store.state.groups.personal.personalGroups)[0]
+        this.selections.personalGroup = (selection && this.$store.state.groups.personal.personalGroups[selection]) || (initialGroup && initialGroup[0]) || false
+      }
     }
   }
 }
