@@ -79,8 +79,13 @@
           margin-top: 0px !important
 
     .action-container
-      padding: 15px 35px !important
-      padding-top: 0px !important
+      $border-width: 1px
+      $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
+      padding: 10px 10px !important
+      border-width: 0px !important
+      border-top-width: $border-width !important
+      border-style: solid !important
+      border-color: $border-color !important
       .chat-input
         $font: "Megi Sans"
         $font-size: 13px
@@ -91,7 +96,7 @@
         $border-radius: 5px
         $border-width: 4px
         $border-color: map-read($config_palette, "accent-primary-color")
-        height: 35px !important
+        height: 27px !important
         padding: 10px !important
         //font-family: $font !important
         //font-size: $font-size !important
@@ -104,6 +109,3 @@
         border-radius: $border-radius !important
         border-style: solid !important
         border-color: $border-color !important
-        +vendor("transition", "all 0.35s ease !important")
-        &:hover, &:focus
-          transform: scale(1.05, 1.01) !important
