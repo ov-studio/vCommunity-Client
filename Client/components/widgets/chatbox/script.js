@@ -1,5 +1,5 @@
 export default {
-  props: ["ownerUID", "ownerName", "ownerAvatar", "ownerMessages"],
+  props: ["ownerUID", "ownerName", "ownerAvatar", "ownerTimestamp", "ownerMessages"],
   data() {
     return {}
   }
