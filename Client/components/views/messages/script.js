@@ -41,7 +41,7 @@ export default {
     },
 
     onClientActionInput(event) {
-      if (event.keyCode != 13 || event.target.value.length <= 0) return false
+      if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
       event.preventDefault()
       if (this.selections.serverGroup) {
 
