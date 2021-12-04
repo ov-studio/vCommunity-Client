@@ -63,6 +63,8 @@ export default {
           groupUID: this.selections.serverGroup || this.selections.personalGroup,
           message: event.target.value
         })
+        const contentContainer = this.$el.querySelector(".content-container")
+        contentContainer.scrollTop = contentContainer.scrollHeight
       }
       event.target.value = ""
     }
