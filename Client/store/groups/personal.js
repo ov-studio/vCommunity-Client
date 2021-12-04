@@ -32,7 +32,6 @@ export const actions = {
 
 export const mutations = {
   onSyncGroups(state, groupData) {
-    console.log(groupData)
     const groupUID = groupData.groupUID
     if (!state.personalGroups[groupUID]) {
       delete groupData.groupUID 
@@ -53,9 +52,5 @@ addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
   appSocket.socket.on("App:onSyncPersonalGroups", function(groupData) {
     $nuxt.$store.commit("groups/personal/onSyncGroups", groupData)
-  })
-  // TODO: ... WIP
-  appSocket.socket.on("roomTestEmit", function(something) {
-    console.log("Room Test STARTED? ")
   })
 }, false)
