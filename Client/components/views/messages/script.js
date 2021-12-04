@@ -38,6 +38,14 @@ export default {
         const initialGroup = Object.entries(this.$store.state.groups.personal.personalGroups)[0]
         this.selections.personalGroup = (selection && this.$store.state.groups.personal.personalGroups[selection]) || (initialGroup && initialGroup[0]) || false
       }
+    },
+
+    onClientActionInput(event) {
+      if (event.keyCode == 13) {
+        event.preventDefault()
+        event.target.value = ""
+        return false
+      }
     }
   }
 }
