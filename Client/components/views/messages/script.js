@@ -13,7 +13,13 @@ export default {
     personalGroups() {
       this.onClientChangeSelection("personalGroup", this.selections.personalGroup)
       return this.$store.state.groups.personal.personalGroups || false
-    }
+    },
+
+    viewHeader() {
+      if (this.selections.personalGroup) {
+        return "@" + this.selections.personalGroup
+      }
+    },
   },
 
   methods: {

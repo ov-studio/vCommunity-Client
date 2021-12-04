@@ -27,7 +27,7 @@
 
     <!---- Navigation Renderer ---->
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column view-container">
-      <div class="disable-selection view-header">@Aviril</div>
+      <div class="disable-selection view-header">{{viewHeader}}</div>
       <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column overflow-hidden">
         <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller content-container">
           <widget-chatbox/>
