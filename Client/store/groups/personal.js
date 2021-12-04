@@ -25,11 +25,9 @@ export const state = () => ({
 })
 
 export const actions = {
-  /*
-  onClientProcessOption(state, payload) {
-    return importedJS.Library.Socket.getSocket("app").socket.emit(payload.optionData.event, payload.UID, payload.optionData.type)
+  onClientActionInput(state, payload) {
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientActionInput", payload)
   }
-  */
 }
 
 export const mutations = {
