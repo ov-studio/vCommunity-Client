@@ -39,8 +39,15 @@ export const mutations = {
     }
     (groupData.groupMessages).forEach(async function(messageData) {
       console.log(messageData)
-      //vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, {"something": messageData, "something2": messageData})
-      vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, [messageData])
+      let lastArrayRef = state.personalGroups[groupUID].groupMessages[(state.personalGroups[groupUID].groupMessages.length - 1)]
+      if (!lastArrayRef || (messageData.ownerUID != lastArrayRef.ownerUID)) {
+        vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, {
+          ownerUID: messageData.ownerUID,
+          ownerMessages: {}
+        })
+      }
+      lastArrayRef = state.personalGroups[groupUID].groupMessages[(state.personalGroups[groupUID].groupMessages.length - 1)]
+      vue.set(lastArrayRef.ownerMessages, messageData.messageUID, {timestamp: messageData.timestamp, message: messageData.message})
     })
   }
 }
