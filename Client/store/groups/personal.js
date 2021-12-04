@@ -37,8 +37,10 @@ export const mutations = {
       delete groupData.groupUID 
       vue.set(state.personalGroups, groupUID, groupData)
     }
-    Object.entries(groupData.groupMessages).forEach(async function(messageData) {
-      vue.set(state.personalGroups[groupUID].groupMessages, messageData[0], {message: messageData[1].message})
+    (groupData.groupMessages).forEach(async function(messageData) {
+      console.log(messageData)
+      //vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, {"something": messageData, "something2": messageData})
+      vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, [messageData])
     })
   }
 }
