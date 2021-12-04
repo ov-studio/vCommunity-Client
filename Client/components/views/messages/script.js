@@ -1,3 +1,5 @@
+import {Library} from "@/assets/import"
+
 export default {
   data() {
     return {
@@ -35,6 +37,10 @@ export default {
   },
 
   methods: {
+    parseTimeStamp(milliseconds) {
+      return Library.Utility.parseMS(milliseconds)
+    },
+
     getParticipantDatas(participantUID) {
       if (this.$store.state.views.contacts.userContacts["friends"] && this.$store.state.views.contacts.userContacts["friends"][participantUID]) {
         return this.$store.state.views.contacts.userContacts["friends"][participantUID]

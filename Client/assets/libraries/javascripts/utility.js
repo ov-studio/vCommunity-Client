@@ -46,6 +46,17 @@ export function clearObjectStrings(object, isRecursive) {
   return true
 }
 
+export function parseMS(milliseconds) {
+  if (!milliseconds) return false
+
+  return {
+    hours: Math.floor((milliseconds/(1000*60 *60)) % 24),
+    minutes: Math.floor((milliseconds/(1000*60)) % 60),
+    seconds: Math.floor((milliseconds/1000) % 60),
+    milliseconds: parseInt((milliseconds%1000) / 100)
+  }
+}
+
 export function isDateValid(date) {
   if (!date || (typeof(date) != "object")) return false
 
