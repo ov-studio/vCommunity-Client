@@ -2,6 +2,7 @@ export default {
   data() {
     return {
       selections: {
+        serverGroup: false,
         personalGroup: false
       }
     }
@@ -16,7 +17,9 @@ export default {
     },
 
     viewHeader() {
-      if (this.selections.personalGroup) {
+      if (this.selections.serverGroup) {
+        return ''
+      } else if (this.selections.personalGroup) {
         return "@" + this.selections.personalGroup
       }
     },
