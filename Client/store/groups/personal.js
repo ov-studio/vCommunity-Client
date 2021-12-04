@@ -38,7 +38,7 @@ export const mutations = {
       vue.set(state.personalGroups, groupUID, groupData)
     }
     Object.entries(groupData.groupMessages).forEach(async function(messageData) {
-      state.personalGroups[groupUID].groupMessages[(messageData[0])] = {message: messageData[1].message}
+      vue.set(state.personalGroups[groupUID].groupMessages, messageData[0], {message: messageData[1].message})
     })
   }
 }
