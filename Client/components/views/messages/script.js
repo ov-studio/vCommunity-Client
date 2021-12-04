@@ -23,6 +23,15 @@ export default {
         return "@" + this.selections.personalGroup
       }
     },
+
+    viewMessages() {
+      if (this.selections.serverGroup) {
+
+      } else if (this.selections.personalGroup) {
+        return (this.$store.state.groups.personal.personalGroups[(this.selections.personalGroup)] && this.$store.state.groups.personal.personalGroups[(this.selections.personalGroup)].groupMessages) || false
+      }
+      return false
+    }
   },
 
   methods: {

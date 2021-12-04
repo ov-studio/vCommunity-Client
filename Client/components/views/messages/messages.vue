@@ -31,9 +31,7 @@
       <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column overflow-hidden">
         <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller content-container">
           <widget-chatbox/>
-          <widget-chatbox/>
-          <widget-chatbox/>
-          <widget-chatbox/>
+          <widget-chatbox v-for="(messageData, messageID) in viewMessages" :key="messageID"/>
         </div>
       </div>
 
