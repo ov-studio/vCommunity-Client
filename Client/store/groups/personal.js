@@ -38,7 +38,6 @@ export const mutations = {
       vue.set(state.personalGroups, groupUID, groupData)
     }
     (groupData.groupMessages).forEach(async function(messageData) {
-      console.log(messageData)
       let lastArrayRef = state.personalGroups[groupUID].groupMessages[(state.personalGroups[groupUID].groupMessages.length - 1)]
       if (!lastArrayRef || (messageData.ownerUID != lastArrayRef.ownerUID)) {
         vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, {
