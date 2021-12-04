@@ -1,5 +1,3 @@
-import {Library} from "@/assets/import"
-
 export default {
   data() {
     return {
@@ -38,7 +36,7 @@ export default {
 
   methods: {
     parseTimeStamp(milliseconds) {
-      return Library.Utility.parseMS(milliseconds)
+      return (new Date(milliseconds)).toLocaleString()
     },
 
     getParticipantDatas(participantUID) {
