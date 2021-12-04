@@ -41,6 +41,7 @@ export default {
     },
 
     onClientActionInput(event) {
+      if (event.target.value.length <= 0) return false
       if (event.keyCode == 13) {
         event.preventDefault()
         event.target.value = ""
