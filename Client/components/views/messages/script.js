@@ -1,3 +1,5 @@
+import {Generic} from "@/assets/import"
+
 export default {
   data() {
     return {
@@ -8,7 +10,13 @@ export default {
     }
   },
 
-  mounted() {},
+  mounted() {
+    addEventListener(Generic.eventDatas.app.scrollmessages.name, this.onClientScrollContentContainer, false)
+  },
+
+  beforeDestroy() {
+    removeEventListener(Generic.eventDatas.app.scrollmessages.name, this.onClientScrollContentContainer)
+  },
 
   computed: {
     personalGroups() {
@@ -53,6 +61,13 @@ export default {
       }
     },
 
+    onClientScrollContentContainer() {
+      this.$nextTick(() => {
+        const contentContainer = this.$el.querySelector(".content-container")
+        contentContainer.scrollTop = contentContainer.scrollHeight
+      })
+    },
+  
     onClientActionInput(event) {
       if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
       event.preventDefault()
@@ -63,8 +78,6 @@ export default {
           groupUID: this.selections.serverGroup || this.selections.personalGroup,
           message: event.target.value
         })
-        const contentContainer = this.$el.querySelector(".content-container")
-        contentContainer.scrollTop = contentContainer.scrollHeight
       }
       event.target.value = ""
     }

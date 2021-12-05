@@ -40,12 +40,13 @@ export const socketDatas = {
 export const eventDatas = {
   app: {
     connection: {name: "App:onClientConnect"},
-    disconnection: {name: "App:onClientDisconnect"}
+    disconnection: {name: "App:onClientDisconnect"},
+    scrollmessages: {name: "App:onClientScrollMessages"}
   }
 }
 
 Object.entries(eventDatas).forEach(async function(eventCategory) {
   Object.entries(eventCategory[1]).forEach(async function(eventData) {
-    eventDatas[eventCategory[0]][(eventData[0])].event = new Event(eventDatas.app.connection.name)
+    eventDatas[eventCategory[0]][(eventData[0])].event = new Event(eventData[1].name)
   })
 })
