@@ -11,11 +11,11 @@ export default {
   },
 
   mounted() {
-    addEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientScrollContentContainer, false)
+    addEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientForceMessageViewScroll, false)
   },
 
   beforeDestroy() {
-    removeEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientScrollContentContainer)
+    removeEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientForceMessageViewScroll)
   },
 
   computed: {
@@ -57,11 +57,11 @@ export default {
     onClientChangeSelection(selectionType, selection) {
       if (selectionType == "personalGroup") {
         const initialGroup = Object.entries(this.$store.state.groups.personal.personalGroups)[0]
-        this.selections.personalGroup = (selection && this.$store.state.groups.personal.personalGroups[selection]) || (initialGroup && initialGroup[0]) || false
+        this.selections.personalGroup = (selection && this.$store.state.groups.personal.personalGroups[selection] && selection) || (initialGroup && initialGroup[0]) || false
       }
     },
 
-    onClientScrollContentContainer() {
+    onClientForceMessageViewScroll() {
       this.$nextTick(() => {
         const contentContainer = this.$el.querySelector(".content-container")
         contentContainer.scrollTop = contentContainer.scrollHeight
