@@ -56,7 +56,7 @@ export const mutations = {
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.ownerUID)) {
         isMessagesToBeScrolled = true
       }
-      if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.app.scrollmessages.event)
+      if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
     })
   }
 }

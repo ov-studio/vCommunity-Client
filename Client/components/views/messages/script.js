@@ -11,11 +11,11 @@ export default {
   },
 
   mounted() {
-    addEventListener(Generic.eventDatas.app.scrollmessages.name, this.onClientScrollContentContainer, false)
+    addEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientScrollContentContainer, false)
   },
 
   beforeDestroy() {
-    removeEventListener(Generic.eventDatas.app.scrollmessages.name, this.onClientScrollContentContainer)
+    removeEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientScrollContentContainer)
   },
 
   computed: {

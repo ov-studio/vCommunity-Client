@@ -41,7 +41,9 @@ export const eventDatas = {
   app: {
     connection: {name: "App:onClientConnect"},
     disconnection: {name: "App:onClientDisconnect"},
-    scrollmessages: {name: "App:onClientScrollMessages"}
+  },
+  messageView: {
+    forcescroll: {name: "App:MessageView:onClientForceScroll"}
   }
 }
 
