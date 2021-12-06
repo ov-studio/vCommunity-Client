@@ -253,7 +253,7 @@ export default {
     border-color: rgba(0, 0, 0, 0) !important
     .auth-progress
       $height: 4px
-      $background-color: rgba(50, 50, 50, 1)
+      $background-color: map-read($config_palette, "accent-quaternary-color")
       height: $height !important
       background-color: $background-color !important
       .progress-bar
@@ -267,7 +267,7 @@ export default {
     $font-size: 12.5px
     $font-weight: 800
     $font-spacing: 2.5px
-    $font-color: rgba(140, 140, 140, 1)
+    $font-color: map-read($config_palette, "accent-tertiary-color")
     +vendor("text-transform", "uppercase !important")
     font-family: $font !important
     font-size: $font-size !important
@@ -281,10 +281,10 @@ export default {
     $height: 34px
     $font: "Typo Round"
     $font-size: 15px
-    $font-color: rgba(240, 240, 240, 1)
+    $font-color: map-read($config_palette, "accent-secondary-color")
     $border-radius: 5px
     $border-width: 2px
-    $border-color: rgba(255, 255, 255, 0.1)
+    $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
     height: calc($height - $border-width)
     line-height: calc($height - $border-width) !important
     font-family: $font !important
@@ -298,13 +298,13 @@ export default {
     border-color: $border-color !important
     +vendor("transition", "all 0.5s ease !important")
     &::placeholder
-      $font-color: rgba(140, 140, 140, 1)
+      $font-color: map-read($config_palette, "accent-tertiary-color")
       color: $font-color !important
     &:focus::placeholder
-      $font-color: rgba(140, 140, 140, 0.25)
+      $font-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.25)
       color: $font-color !important
     &::selection
-      $background-color: rgba(50, 50, 50, 1)
+      $background-color: map-read($config_palette, "accent-quaternary-color")
       background-color: $background-color !important
     &:hover:not([disabled]), &:focus:not([disabled])
       $border-color: map-read($config_palette, "accent-primary-color")

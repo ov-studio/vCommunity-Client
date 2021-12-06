@@ -28,7 +28,7 @@ export default {
             {event: "App:onClientBlockRequest", type: "unblock"}
           ]
         },
-        "add friends": {
+        "find friends": {
           isFriendFinder: true,
           options: [
             //{event: "App:onClientBlockRequest", type: "unblock"}
@@ -43,6 +43,10 @@ export default {
   },
 
   computed: {
+    isFriendFinder() {
+      return (this.navigations[(this.selectedNavigation)] && this.navigations[(this.selectedNavigation)].isFriendFinder && true) || false
+    },
+
     contactDatas() {
       return {contacts: (this.selectedNavigation && this.$store.state.views.contacts.userContacts[(this.selectedNavigation)]) || false, options: (this.selectedNavigation && this.navigations[(this.selectedNavigation)] && this.navigations[(this.selectedNavigation)].options) || false}
     }
