@@ -303,6 +303,7 @@ export default {
     &:focus::placeholder
       $font-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.25)
       color: $font-color !important
+      +vendor("transition", "all 0.5s ease !important")
     &::selection
       $background-color: map-read($config_palette, "accent-quaternary-color")
       background-color: $background-color !important

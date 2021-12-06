@@ -29,7 +29,6 @@
     </div>
     <div v-else class="w-100 min-w-100 max-w-100 d-flex flex-column align-self-start align-items-center justify-content-start hide-scroller contacts-container">
       <widget-contactbar v-for="(contactData, contactUID) in contactDatas.contacts" :key="contactUID" :contactUID="contactUID" :contactName="contactData.name" :contactAvatar="contactData.avatar" :contactOptions="contactDatas.options" :contactOptionHandler="onClientProcessOption"/>
-      <widget-contactbar></widget-contactbar>
     </div>
   </div>
 </template>
