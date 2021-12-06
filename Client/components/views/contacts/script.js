@@ -27,6 +27,12 @@ export default {
           options: [
             {event: "App:onClientBlockRequest", type: "unblock"}
           ]
+        },
+        "add friends": {
+          isFriendFinder: true,
+          options: [
+            //{event: "App:onClientBlockRequest", type: "unblock"}
+          ]
         }
       }
     }
@@ -49,16 +55,12 @@ export default {
     },
   
     onClientGetNavigationLength(navigationIndex) {
-      return (this.$store.state.views.contacts.userContacts[(navigationIndex)] && Object.entries(this.$store.state.views.contacts.userContacts[(navigationIndex)]).length) || 0
+      if (this.navigations[navigationIndex].isFriendFinder) return ''
+      return "(" + ((this.$store.state.views.contacts.userContacts[(navigationIndex)] && Object.entries(this.$store.state.views.contacts.userContacts[(navigationIndex)]).length) || 0) + ")"
     },
 
     onClientChangeNavigation(navigationIndex) {
       this.selectedNavigation = navigationIndex
-      Array.from(this.$el.querySelectorAll(".navigation")).forEach(function(navigation) {
-        let isSelectedNavigation = navigation.attributes.navigationIndex.value == navigationIndex
-        if (isSelectedNavigation) navigation.classList.add("selected")
-        else navigation.classList.remove("selected")
-      })
     }
   }
 }

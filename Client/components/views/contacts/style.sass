@@ -49,7 +49,7 @@
       +vendor("transition", "all 0.3s ease !important")
       &:first-child
         margin-left: 0px !important
-      &.selected, &:hover
+      &[isSelected="true"], &:hover
         background-color: map-read($config_palette, "accent-primary-color") !important
   .contacts-container
     $margin-vertical: 5px

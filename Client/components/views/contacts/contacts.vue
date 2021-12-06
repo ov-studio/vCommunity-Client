@@ -16,7 +16,7 @@
   <div class="position-relative w-100 min-w-100 max-w-100 d-flex flex-column align-items-center overflow-hidden disable-selection view-contacts-container">
     <!---- Navigation Manager ---->
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-row align-self-start hide-scroller navigation-container">
-      <div v-for="(navigationData, navigationIndex) in navigations" :key="navigationIndex" :navigationIndex="navigationIndex" class="navigation" @click.prevent="onClientChangeNavigation(navigationIndex)">{{navigationIndex}} ({{onClientGetNavigationLength(navigationIndex)}})</div>
+      <div v-for="(navigationData, navigationIndex) in navigations" :key="navigationIndex" :navigationIndex="navigationIndex" :isSelected="selectedNavigation == navigationIndex" class="navigation" @click.prevent="onClientChangeNavigation(navigationIndex)">{{navigationIndex}} {{onClientGetNavigationLength(navigationIndex)}}</div>
     </div>
 
     <!---- Navigation Renderer ---->
