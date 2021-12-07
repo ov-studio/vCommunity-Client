@@ -39,22 +39,22 @@ export const mutations = {
     })
   },
 
-  onSyncPersonalGroupMessages(state, groupData) {
-    if (!state.userGroups[(groupData.UID)]) return false
-    (groupData.messages).forEach(async function(messageData) {
-      let lastArrayRef = state.userGroups[(groupData.UID)].messages[(state.userGroups[(groupData.UID)].messages.length - 1)]
+  onSyncPersonalGroupMessages(state, groupMessages) {
+    if (!state.userGroups[(groupMessages.UID)]) return false
+    (groupMessages.messages).forEach(async function(messageData) {
+      let lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
       let isArrayToBeAppended = !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
         const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
         if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isArrayToBeAppended = true
       }
       if (isArrayToBeAppended) {
-        vue.set(state.userGroups[(groupData.UID)].messages, state.userGroups[(groupData.UID)].messages.length, {
+        vue.set(state.userGroups[(groupMessages.UID)].messages, state.userGroups[(groupMessages.UID)].messages.length, {
           owner: messageData.owner,
           ownerMessages: {}
         })
       }
-      lastArrayRef = state.userGroups[(groupData.UID)].messages[(state.userGroups[(groupData.UID)].messages.length - 1)]
+      lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
       vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
@@ -75,7 +75,7 @@ addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   appSocket.socket.on("App:onSyncPersonalGroups", function(groups) {
     $nuxt.$store.commit("groups/personal/onSyncGroups", groups)
   })
-  appSocket.socket.on("App:onSyncPersonalGroupMessages", function(groupData) {
-    //$nuxt.$store.commit("groups/personal/onSyncPersonalGroupMessages", groupData)
+  appSocket.socket.on("App:onSyncPersonalGroupMessages", function(groupMessages) {
+    $nuxt.$store.commit("groups/personal/onSyncPersonalGroupMessages", groupMessages)
   })
 }, false)
