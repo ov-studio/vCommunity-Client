@@ -1,3 +1,5 @@
+import {Library} from "@/assets/import"
+
 export default {
   data() {
     return {
@@ -39,7 +41,8 @@ export default {
           ]
         },
         "find friends": {
-          isFriendFinder: true
+          isFriendFinder: true,
+          option: {event: "App:onClientFriendRequest", type: "send"}
         }
       }
     }
@@ -60,11 +63,6 @@ export default {
   },
 
   methods: {
-    onClientProcessOption(UID, optionData) {
-      if (!optionData.event) return false
-      this.$store.dispatch("views/contacts/onClientProcessOption", {UID: UID, optionData: optionData})
-    },
-  
     onClientGetNavigationLength(navigationIndex) {
       if (this.navigations[navigationIndex].isFriendFinder) return ''
       return "(" + ((this.$store.state.views.contacts.userContacts[(navigationIndex)] && Object.entries(this.$store.state.views.contacts.userContacts[(navigationIndex)]).length) || 0) + ")"
@@ -74,9 +72,23 @@ export default {
       this.selectedNavigation = navigationIndex
     },
 
+    onClientProcessOption(UID, optionData) {
+      if (!optionData.event) return false
+      this.$store.dispatch("views/contacts/onClientProcessOption", {UID: UID, optionData: optionData})
+    },
+
     onClientProcessInvitation() {
       if (this.finderDatas.username.length <= 0) return false
-      console.log(this.finderDatas.username)
+      this.$store.dispatch("views/contacts/onClientProcessInvitation", {username: this.finderDatas.username, optionData: this.navigations[(this.selectedNavigation)].option})
+      /*
+      Library.Socket.getSocket("app").socket.on("Auth:onClientRegister", function(result) {
+        Library.Socket.getSocket("app").socket.off("Auth:onClientRegister")
+        delete componentInstance.socketBuffer.app["Auth:onClientRegister"]
+        let statusCode = "invitation/failed"
+        componentInstance.onClientEnableUI(true)
+        componentInstance.onClientShowAlert(alertMessage)
+      })
+      */
     }
   }
 }

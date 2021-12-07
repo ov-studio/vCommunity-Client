@@ -27,6 +27,10 @@ export const state = () => ({
 export const actions = {
   onClientProcessOption(state, payload) {
     return importedJS.Library.Socket.getSocket("app").socket.emit(payload.optionData.event, payload.UID, payload.optionData.type)
+  },
+
+  onClientProcessInvitation(state, payload) {
+    return importedJS.Library.Socket.getSocket("app").socket.emit(payload.optionData.event, payload.username, payload.optionData.type)
   }
 }
 
