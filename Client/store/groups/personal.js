@@ -33,10 +33,8 @@ export const actions = {
 export const mutations = {
   onSyncGroups(state, groups) {
     vue.set(state, "userGroups", {})
-    groups.forEach(function(group) {
-      vue.set(state.userGroups, group.UID, {
-
-      })
+    groups.forEach(function(groupData) {
+      vue.set(state.userGroups, group.UID, groupData)
     })
   },
 
