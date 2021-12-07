@@ -3,6 +3,9 @@ import {Library} from "@/assets/import"
 export default {
   data() {
     return {
+      timerBuffer: {
+        invitation: {}
+      },
       selectedNavigation: null,
       finderDatas: {
         currentHeader: "void",
@@ -43,6 +46,10 @@ export default {
     }
   },
 
+  beforeDestroy() {
+    Library.Utility.clearTimerBuffer(this.timerBuffer)
+  },
+
   mounted() {
     this.onClientChangeNavigation(Object.entries(this.navigations)[0][0])
   },
@@ -79,8 +86,13 @@ export default {
       Library.Socket.getSocket("app").socket.on("App:onClientFriendInvitation", function(result) {
         Library.Socket.getSocket("app").socket.off("App:onClientFriendInvitation")
         componentInstance.finderDatas.currentHeader = (componentInstance.finderDatas.headers[(result.status)] && result.status) || "void"
-        //componentInstance.onClientEnableUI(true)
-        //componentInstance.onClientShowAlert(alertMessage)
+        if (componentInstance.finderDatas.currentHeader != "void") {
+          if (componentInstance.timerBuffer.invitation.headerResetter) clearTimeout(componentInstance.timerBuffer.invitation.headerResetter)
+          componentInstance.timerBuffer.invitation.headerResetter = setTimeout(function() {
+            delete componentInstance.timerBuffer.invitation.headerResetter
+            componentInstance.finderDatas.currentHeader = "void"
+          }, 10000)
+        }
       })
     }
   }

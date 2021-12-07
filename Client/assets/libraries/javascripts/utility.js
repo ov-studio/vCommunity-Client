@@ -93,3 +93,14 @@ export function unsubSocketBuffer(buffer) {
   })
   return true
 }
+
+export function clearTimerBuffer(buffer) {
+  if (!buffer || (typeof(buffer) != "object")) return false
+
+  Object.entries(buffer).forEach(function(timerCategory) {
+    Object.entries(timerCategory[1]).forEach(function(timer) {
+      clearTimeout(timer[1])
+    })
+  })
+  return true
+}
