@@ -65,7 +65,7 @@
       font-size: $font-size !important
       color: $font-color !important
     .finder-control
-      $width: max(350px, 35%)
+      $width: 400px
       $height: 30px
       $font-size: 20px
       $font-color: map-read($config_palette, "accent-quinary-color")
@@ -95,12 +95,12 @@
         $background-color: map-read($config_palette, "accent-quaternary-color")
         background-color: $background-color !important
       &:hover:not([disabled]), &:focus:not([disabled])
-        $width: max($width + 50px, 40%)
+        $width: $width + 50px
         $border-color: map-read($config_palette, "accent-primary-color")
         width: $width !important
         border-color: $border-color !important
     .finder-action
-      $margin-vertical: 20px
+      $margin-vertical: 13px
       $width: 300px
       $height: 21px
       $font: "Typo Round"

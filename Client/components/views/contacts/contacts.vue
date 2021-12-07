@@ -22,7 +22,7 @@
     <!---- Navigation Renderer ---->
     <div v-if="isFriendFinder" class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start align-items-center justify-content-center overflow-hidden friends-finder-container">
       <div class="finder-header">Hey, I am waiting for you!</div>
-      <input class="finder-control" placeholder="Enter Username">
+      <input class="finder-control" placeholder="Enter Username" autocomplete="off" spellcheck="false">
       <div class="finder-action">
         <div class="form-button-text">Invite</div>
       </div>
