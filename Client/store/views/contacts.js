@@ -39,8 +39,8 @@ export const mutations = {
     vue.set(state.userContacts, "userContacts", {})
     Object.entries(contacts).forEach(async function(contactCategory) {
       vue.set(state.userContacts, contactCategory[0], {})
-      Object.entries(contactCategory[1]).forEach(async function(contactData) {
-        vue.set(state.userContacts[(contactCategory[0])], contactData[1].UID, contactData)
+      contactCategory[1].forEach(async function(contactData) {
+        vue.set(state.userContacts[(contactCategory[0])], contactData.UID, contactData)
       })
     })
   }
