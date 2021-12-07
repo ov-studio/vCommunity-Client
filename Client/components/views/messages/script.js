@@ -28,7 +28,7 @@ export default {
       if (this.selections.serverGroup) {
         return ''
       } else if (this.selections.personalGroup) {
-        return "@" + this.selections.personalGroup
+        return "@" + this.$store.state.groups.personal.personalGroups[(this.selections.personalGroup)].participantUID
       }
     },
 
