@@ -39,10 +39,7 @@ export default {
           ]
         },
         "find friends": {
-          isFriendFinder: true,
-          options: [
-            //{event: "App:onClientBlockRequest", type: "unblock"}
-          ]
+          isFriendFinder: true
         }
       }
     }
@@ -78,7 +75,9 @@ export default {
     },
 
     onClientProcessInvitation() {
+      if (this.finderDatas.username.length <= 0) return false
       console.log("PROCESSING INVIT...")
+      console.log(this.finderDatas.username)
     }
   }
 }
