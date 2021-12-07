@@ -36,7 +36,7 @@
 
       <!---- Action Manager ---->
       <div class="w-100 min-w-100 max-w-100 d-flex flex-row disable-selection action-container">
-        <input class="w-100 min-w-100 max-w-100 chat-input" autocomplete="off" spellcheck="false" @keypress="onClientActionInput">
+        <input class="w-100 min-w-100 max-w-100 chat-input" autocomplete="off" spellcheck="false" @keypress="onClientSendMessage">
       </div>
     </div>
   </div>

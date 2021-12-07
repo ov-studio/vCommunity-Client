@@ -68,13 +68,13 @@ export default {
       })
     },
   
-    onClientActionInput(event) {
+    onClientSendMessage(event) {
       if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
       event.preventDefault()
       if (this.selections.serverGroup) {
 
       } else if (this.selections.personalGroup) {
-        this.$store.dispatch("groups/personal/onClientActionInput", {
+        this.$store.dispatch("groups/personal/onClientSendMessage", {
           UID: this.selections.serverGroup || this.selections.personalGroup,
           message: event.target.value
         })

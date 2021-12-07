@@ -25,8 +25,8 @@ export const state = () => ({
 })
 
 export const actions = {
-  onClientActionInput(state, payload) {
-    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientActionInput", payload)
+  onClientSendMessage(state, payload) {
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientSendMessage", payload)
   }
 }
 
