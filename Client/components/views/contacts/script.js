@@ -16,7 +16,9 @@ export default {
         username: "",
         headers: {
           "void": "Hey, I am waiting for you!",
-          "invitation/pre-pending": "Oops, You've already invited me!",
+          "invitation/pending": "Oops, You've already invited me!",
+          "invitation/recepient-blocked": "Wait, You've blocked me!",
+          "invitation/sender-blocked": "Damn, I've blocked you!",
           "invitation/successful": "Hurray! You've successfully invited me",
           "invitation/failed": "Hold Up, Whom are you inviting?"
         }
@@ -80,15 +82,12 @@ export default {
     onClientProcessInvitation() {
       if (this.finderDatas.username.length <= 0) return false
       this.$store.dispatch("views/contacts/onClientProcessInvitation", {username: this.finderDatas.username, optionData: this.navigations[(this.selectedNavigation)].option})
-      /*
-      Library.Socket.getSocket("app").socket.on("Auth:onClientRegister", function(result) {
-        Library.Socket.getSocket("app").socket.off("Auth:onClientRegister")
-        delete componentInstance.socketBuffer.app["Auth:onClientRegister"]
-        let statusCode = "invitation/failed"
-        componentInstance.onClientEnableUI(true)
-        componentInstance.onClientShowAlert(alertMessage)
+      Library.Socket.getSocket("app").socket.on("App:onClientFriendInvitation", function(result) {
+        Library.Socket.getSocket("app").socket.off("App:onClientFriendInvitation")
+        console.log(result)
+        //componentInstance.onClientEnableUI(true)
+        //componentInstance.onClientShowAlert(alertMessage)
       })
-      */
     }
   }
 }
