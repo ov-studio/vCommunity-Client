@@ -14,7 +14,7 @@ export default {
         username: "",
         headers: {
           "void": "Hey, I am waiting for you!",
-          "invitation/pre-pending": "Ooops, You've already invited me!",
+          "invitation/pre-pending": "Oops, You've already invited me!",
           "invitation/successful": "Hurray! You've successfully invited me",
           "invitation/failed": "Hold Up, Whom are you inviting?"
         }
