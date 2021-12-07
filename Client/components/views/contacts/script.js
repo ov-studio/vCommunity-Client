@@ -23,24 +23,24 @@ export default {
         "friends": {
           options: [
             {type: "message"},
-            {event: "App:onClientFriendRequest", type: "unfriend"},
-            {event: "App:onClientBlockRequest", type: "block"}
+            {event: "App:Contacts:onClientFriendRequest", type: "unfriend"},
+            {event: "App:Contacts:onClientBlockRequest", type: "block"}
           ]
         },
         "pending": {
           options: [
-            {event: "App:onClientFriendRequest", type: "accept"},
-            {event: "App:onClientFriendRequest", type: "reject"}
+            {event: "App:Contacts:onClientFriendRequest", type: "accept"},
+            {event: "App:Contacts:onClientFriendRequest", type: "reject"}
           ]
         },
         "blocked": {
           options: [
-            {event: "App:onClientBlockRequest", type: "unblock"}
+            {event: "App:Contacts:onClientBlockRequest", type: "unblock"}
           ]
         },
         "find friends": {
           isFriendFinder: true,
-          option: {event: "App:onClientFriendRequest", type: "send"}
+          option: {event: "App:Contacts:onClientFriendRequest", type: "send"}
         }
       }
     }
@@ -83,8 +83,8 @@ export default {
       if (this.finderDatas.username.length <= 0) return false
       const componentInstance = this
       this.$store.dispatch("views/contacts/onClientProcessInvitation", {username: this.finderDatas.username, optionData: this.navigations[(this.selectedNavigation)].option})
-      Library.Socket.getSocket("app").socket.on("App:onClientFriendInvitation", function(result) {
-        Library.Socket.getSocket("app").socket.off("App:onClientFriendInvitation")
+      Library.Socket.getSocket("app").socket.on("App:Contacts:onClientFriendRequest", function(result) {
+        Library.Socket.getSocket("app").socket.off("App:Contacts:onClientFriendRequest")
         componentInstance.finderDatas.currentHeader = (componentInstance.finderDatas.headers[(result.status)] && result.status) || "void"
         if (componentInstance.finderDatas.currentHeader != "void") {
           if (componentInstance.timerBuffer.invitation.headerResetter) clearTimeout(componentInstance.timerBuffer.invitation.headerResetter)
