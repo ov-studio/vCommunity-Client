@@ -26,12 +26,6 @@ export default {
     this.onClientChangeMenu(Object.entries(this.menus)[0][0])
   },
 
-  watch: {
-    "$store.state.widgets.menubar.selection": function() {
-      this.isMenuSelected()
-    }
-  },
-
   methods: {
     isMenuSelected(menuType) {
       return menuType == this.$store.state.widgets.menubar.selection
