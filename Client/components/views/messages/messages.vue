@@ -30,7 +30,7 @@
       <div class="disable-selection view-header">{{viewHeader}}</div>
       <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column overflow-hidden">
         <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller content-container">
-          <widget-chatbox v-for="(containerData, containerIndex) in viewMessages" :key="containerIndex" :ownerUID="containerData.ownerUID" :ownerTimestamp="parseTimeStamp(containerData.ownerMessages[(Object.keys(containerData.ownerMessages)[0])].timestamp)" :ownerMessages="containerData.ownerMessages"/>
+          <widget-chatbox v-for="(containerData, containerIndex) in viewMessages" :key="containerIndex" :messageUID="containerData.UID" :ownerUID="containerData.owner" :ownerTimestamp="parseTimeStamp(containerData.ownerMessages[(Object.keys(containerData.ownerMessages)[0])].DOC)" :ownerMessages="containerData.ownerMessages"/>
         </div>
       </div>
 

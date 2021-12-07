@@ -39,21 +39,21 @@ export const mutations = {
     }
     (groupData.groupMessages).forEach(async function(messageData) {
       let lastArrayRef = state.personalGroups[groupUID].groupMessages[(state.personalGroups[groupUID].groupMessages.length - 1)]
-      let isArrayToBeAppended = !lastArrayRef || (messageData.ownerUID != lastArrayRef.ownerUID)
+      let isArrayToBeAppended = !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
         const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
         if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isArrayToBeAppended = true
       }
       if (isArrayToBeAppended) {
         vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, {
-          ownerUID: messageData.ownerUID,
+          owner: messageData.owner,
           ownerMessages: {}
         })
       }
       lastArrayRef = state.personalGroups[groupUID].groupMessages[(state.personalGroups[groupUID].groupMessages.length - 1)]
-      vue.set(lastArrayRef.ownerMessages, messageData.messageUID, {timestamp: messageData.timestamp, message: messageData.message})
+      vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
-      if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.ownerUID)) {
+      if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
         isMessagesToBeScrolled = true
       }
       if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
