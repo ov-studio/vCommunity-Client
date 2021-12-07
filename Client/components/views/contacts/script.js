@@ -11,6 +11,7 @@ export default {
       },
       finderDatas: {
         currentHeader: "void",
+        username: "",
         headers: {
           "void": "Hey, I am waiting for you!",
           "invitation/pre-pending": "Ooops, You've already invited me!",
@@ -74,6 +75,10 @@ export default {
 
     onClientChangeNavigation(navigationIndex) {
       this.selectedNavigation = navigationIndex
+    },
+
+    onClientProcessInvitation() {
+      console.log("PROCESSING INVIT...")
     }
   }
 }

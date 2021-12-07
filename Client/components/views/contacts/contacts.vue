@@ -22,8 +22,8 @@
     <!---- Navigation Renderer ---->
     <div v-if="isFriendFinder" class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start align-items-center justify-content-center overflow-hidden friends-finder-container">
       <div class="finder-header">{{finderDatas.headers[finderDatas.currentHeader]}}</div>
-      <input class="finder-control" placeholder="Enter Username" autocomplete="off" spellcheck="false">
-      <div class="finder-action">
+      <input class="finder-control" placeholder="Enter Username" v-model="finderDatas.Username" autocomplete="off" spellcheck="false">
+      <div class="finder-action" @click.prevent="onClientProcessInvitation">
         <div class="form-button-text">Invite</div>
       </div>
     </div>
