@@ -115,8 +115,8 @@ export default {
           statuses: {
             "void": "Please enter valid credentials!",
             "auth/email-already-exists": "Email already belongs to an account!",
-            "auth/invalid-password": "Please enter a stronger password!",
             "auth/username-already-exists": "Username already belongs to an account!",
+            "auth/invalid-password": "Please enter a stronger password!",
             "auth/successful": "You've successfully registered!",
             "auth/failed": "Unfortunately, we couldn't process your request!"
           },
