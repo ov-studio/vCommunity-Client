@@ -36,7 +36,7 @@ export default {
       if (this.selections.serverGroup) {
 
       } else if (this.selections.personalGroup) {
-        return (this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)].groupMessages) || false
+        return (this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)].messages) || false
       }
       return false
     }
