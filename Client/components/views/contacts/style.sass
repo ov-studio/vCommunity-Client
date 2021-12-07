@@ -55,7 +55,6 @@
         $background-color: map-read($config_palette, "accent-primary-color")
         background-color: $background-color !important
   .friends-finder-container
-    $margin-vertical: 10px
     $font: "Typo Round"
     font-family: $font !important
     .finder-header
@@ -69,7 +68,7 @@
       $width: max(350px, 35%)
       $height: 30px
       $font-size: 20px
-      $font-color: map-read($config_palette, "accent-secondary-color")
+      $font-color: map-read($config_palette, "accent-quinary-color")
       $border-width: 2px
       $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
       width: $width !important
@@ -137,7 +136,7 @@
         transform: skewx(calc($skew*-1)) !important
       &:hover:not([disabled])
         $scale: 1.1
-        $background-color: rgba(255, 255, 255, 1)
+        $background-color: map-read($config_palette, "accent-quinary-color")
         background-color: $background-color !important
         transform: skewx($skew) scale($scale, $scale) !important
         > *

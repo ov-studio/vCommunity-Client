@@ -281,7 +281,7 @@ export default {
     $height: 34px
     $font: "Typo Round"
     $font-size: 15px
-    $font-color: map-read($config_palette, "accent-secondary-color")
+    $font-color: map-read($config_palette, "accent-quinary-color")
     $border-radius: 5px
     $border-width: 2px
     $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
@@ -357,7 +357,7 @@ export default {
       transform: skewx(calc($skew*-1)) !important
     &:hover:not([disabled])
       $scale: 1.1
-      $background-color: rgba(255, 255, 255, 1)
+      $background-color: map-read($config_palette, "accent-quinary-color")
       background-color: $background-color !important
       transform: skewx($skew) scale($scale, $scale) !important
       > *
@@ -382,7 +382,7 @@ export default {
     &::first-letter
       padding-left: $font-spacing !important
     &:hover:not([disabled])
-      $font-stroke-color: rgba(255, 255, 255, 1)
+      $font-stroke-color: map-read($config_palette, "accent-quinary-color")
       $scale: 1.1
       cursor: pointer !important
       -webkit-text-stroke: $font-stroke-size $font-stroke-color !important
