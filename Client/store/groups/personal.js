@@ -34,30 +34,27 @@ export const mutations = {
   onSyncGroups(state, groups) {
     vue.set(state, "userGroups", {})
     groups.forEach(function(groupData) {
+      groupData.messages = []
       vue.set(state.userGroups, groupData.UID, groupData)
     })
   },
 
   onSyncPersonalGroupMessages(state, groupData) {
-    const UID = groupData.UID
-    if (!state.userGroups[UID]) {
-      delete groupData.UID 
-      vue.set(state.userGroups, UID, groupData)
-    }
-    (groupData.groupMessages).forEach(async function(messageData) {
-      let lastArrayRef = state.userGroups[UID].groupMessages[(state.userGroups[UID].groupMessages.length - 1)]
+    if (!state.userGroups[(groupData.UID)]) return false
+    (groupData.messages).forEach(async function(messageData) {
+      let lastArrayRef = state.userGroups[(groupData.UID)].messages[(state.userGroups[(groupData.UID)].messages.length - 1)]
       let isArrayToBeAppended = !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
         const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
         if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isArrayToBeAppended = true
       }
       if (isArrayToBeAppended) {
-        vue.set(state.userGroups[UID].groupMessages, state.userGroups[UID].groupMessages.length, {
+        vue.set(state.userGroups[(groupData.UID)].messages, state.userGroups[(groupData.UID)].messages.length, {
           owner: messageData.owner,
           ownerMessages: {}
         })
       }
-      lastArrayRef = state.userGroups[UID].groupMessages[(state.userGroups[UID].groupMessages.length - 1)]
+      lastArrayRef = state.userGroups[(groupData.UID)].messages[(state.userGroups[(groupData.UID)].messages.length - 1)]
       vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
