@@ -47,8 +47,8 @@ export const eventDatas = {
   }
 }
 
-Object.entries(eventDatas).forEach(async function(eventCategory) {
-  Object.entries(eventCategory[1]).forEach(async function(eventData) {
+Object.entries(eventDatas).forEach(function(eventCategory) {
+  Object.entries(eventCategory[1]).forEach(function(eventData) {
     eventDatas[eventCategory[0]][(eventData[0])].event = new Event(eventData[1].name)
   })
 })

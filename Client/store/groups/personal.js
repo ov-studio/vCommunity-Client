@@ -41,7 +41,7 @@ export const mutations = {
 
   onSyncPersonalGroupMessages(state, groupMessages) {
     if (!state.userGroups[(groupMessages.UID)]) return false
-    (groupMessages.messages).forEach(async function(messageData) {
+    (groupMessages.messages).forEach(function(messageData) {
       let lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
       let isArrayToBeAppended = !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {

@@ -53,7 +53,7 @@ const CSocket = {
   }
 }
 
-Object.entries(socketDatas).forEach(async function(socketData) {
+Object.entries(socketDatas).forEach(function(socketData) {
   if (socketData[1].autoConnect) CSocket.create(socketData[0])
 })
 
