@@ -4,13 +4,6 @@ export default {
   data() {
     return {
       selectedNavigation: null,
-      optionEvents: {
-        "unfriend": "App:onClientFriendRequest",
-        "accept": "App:onClientFriendRequest",
-        "reject": "App:onClientFriendRequest",
-        "block": "App:onClientBlockRequest",
-        "unblock": "App:onClientBlockRequest",
-      },
       finderDatas: {
         currentHeader: "void",
         username: "",
@@ -81,10 +74,11 @@ export default {
 
     onClientProcessInvitation() {
       if (this.finderDatas.username.length <= 0) return false
+      const componentInstance = this
       this.$store.dispatch("views/contacts/onClientProcessInvitation", {username: this.finderDatas.username, optionData: this.navigations[(this.selectedNavigation)].option})
       Library.Socket.getSocket("app").socket.on("App:onClientFriendInvitation", function(result) {
         Library.Socket.getSocket("app").socket.off("App:onClientFriendInvitation")
-        console.log(result)
+        componentInstance.finderDatas.currentHeader = (componentInstance.finderDatas.headers[(result.status)] && result.status) || "void"
         //componentInstance.onClientEnableUI(true)
         //componentInstance.onClientShowAlert(alertMessage)
       })
