@@ -14,8 +14,8 @@
 
 <template>
   <div class="position-relative min-vh-100 max-vh-100 d-flex flex-column align-items-center justify-content-center disable-selection hide-scroller widget-menubar-container">
-    <div v-for="(menuData, menuType) in menus" :key="menuType" :menuType="menuType" class="d-flex flex-column flex-shrink-0 align-items-center justify-content-center overflow-hidden menu-container">
-      <b-icon class="menu" :icon="menuData.icon" @click.prevent="onClientChangeMenu(menuType)"/>
+    <div v-for="(menuData, menuType) in menus" :key="menuType" class="d-flex flex-column flex-shrink-0 align-items-center justify-content-center overflow-hidden menu-container" :isSelected="isMenuSelected(menuType)">
+      <b-icon class="menu" :isSelected="isMenuSelected(menuType)" :icon="menuData.icon" @click.prevent="onClientChangeMenu(menuType)"/>
     </div>
   </div>
 </template>

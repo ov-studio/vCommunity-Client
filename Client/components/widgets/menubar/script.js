@@ -23,33 +23,23 @@ export default {
   },
 
   mounted() {
-    this.onClientChangeMenu(Object.entries(this.menus)[0][0], true)
+    this.onClientChangeMenu(Object.entries(this.menus)[0][0])
   },
 
   watch: {
     "$store.state.widgets.menubar.selection": function() {
-      this.onClientUpdateMenu()
+      this.isMenuSelected()
     }
   },
 
   methods: {
-    onClientUpdateMenu() {
-      let currentMenu = this.$store.state.widgets.menubar.selection
-      Array.from(this.$el.children).forEach(function(menuContainer) {
-        let isSelectedMenu = menuContainer.attributes.menuType.value == currentMenu
-        if (isSelectedMenu) menuContainer.classList.add("selected")
-        else menuContainer.classList.remove("selected")
-        Array.from(menuContainer.querySelectorAll(".menu")).forEach(function(menu) {
-          if (isSelectedMenu) menu.classList.add("selected")
-          else menu.classList.remove("selected")
-        })
-      })
+    isMenuSelected(menuType) {
+      return menuType == this.$store.state.widgets.menubar.selection
     },
 
-    onClientChangeMenu(menuType, invokeUpdate) {
+    onClientChangeMenu(menuType) {
       if (menuType == this.logoutMenu) return this.$store.dispatch("auth/onClientLogout")
       this.$store.commit("widgets/menubar/setSelection", menuType)
-      if (invokeUpdate) this.onClientUpdateMenu()
     }
   }
 }
