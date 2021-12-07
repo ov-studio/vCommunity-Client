@@ -53,7 +53,7 @@ export const mutations = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  appSocket.socket.on("App:onSyncContacts", function(contacts) {
+  appSocket.socket.on("App:Contacts:onSync", function(contacts) {
     $nuxt.$store.commit("views/contacts/onSyncContacts", contacts)
   })
 }, false)

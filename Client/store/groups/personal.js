@@ -39,8 +39,9 @@ export const mutations = {
     })
   },
 
-  onSyncPersonalGroupMessages(state, groupMessages) {
+  onSyncMessages(state, groupMessages) {
     if (!state.userGroups[(groupMessages.UID)]) return false
+
     Array.from(groupMessages.messages).forEach(function(messageData) {
       let lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
       let isArrayToBeAppended = !lastArrayRef || (messageData.owner != lastArrayRef.owner)
@@ -54,6 +55,7 @@ export const mutations = {
           ownerMessages: {}
         })
       }
+
       lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
       vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
@@ -72,10 +74,10 @@ export const mutations = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  appSocket.socket.on("App:onSyncPersonalGroups", function(groups) {
+  appSocket.socket.on("App:Groups:Personal:onSync", function(groups) {
     $nuxt.$store.commit("groups/personal/onSyncGroups", groups)
   })
-  appSocket.socket.on("App:onSyncPersonalGroupMessages", function(groupMessages) {
-    $nuxt.$store.commit("groups/personal/onSyncPersonalGroupMessages", groupMessages)
+  appSocket.socket.on("App:Groups:Personal:onSyncMessages", function(groupMessages) {
+    $nuxt.$store.commit("groups/personal/onSyncMessages", groupMessages)
   })
 }, false)
