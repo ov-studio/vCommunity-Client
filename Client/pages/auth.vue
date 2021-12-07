@@ -51,9 +51,9 @@
           <input :disabled="isUIDisabled" type="password" class="form-control" id="form-register-input-password" placeholder="Enter Password" v-model="formDatas[(formDatas.currentPhase)].inputDatas.password" @paste.prevent>
         </div>
         <div class="d-flex flex-row justify-content-center align-items-center form-group">
-          <input :disabled="isUIDisabled" class="form-control form-date-control" placeholder="DAY" maxlength="2" v-model="formDatas[(formDatas.currentPhase)].inputDatas.birthDate.day" @paste.prevent @keypress="onClientInputDOB">
-          <input :disabled="isUIDisabled" class="form-control form-date-control" placeholder="MONTH" maxlength="2" v-model="formDatas[(formDatas.currentPhase)].inputDatas.birthDate.month" @paste.prevent @keypress="onClientInputDOB">
-          <input :disabled="isUIDisabled" class="form-control form-date-control" placeholder="YEAR" maxlength="4" v-model="formDatas[(formDatas.currentPhase)].inputDatas.birthDate.year" @paste.prevent @keypress="onClientInputDOB">
+          <input :disabled="isUIDisabled" class="form-control form-date-control" placeholder="DAY" maxlength="2" v-model="formDatas[(formDatas.currentPhase)].inputDatas.DOB.day" @paste.prevent @keypress="onClientInputDOB">
+          <input :disabled="isUIDisabled" class="form-control form-date-control" placeholder="MONTH" maxlength="2" v-model="formDatas[(formDatas.currentPhase)].inputDatas.DOB.month" @paste.prevent @keypress="onClientInputDOB">
+          <input :disabled="isUIDisabled" class="form-control form-date-control" placeholder="YEAR" maxlength="4" v-model="formDatas[(formDatas.currentPhase)].inputDatas.DOB.year" @paste.prevent @keypress="onClientInputDOB">
         </div>
       </form>
 
@@ -93,6 +93,11 @@ export default {
             email: "",
             password: "",
           },
+          statuses: {
+            "void": "You've entered wrong credentials!",
+            "auth/successful": "You've successfully logged in!",
+            "auth/user-disabled": "Your account has been disabled!"
+          },
           routerType: "register",
           routerDesc: "Don't have an account?"
         },
@@ -101,11 +106,19 @@ export default {
             email: "",
             username: "",
             password: "",
-            birthDate: {
+            DOB: {
               day: "",
               month: "",
               year: ""
             },
+          },
+          statuses: {
+            "void": "Please enter valid credentials!",
+            "auth/email-already-exists": "Email already belongs to an account!",
+            "auth/invalid-password": "Please enter a stronger password!",
+            "auth/username-already-exists": "Username already belongs to an account!",
+            "auth/successful": "You've successfully registered!",
+            "auth/failed": "Unfortunately, we couldn't process your request!"
           },
           routerType: "login",
           routerDesc: "Already have an account?"
@@ -162,42 +175,32 @@ export default {
         })
         .then(function(user) {
           componentInstance.onClientEnableUI(true)
-          componentInstance.onClientShowAlert("You've successfully logged in!")
+          componentInstance.onClientShowAlert(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["auth/successful"])
         })
         .catch(function(error) {
-          let alertMessage = "You've entered wrong credentials!"
-          if (error.code == "auth/user-disabled") {
-            alertMessage = "Your account has been disabled!"
-          }
+          let alertMessage = (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses[(error.code)] || componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["void"])
           componentInstance.onClientEnableUI(true)
           componentInstance.onClientShowAlert(alertMessage)
         })
       } else if (componentInstance.formDatas.currentPhase == "register") {
         if (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.username.length <= 2) return componentInstance.onClientShowAlert("Please enter a valid username!")
-        if (!Library.Utility.isDateValid(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.birthDate)) return componentInstance.onClientShowAlert("Please enter a valid D-O-B!")
-        if (!Library.Utility.isAgeValid(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.birthDate, Generic.appRequirements.age)) return componentInstance.onClientShowAlert("You must be " + Generic.appRequirements.age + "+ to register!")
+        if (!Library.Utility.isDateValid(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.DOB)) return componentInstance.onClientShowAlert("Please enter a valid D-O-B!")
+        if (!Library.Utility.isAgeValid(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.DOB, Generic.appRequirements.age)) return componentInstance.onClientShowAlert("You must be " + Generic.appRequirements.age + "+ to register!")
         componentInstance.onClientEnableUI(false)
         componentInstance.$store.dispatch("auth/onClientRegister", {
           email: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.email,
           password: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.password,
           username: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.username,
-          birthDate: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.birthDate
+          DOB: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.DOB
         })
         componentInstance.socketBuffer.auth["Auth:onClientRegister"] = true
         Library.Socket.getSocket("auth").socket.on("Auth:onClientRegister", function(result) {
           Library.Socket.getSocket("auth").socket.off("Auth:onClientRegister")
           delete componentInstance.socketBuffer.auth["Auth:onClientRegister"]
-          let alertMessage = "Please enter valid credentials!"
+          let alertMessage = (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses[(result.status)] || componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["void"])
           if (result.success) {
-            alertMessage = "You've successfully registered!"
             Library.Utility.clearObjectStrings(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas, true)
             componentInstance.formDatas.currentPhase = componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].routerType
-          } else {
-            if (result.error == "auth/email-already-exists") {
-              alertMessage = "Email already belongs to an account!"
-            } else if (result.error == "auth/invalid-password") {
-              alertMessage = "Please enter a stronger password!"
-            }
           }
           componentInstance.onClientEnableUI(true)
           componentInstance.onClientShowAlert(alertMessage)
