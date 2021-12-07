@@ -21,14 +21,14 @@ export default {
   computed: {
     personalGroups() {
       this.onClientChangeSelection("personalGroup", this.selections.personalGroup)
-      return this.$store.state.groups.personal.personalGroups || false
+      return this.$store.state.groups.personal.userGroups || false
     },
 
     viewHeader() {
       if (this.selections.serverGroup) {
         return ''
       } else if (this.selections.personalGroup) {
-        return "@" + this.$store.state.groups.personal.personalGroups[(this.selections.personalGroup)].participantUID
+        return "@" + this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)].participantUID
       }
     },
 
@@ -36,7 +36,7 @@ export default {
       if (this.selections.serverGroup) {
 
       } else if (this.selections.personalGroup) {
-        return (this.$store.state.groups.personal.personalGroups[(this.selections.personalGroup)] && this.$store.state.groups.personal.personalGroups[(this.selections.personalGroup)].groupMessages) || false
+        return (this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)].groupMessages) || false
       }
       return false
     }
@@ -56,8 +56,8 @@ export default {
 
     onClientChangeSelection(selectionType, selection) {
       if (selectionType == "personalGroup") {
-        const initialGroup = Object.entries(this.$store.state.groups.personal.personalGroups)[0]
-        this.selections.personalGroup = (selection && this.$store.state.groups.personal.personalGroups[selection] && selection) || (initialGroup && initialGroup[0]) || false
+        const initialGroup = Object.entries(this.$store.state.groups.personal.userGroups)[0]
+        this.selections.personalGroup = (selection && this.$store.state.groups.personal.userGroups[selection] && selection) || (initialGroup && initialGroup[0]) || false
       }
     },
 
@@ -75,7 +75,7 @@ export default {
 
       } else if (this.selections.personalGroup) {
         this.$store.dispatch("groups/personal/onClientActionInput", {
-          groupUID: this.selections.serverGroup || this.selections.personalGroup,
+          UID: this.selections.serverGroup || this.selections.personalGroup,
           message: event.target.value
         })
       }

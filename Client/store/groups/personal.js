@@ -21,7 +21,7 @@ import * as importedJS from "@/assets/import"
 ------------------*/
 
 export const state = () => ({
-  personalGroups: {} 
+  userGroups: {}
 })
 
 export const actions = {
@@ -31,26 +31,35 @@ export const actions = {
 }
 
 export const mutations = {
-  onSyncGroups(state, groupData) {
-    const groupUID = groupData.groupUID
-    if (!state.personalGroups[groupUID]) {
-      delete groupData.groupUID 
-      vue.set(state.personalGroups, groupUID, groupData)
+  onSyncGroups(state, groups) {
+    vue.set(state, "userGroups", {})
+    groups.forEach(function(group) {
+      vue.set(state.userGroups, group.UID, {
+
+      })
+    })
+  },
+
+  onSyncPersonalGroupMessages(state, groupData) {
+    const UID = groupData.UID
+    if (!state.userGroups[UID]) {
+      delete groupData.UID 
+      vue.set(state.userGroups, UID, groupData)
     }
     (groupData.groupMessages).forEach(async function(messageData) {
-      let lastArrayRef = state.personalGroups[groupUID].groupMessages[(state.personalGroups[groupUID].groupMessages.length - 1)]
+      let lastArrayRef = state.userGroups[UID].groupMessages[(state.userGroups[UID].groupMessages.length - 1)]
       let isArrayToBeAppended = !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
         const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
         if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isArrayToBeAppended = true
       }
       if (isArrayToBeAppended) {
-        vue.set(state.personalGroups[groupUID].groupMessages, state.personalGroups[groupUID].groupMessages.length, {
+        vue.set(state.userGroups[UID].groupMessages, state.userGroups[UID].groupMessages.length, {
           owner: messageData.owner,
           ownerMessages: {}
         })
       }
-      lastArrayRef = state.personalGroups[groupUID].groupMessages[(state.personalGroups[groupUID].groupMessages.length - 1)]
+      lastArrayRef = state.userGroups[UID].groupMessages[(state.userGroups[UID].groupMessages.length - 1)]
       vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
@@ -68,7 +77,10 @@ export const mutations = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  appSocket.socket.on("App:onSyncPersonalGroups", function(groupData) {
-    $nuxt.$store.commit("groups/personal/onSyncGroups", groupData)
+  appSocket.socket.on("App:onSyncPersonalGroups", function(groups) {
+    $nuxt.$store.commit("groups/personal/onSyncGroups", groups)
+  })
+  appSocket.socket.on("App:onSyncPersonalGroupMessages", function(groupData) {
+    //$nuxt.$store.commit("groups/personal/onSyncPersonalGroupMessages", groupData)
   })
 }, false)
