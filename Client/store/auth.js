@@ -66,6 +66,11 @@ export const mutations = {
 -- Store Utilities --
 -------------------*/
 
+const authSocket = importedJS.Library.Socket.getSocket("auth")
+authSocket.socket.on("Auth:onClientLogin", function(payload) {
+  $nuxt.$store.commit("auth/setUserCredentials", payload)
+})
+
 var isAppNetworked = false
 setInterval(function() {
   $nuxt.$store.commit("auth/onRefreshAuthNetwork")
