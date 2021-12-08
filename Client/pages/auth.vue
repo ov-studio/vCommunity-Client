@@ -185,7 +185,7 @@ export default {
             $nuxt.$fire.auth.signInWithEmailAndPassword(result.email, result.password)
             .then(function(user) {
               delete result.password
-              //console.log(result)
+              componentInstance.$store.commit("auth/setUserCredentials", result)
               componentInstance.onClientEnableUI(true)
               componentInstance.onClientShowAlert(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["auth/successful"])
             })
