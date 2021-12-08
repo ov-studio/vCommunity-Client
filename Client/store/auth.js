@@ -26,7 +26,12 @@ export const state = () => ({
 
 export const actions = {
   onClientLogin(state, payload) {
-    return importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", payload)
+    if (loginPromise.promise) return loginPromise.promise
+    importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", payload)
+    loginPromise.promise = new Promise(function(resolver) {
+      loginPromise.resolver = resolver
+    })
+    return loginPromise.promise
   },
 
   onClientRegister(state, payload) {
@@ -40,11 +45,8 @@ export const actions = {
   async onClientStateChange(state, {authUser, claims}) {
     if (!authUser) {
       state.commit("setUserCredentials", false)
-      this.$router.push(importedJS.Generic.routeDatas.authRoute)
     } else {
-      const {uid, email, displayName} = authUser
-      state.commit("setUserCredentials", {UID: uid, email, username: displayName})
-      this.$router.push("/")
+      importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", {email: authUser.email}, true)
     }
   }
 }
@@ -55,9 +57,15 @@ export const mutations = {
   },
 
   setUserCredentials(state, payload) {
-    if (payload) importedJS.Library.Socket.create("app")
-    else importedJS.Library.Socket.destroy("app")
     state.userCredentials = payload
+    if (state.userCredentials) {
+      importedJS.Library.Socket.create("app")
+      this.$router.push("/")
+    }
+    else {
+      importedJS.Library.Socket.destroy("app")
+      this.$router.push(importedJS.Generic.routeDatas.authRoute)
+    }
   }
 }
 
@@ -65,6 +73,34 @@ export const mutations = {
 /*-------------------
 -- Store Utilities --
 -------------------*/
+
+const loginPromise = {promise: false, resolver: false}
+const authSocket = importedJS.Library.Socket.getSocket("auth")
+authSocket.socket.on("Auth:onClientLogin", function(result, isReAuthRequest) {
+  if (isReAuthRequest) {
+    if (result.status) {
+      $nuxt.$store.dispatch("auth/onClientLogout")
+    } else {
+      $nuxt.$store.commit("auth/setUserCredentials", result)
+    }
+  } else {
+    if (result.status) {
+      loginPromise.promise = false
+      loginPromise.resolver(result)
+    } else {
+      $nuxt.$fire.auth.signInWithEmailAndPassword(result.email, result.password)
+      .then(function() {
+        loginPromise.promise = false
+        $nuxt.$store.commit("auth/setUserCredentials", result)
+        loginPromise.resolver({status: "auth/successful"})
+      })
+      .catch(function(error) {
+        loginPromise.promise = false
+        loginPromise.resolver({status: error.code})
+      })
+    }
+  }
+})
 
 var isAppNetworked = false
 setInterval(function() {
