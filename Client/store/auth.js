@@ -69,7 +69,6 @@ export const mutations = {
 var isAppNetworked = false
 setInterval(function() {
   $nuxt.$store.commit("auth/onRefreshAuthNetwork")
-  
   if ($nuxt.$store.state.auth.userCredentials) {
     let __isAppNetworked = importedJS.Library.Socket.isConnected("app")
     if (!isAppNetworked && __isAppNetworked) {
