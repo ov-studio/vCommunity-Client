@@ -38,9 +38,12 @@ export const socketDatas = {
 }
 
 export const eventDatas = {
+  auth: {
+    loaded: {name: "App:onClientAuthLoaded"}
+  },
   app: {
     connection: {name: "App:onClientConnect"},
-    disconnection: {name: "App:onClientDisconnect"},
+    disconnection: {name: "App:onClientDisconnect"}
   },
   messageView: {
     forcescroll: {name: "App:MessageView:onClientForceScroll"}

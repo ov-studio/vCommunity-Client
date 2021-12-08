@@ -28,8 +28,8 @@ export const actions = {
   onClientLogin(state, payload) {
     if (loginPromise.promise) return loginPromise.promise
     importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", payload)
-    loginPromise.promise = new Promise(function(resolver) {
-      loginPromise.resolver = resolver
+    loginPromise.promise = new Promise(function(resolve) {
+      loginPromise.resolver = resolve
     })
     return loginPromise.promise
   },
@@ -58,6 +58,7 @@ export const mutations = {
 
   setUserCredentials(state, payload) {
     state.userCredentials = payload
+    dispatchEvent(importedJS.Generic.eventDatas.auth.loaded.event)
     if (state.userCredentials) {
       importedJS.Library.Socket.create("app")
       this.$router.push("/")
