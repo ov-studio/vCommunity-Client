@@ -25,13 +25,9 @@ export const state = () => ({
 })
 
 export const actions = {
-  async onClientLogin(state, payload) {
-    try {
-      await $nuxt.$fire.auth.signInWithEmailAndPassword(payload.email, payload.password)
-      return {status: "auth/successful"}
-    } catch(error) {
-      return {status: error.code}
-    }
+  onClientLogin(state, payload) {
+    importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", payload) //TODO: integrate
+    return $nuxt.$fire.auth.signInWithEmailAndPassword(payload.email, payload.password)
   },
 
   onClientRegister(state, payload) {
@@ -70,12 +66,6 @@ export const mutations = {
 /*-------------------
 -- Store Utilities --
 -------------------*/
-
-const authSocket = importedJS.Library.Socket.getSocket("auth")
-authSocket.socket.on("Auth:onClientLogin", function(payload) {
-  console.log(payload)
-  $nuxt.$store.commit("auth/setUserCredentials", payload)
-})
 
 var isAppNetworked = false
 setInterval(function() {

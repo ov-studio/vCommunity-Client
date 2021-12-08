@@ -164,17 +164,24 @@ export default {
       this.formDatas.currentPhase = this.formDatas[(this.formDatas.currentPhase)].routerType
     },
 
-    async onClientProcessPhase() {
+    onClientProcessPhase() {
       if (this.isUIDisabled) return false
       const componentInstance = this
       if (componentInstance.formDatas.currentPhase == "login") {
         componentInstance.onClientEnableUI(false)
-        const queryResult = await componentInstance.$store.dispatch("auth/onClientLogin", {
+        componentInstance.$store.dispatch("auth/onClientLogin", {
           email: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.email,
           password: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.password
         })
-        componentInstance.onClientEnableUI(true)
-        componentInstance.onClientShowAlert((componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses[(queryResult.status)] || componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["void"]))
+        .then(function(user) {
+          componentInstance.onClientEnableUI(true)
+          componentInstance.onClientShowAlert(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["auth/successful"])
+        })
+        .catch(function(error) {
+          let alertMessage = (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses[(error.code)] || componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["void"])
+          componentInstance.onClientEnableUI(true)
+          componentInstance.onClientShowAlert(alertMessage)
+        })
       } else if (componentInstance.formDatas.currentPhase == "register") {
         if (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.username.length <= 2) return componentInstance.onClientShowAlert("Please enter a valid username!")
         if (!Library.Utility.isDateValid(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.DOB)) return componentInstance.onClientShowAlert("Please enter a valid D-O-B!")
