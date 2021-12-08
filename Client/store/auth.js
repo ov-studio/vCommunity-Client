@@ -25,8 +25,13 @@ export const state = () => ({
 })
 
 export const actions = {
-  onClientLogin(state, payload) {
-    return $nuxt.$fire.auth.signInWithEmailAndPassword(payload.email, payload.password)
+  async onClientLogin(state, payload) {
+    try {
+      await $nuxt.$fire.auth.signInWithEmailAndPassword(payload.email, payload.password)
+      return {status: "auth/successful"}
+    } catch(error) {
+      return {status: error.code}
+    }
   },
 
   onClientRegister(state, payload) {
@@ -68,20 +73,19 @@ export const mutations = {
 
 const authSocket = importedJS.Library.Socket.getSocket("auth")
 authSocket.socket.on("Auth:onClientLogin", function(payload) {
+  console.log(payload)
   $nuxt.$store.commit("auth/setUserCredentials", payload)
 })
 
 var isAppNetworked = false
 setInterval(function() {
+  let __isAppNetworked = importedJS.Library.Socket.isConnected("app")
   $nuxt.$store.commit("auth/onRefreshAuthNetwork")
-  if ($nuxt.$store.state.auth.userCredentials) {
-    let __isAppNetworked = importedJS.Library.Socket.isConnected("app")
-    if (!isAppNetworked && __isAppNetworked) {
-      const appSocket = importedJS.Library.Socket.getSocket("app")
-      appSocket.socket.removeAllListeners()
-      dispatchEvent(importedJS.Generic.eventDatas.app.connection.event)
-      appSocket.socket.emit("App:onClientConnect", $nuxt.$store.state.auth.userCredentials.UID)
-    }
+  if ($nuxt.$store.state.auth.userCredentials && !isAppNetworked && __isAppNetworked) {
+    const appSocket = importedJS.Library.Socket.getSocket("app")
+    appSocket.socket.removeAllListeners()
+    dispatchEvent(importedJS.Generic.eventDatas.app.connection.event)
+    appSocket.socket.emit("App:onClientConnect", $nuxt.$store.state.auth.userCredentials.UID)
   }
   isAppNetworked = __isAppNetworked
 }, 250)
