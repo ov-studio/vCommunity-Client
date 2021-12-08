@@ -26,8 +26,7 @@ export const state = () => ({
 
 export const actions = {
   onClientLogin(state, payload) {
-    importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", payload) //TODO: integrate
-    return $nuxt.$fire.auth.signInWithEmailAndPassword(payload.email, payload.password)
+    return importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", payload)
   },
 
   onClientRegister(state, payload) {

@@ -173,14 +173,28 @@ export default {
           email: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.email,
           password: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.password
         })
-        .then(function(user) {
-          componentInstance.onClientEnableUI(true)
-          componentInstance.onClientShowAlert(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["auth/successful"])
-        })
-        .catch(function(error) {
-          let alertMessage = (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses[(error.code)] || componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["void"])
-          componentInstance.onClientEnableUI(true)
-          componentInstance.onClientShowAlert(alertMessage)
+        componentInstance.socketBuffer.auth["Auth:onClientLogin"] = true
+        Library.Socket.getSocket("auth").socket.on("Auth:onClientLogin", function(result) {
+          Library.Socket.getSocket("auth").socket.off("Auth:onClientLogin")
+          delete componentInstance.socketBuffer.auth["Auth:onClientLogin"]
+          if (result.status) {
+            let alertMessage = (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses[(result.status)] || componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["void"])
+            componentInstance.onClientEnableUI(true)
+            componentInstance.onClientShowAlert(alertMessage)
+          } else {
+            $nuxt.$fire.auth.signInWithEmailAndPassword(result.email, result.password)
+            .then(function(user) {
+              delete result.password
+              //console.log(result)
+              componentInstance.onClientEnableUI(true)
+              componentInstance.onClientShowAlert(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["auth/successful"])
+            })
+            .catch(function(error) {
+              let alertMessage = (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses[(error.code)] || componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].statuses["void"])
+              componentInstance.onClientEnableUI(true)
+              componentInstance.onClientShowAlert(alertMessage)
+            })
+          }
         })
       } else if (componentInstance.formDatas.currentPhase == "register") {
         if (componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.username.length <= 2) return componentInstance.onClientShowAlert("Please enter a valid username!")
