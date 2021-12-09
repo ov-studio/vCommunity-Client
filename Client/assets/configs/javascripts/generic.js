@@ -39,7 +39,7 @@ export const socketDatas = {
 
 export const eventDatas = {
   auth: {
-    loaded: {name: "App:onClientAuthLoaded"}
+    loaded: {name: "App:onClientAuthLoad"}
   },
   app: {
     connection: {name: "App:onClientConnect"},
