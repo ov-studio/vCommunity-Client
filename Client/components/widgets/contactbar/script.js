@@ -3,7 +3,8 @@ export default {
   
   methods: {
     getContactName(contactUID) {
-      return this.$store.dispatch("users/onSyncUserDatas", {UID: contactUID})
+      const userDatas = this.$store.getters["users/getUserDatas"](contactUID)
+      return (userDatas && userDatas.username) || contactUID
     }
   }
 }

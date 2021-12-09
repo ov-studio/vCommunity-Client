@@ -24,28 +24,29 @@ export const state = () => ({
   userDatas: {}
 })
 
-export const actions = {
-  onSyncUserDatas(state, payload) {
-    if (state.state.userDatas[(payload.UID)]) {
-      if (state.state.userDatas[(payload.UID)].isFetching) return false
-      else if (state.state.userDatas[(payload.UID)].isFetched) return state.state.userDatas[(payload.UID)]
-    }
-    state.commit("onFetchUserDatas", payload)
-    return false
-  }
-}
-
 export const mutations = {
-  onFetchUserDatas(state, payload) {
-    vue.set(state.userDatas, payload.UID, {
+  onFetchUserDatas(state, UID) {
+    vue.set(state.userDatas, UID, {
       isFetching: true
     })
-    importedJS.Library.Socket.getSocket("app").socket.emit("App:User:Datas:OnSync", payload.UID)
+    importedJS.Library.Socket.getSocket("app").socket.emit("App:User:Datas:OnSync", UID)
   },
 
   onSyncUserDatas(state, payload) {
     payload.isFetched = true
-    vue.set(state.userDatas, payload.UID, payload)
+    vue.set(state.userDatas, UID, payload)
+  }
+}
+
+export const getters = {
+  getUserDatas: (state) => (UID) => {
+    if (!UID) return false
+    if (state.userDatas[UID]) {
+      if (state.userDatas[UID].isFetching) return false
+      else if (state.userDatas[UID].isFetched) return state.userDatas[UID]
+    }
+    $nuxt.$store.commit("users/onFetchUserDatas", UID)
+    return false
   }
 }
 
