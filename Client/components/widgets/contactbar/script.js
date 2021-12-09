@@ -3,8 +3,7 @@ export default {
   
   methods: {
     getContactName(contactUID) {
-      const userDatas = this.$store.getters["users/getUserDatas"](contactUID)
-      return (userDatas && userDatas.username) || contactUID
+      return this.$store.getters["users/getUserData"](contactUID, "username") || contactUID
     }
   }
 }

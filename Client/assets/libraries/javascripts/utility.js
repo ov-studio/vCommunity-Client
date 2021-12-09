@@ -32,6 +32,17 @@ export function getFileExtension(url) {
   return (index != -1) ? url.substring(index + 1) : ""
 }
 
+export function getObjectData(object, ...parameters) {
+  if (!object || (typeof(object) != "object")) return false
+
+  if (parameters.length <= 1) {
+    if (parameters[0]) return object[(parameters[0])]
+    else return object
+  } else {
+    return getObjectData(object[(parameters[0])], ...parameters.slice(1))
+  }
+}
+
 export function clearObjectStrings(object, isRecursive) {
   if (!object || (typeof(object) != "object")) return false
 

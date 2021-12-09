@@ -39,11 +39,11 @@ export const mutations = {
 }
 
 export const getters = {
-  getUserDatas: (state) => (UID) => {
+  getUserData: (state) => (UID, ...parameters) => {
     if (!UID) return false
     if (state.userDatas[UID]) {
       if (state.userDatas[UID].isFetching) return false
-      else if (state.userDatas[UID].isFetched) return state.userDatas[UID]
+      else if (state.userDatas[UID].isFetched) return importedJS.Library.Utility.getObjectData(state.userDatas[UID], ...parameters)
     }
     $nuxt.$store.commit("users/onFetchUserDatas", UID)
     return false
