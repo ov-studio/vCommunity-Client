@@ -53,6 +53,8 @@ export default function({store, route, redirect}) {
 const authModule = {isLoaded: false, promise: false, resolver: false}
 addEventListener(importedJS.Generic.eventDatas.auth.loaded.name, function() {
   authModule.isLoaded = true
-  authModule.promise = false
-  authModule.resolver()
+  if (authModule.promise) {
+    authModule.promise = false
+    authModule.resolver() 
+  }
 }, false)
