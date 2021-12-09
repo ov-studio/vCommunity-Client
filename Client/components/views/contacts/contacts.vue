@@ -28,7 +28,7 @@
       </div>
     </div>
     <div v-else class="w-100 min-w-100 max-w-100 d-flex flex-column align-self-start align-items-center justify-content-start hide-scroller contacts-container">
-      <widget-contactbar v-for="(contactData, contactUID) in contactDatas.contacts" :key="contactUID" :contactUID="contactUID" :contactName="contactUID" contactAvatar="https://hi-static.z-dn.net/files/d60/c746efb8807770ea7ad2af25ee7ed2ab.jpg" :contactOptions="contactDatas.options" :contactOptionHandler="onClientProcessOption"/>
+      <widget-contactbar v-for="(contactData, contactUID) in contactDatas.contacts" :key="contactUID" :contactUID="contactUID" contactAvatar="https://hi-static.z-dn.net/files/d60/c746efb8807770ea7ad2af25ee7ed2ab.jpg" :contactOptions="contactDatas.options" :contactOptionHandler="onClientProcessOption"/>
     </div>
   </div>
 </template>

@@ -47,13 +47,6 @@ export default {
       return (new Date(milliseconds)).toLocaleString()
     },
 
-    getParticipantDatas(participantUID) {
-      if (this.$store.state.views.contacts.userContacts["friends"] && this.$store.state.views.contacts.userContacts["friends"][participantUID]) {
-        return this.$store.state.views.contacts.userContacts["friends"][participantUID]
-      }
-      return false
-    },
-
     onClientChangeSelection(selectionType, selection) {
       if (selectionType == "personalGroup") {
         const initialGroup = Object.entries(this.$store.state.groups.personal.userGroups)[0]
