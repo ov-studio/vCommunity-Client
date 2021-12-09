@@ -52,7 +52,7 @@ export const mutations = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  appSocket.socket.on("Auth:onClientFetchUserDatas", function(userDatas) {
+  appSocket.socket.on("App:onClientFetchUserDatas", function(userDatas) {
     console.log("Recieved user datas...")
     console.log(userDatas)
     //$nuxt.$store.commit("users/setUserDatas", userDatas)
