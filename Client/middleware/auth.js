@@ -15,9 +15,9 @@
 import * as importedJS from "@/assets/import"
 
 
-/*--------------------------------
--- Function: Handles Auth-Route --
---------------------------------*/
+/*-----------------------
+-- Middleware Handlers --
+-----------------------*/
 
 export default function({store, route, redirect}) {
   const protectedRoutes = [importedJS.Generic.routeDatas.authRoute, importedJS.Generic.routeDatas.authRoute + "/"]
