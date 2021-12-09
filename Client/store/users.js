@@ -34,7 +34,7 @@ export const mutations = {
 
   onSyncUserDatas(state, payload) {
     payload.isFetched = true
-    vue.set(state.userDatas, UID, payload)
+    vue.set(state.userDatas, payload.UID, payload)
   }
 }
 
