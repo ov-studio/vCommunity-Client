@@ -3,10 +3,7 @@ export default {
   
   methods: {
     getContactName(contactUID) {
-      //if (this.$store.state.views.contacts.userContacts["friends"] && this.$store.state.views.contacts.userContacts["friends"][contactUID]) {
-        //return this.$store.state.views.contacts.userContacts["friends"][contactUID]
-      //}
-      return contactUID + " heh"
+      return this.$store.dispatch("users/onSyncUserDatas", {UID: contactUID})
     }
   }
 }

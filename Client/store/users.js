@@ -25,7 +25,7 @@ export const state = () => ({
 })
 
 export const actions = {
-  onClientFetchUserDatas(state, payload) {
+  onSyncUserDatas(state, payload) {
     if (state.userDatas[(payload.UID)]) {
       if (state.userDatas[(payload.UID)].isFetching) return false
       else if (state.userDatas[(payload.UID)].isFetched) return state.userDatas[(payload.UID)]
@@ -33,7 +33,7 @@ export const actions = {
     vue.set(state.userDatas, payload.UID, {
       isFetching: true
     })
-    importedJS.Library.Socket.getSocket("app").socket.emit("App:onClientFetchUserDatas", payload.UID)
+    importedJS.Library.Socket.getSocket("app").socket.emit("App:User:Datas:OnSync", payload.UID)
     return false
   }
 }
@@ -52,7 +52,7 @@ export const mutations = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  appSocket.socket.on("App:onClientFetchUserDatas", function(userDatas) {
+  appSocket.socket.on("App:User:Datas:OnSync", function(userDatas) {
     console.log("Recieved user datas...")
     console.log(userDatas)
     //$nuxt.$store.commit("users/setUserDatas", userDatas)
