@@ -1,6 +1,9 @@
 export default {
-  props: ["ownerUID", "ownerName", "ownerAvatar", "ownerTimestamp", "ownerMessages"],
-  data() {
-    return {}
+  props: ["ownerUID", "ownerAvatar", "ownerTimestamp", "ownerMessages"],
+
+  methods: {
+    getOwnerName(ownerUID) {
+      return this.$store.getters["users/getUserData"](ownerUID, "username") || ownerUID
+    }
   }
 }
