@@ -13,7 +13,7 @@
 ------------------*/
 
 const CONFIG_HOST = {
-  devMode: false,
+  devMode: true,
   url: "https://ov-studio.herokuapp.com",
   devURL: "http://localhost:3001"
 }
