@@ -14,6 +14,10 @@ export default {
     addEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientForceMessageViewScroll, false)
   },
 
+  activated() {
+    dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
+  },
+
   beforeDestroy() {
     removeEventListener(Generic.eventDatas.messageView.forcescroll.name, this.onClientForceMessageViewScroll)
   },
