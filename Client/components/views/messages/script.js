@@ -50,7 +50,10 @@ export default {
     onClientChangeSelection(selectionType, selection) {
       if (selectionType == "personalGroup") {
         const initialGroup = Object.entries(this.$store.state.groups.personal.userGroups)[0]
-        this.selections.personalGroup = (selection && this.$store.state.groups.personal.userGroups[selection] && selection) || (initialGroup && initialGroup[0]) || false
+        const selectedGroup = (selection && this.$store.state.groups.personal.userGroups[selection] && selection) || (initialGroup && initialGroup[0]) || false
+        if (this.selections.personalGroup == selectedGroup) return false
+        this.selections.personalGroup = selectedGroup
+        dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
       }
     },
 
