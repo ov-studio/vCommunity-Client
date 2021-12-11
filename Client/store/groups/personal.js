@@ -45,7 +45,7 @@ export const mutations = {
     Array.from(groupMessages.messages).forEach(function(messageData) {
       let lastArrayRef = state.userGroups[(groupMessages.UID)].messages
       lastArrayRef = (groupMessages.isPostLoad && lastArrayRef[0]) || lastArrayRef[(lastArrayRef.length - 1)]
-      let isArrayToBeAppended = (groupMessages.isPostLoad) || !lastArrayRef || (messageData.owner != lastArrayRef.owner)
+      let isArrayToBeAppended = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
         // TODO: THIS IS BUGGY FOR NOW..
         //const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
@@ -57,10 +57,8 @@ export const mutations = {
           ownerMessages: {}
         }
         if (groupMessages.isPostLoad) {
-          if (!groupMessages.isPostLoaded) {
-            groupMessages.isPostLoaded = true
-            state.userGroups[(groupMessages.UID)].messages.splice(0, 0, appendData)
-          }
+          groupMessages.isPostLoaded = true
+          state.userGroups[(groupMessages.UID)].messages.splice(0, 0, appendData)
         } else {
           state.userGroups[(groupMessages.UID)].messages.push(appendData)
         }
