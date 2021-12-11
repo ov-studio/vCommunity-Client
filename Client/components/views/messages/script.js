@@ -68,6 +68,22 @@ export default {
       })
     },
   
+    onClientUpdateMessageView(event) {
+      if (event.target.scrollTop > 0) return false
+      const selectedGroup = this.selections.personalGroup
+      if (this.selections.serverGroup) {
+
+      } else if(this.selections.personalGroup) {
+        console.log(this.selections.personalGroup)
+        /*
+        importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", {
+          UID: selectedGroup,
+          messageUID: Object.keys(state.userGroups[(groupMessages.UID)].messages[0].ownerMessages)[0]
+        })
+        */
+      }
+    },
+  
     onClientSendMessage(event) {
       if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
       event.preventDefault()
