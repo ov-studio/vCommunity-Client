@@ -79,10 +79,8 @@ export const mutations = {
     let indexMessage = state.userGroups[(groupMessages.UID)].messages[0].ownerMessages[(Object.keys(state.userGroups[(groupMessages.UID)].messages[0].ownerMessages)[0])]
     importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", {
       UID: groupMessages.UID,
-      messageUID: indexMessage.UID,
-      testMessage: indexMessage.message
+      messageUID: indexMessage.UID
     })
-    console.log(indexMessage)
   }
 }
 
