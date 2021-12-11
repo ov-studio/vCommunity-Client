@@ -42,7 +42,7 @@ export const mutations = {
   onClientFetchMessages(state, payload) {
     if (!state.userGroups[(payload.UID)]) return false
     const containerREF = state.userGroups[(payload.UID)].messages[0]
-    if (containerREF.isPostFetched) return false
+    if (!containerREF || containerREF.isPostFetched) return false
 
     containerREF.isPostFetched = true
     payload.messageUID = Object.keys(containerREF.ownerMessages)[0]
