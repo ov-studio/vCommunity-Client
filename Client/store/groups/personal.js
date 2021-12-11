@@ -44,7 +44,7 @@ export const mutations = {
 
     Array.from(groupMessages.messages).forEach(function(messageData) {
       let lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
-      let isArrayToBeAppended = groupMessages.isPostLoad || !lastArrayRef || (messageData.owner != lastArrayRef.owner)
+      let isArrayToBeAppended = (groupMessages.isPostLoad) || !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
         // TODO: THIS IS BUGGY FOR NOW..
         //const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
@@ -79,8 +79,10 @@ export const mutations = {
     let indexMessage = state.userGroups[(groupMessages.UID)].messages[0].ownerMessages[(Object.keys(state.userGroups[(groupMessages.UID)].messages[0].ownerMessages)[0])]
     importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", {
       UID: groupMessages.UID,
-      messageUID: indexMessage.UID
+      messageUID: indexMessage.UID,
+      testMessage: indexMessage.message
     })
+    console.log(indexMessage)
   }
 }
 
