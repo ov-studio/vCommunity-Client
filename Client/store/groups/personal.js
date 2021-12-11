@@ -41,39 +41,36 @@ export const mutations = {
 
   onSyncMessages(state, groupMessages) {
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
+    if (groupMessages.isPostLoad) groupMessages.postLoadIndex = 0
 
-    var insertedIndex = 0
     Array.from(groupMessages.messages).forEach(function(messageData) {
-      let lastArrayRef = state.userGroups[(groupMessages.UID)].messages
-      lastArrayRef = (groupMessages.isPostLoad && lastArrayRef[0]) || lastArrayRef[(lastArrayRef.length - 1)]
-      let isArrayToBeAppended = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !lastArrayRef
-      let isOwnerDiffer = lastArrayRef && (messageData.owner != lastArrayRef.owner)
-      //isArrayToBeAppended = isArrayToBeAppended || isOwnerDiffer || false
-      if (!isArrayToBeAppended) {
+      let containerREF = state.userGroups[(groupMessages.UID)].messages
+      containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
+      let isContainerValid = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !containerREF
+      let isOwnerValid = containerREF && (messageData.owner != containerREF.owner)
+      isContainerValid = isContainerValid || isOwnerValid
+      if (!isContainerValid) {
         // TODO: THIS IS BUGGY FOR NOW..
-        //const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
-        //if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isArrayToBeAppended = true
+        //const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].timestamp)
+        //if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerValid = true
       }
-      if (isArrayToBeAppended) {
+      if (isContainerValid) {
         const appendData = {
           owner: messageData.owner,
           ownerMessages: {}
         }
         if (groupMessages.isPostLoad) {
+          if (groupMessages.isPostLoaded && isOwnerValid) groupMessages.postLoadIndex = groupMessages.postLoadIndex + 1
           groupMessages.isPostLoaded = true
-          if (isOwnerDiffer) {
-              //insertedIndex = insertedIndex + 1
-              console.log("OWNER DIFFER NEEDS APPENDING AT CURRENT STACK'S BOTTOM: " + insertedIndex)
-          }
-          state.userGroups[(groupMessages.UID)].messages.splice(insertedIndex, 0, appendData)
+          state.userGroups[(groupMessages.UID)].messages.splice(groupMessages.postLoadIndex, 0, appendData)
         } else {
           state.userGroups[(groupMessages.UID)].messages.push(appendData)
         }
       }
 
-      lastArrayRef = state.userGroups[(groupMessages.UID)].messages
-      lastArrayRef = (groupMessages.isPostLoad && lastArrayRef[insertedIndex]) || lastArrayRef[(lastArrayRef.length - 1)]
-      vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
+      containerREF = state.userGroups[(groupMessages.UID)].messages
+      containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
+      vue.set(containerREF.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
         isMessagesToBeScrolled = true
