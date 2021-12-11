@@ -51,7 +51,16 @@ export const mutations = {
 
   onSyncMessages(state, groupMessages) {
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
-    if (groupMessages.isPostLoad) groupMessages.postLoadIndex = 0
+    if (groupMessages.isPostLoad) {
+      groupMessages.postLoadIndex = 0
+      dispatchEvent(new CustomEvent(importedJS.Generic.eventDatas.messageView.forcescroll.name, {
+        detail: {
+          type: "personalGroup",
+          UID: groupMessages.UID,
+          cacheScroll: false
+        }
+      }))
+    }
 
     Array.from(groupMessages.messages).forEach(function(messageData) {
       let containerREF = state.userGroups[(groupMessages.UID)].messages
@@ -85,7 +94,7 @@ export const mutations = {
       if (!groupMessages.isPostLoad && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
         isMessagesToBeScrolled = true
       }
-      if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
+      //if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event, "personalGroup", groupMessages.UID)
     })
   }
 }

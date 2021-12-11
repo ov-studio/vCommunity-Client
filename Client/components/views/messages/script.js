@@ -61,11 +61,23 @@ export default {
       }
     },
 
-    onClientForceMessageViewScroll() {
-      this.$nextTick(() => {
-        const contentContainer = this.$el.querySelector(".content-container")
-        contentContainer.scrollTop = contentContainer.scrollHeight
-      })
+    onClientForceMessageViewScroll(event) {
+      if (!event.detail) return false
+      if (event.detail.type == "serverGroup") {
+
+      } else if (event.detail.type == "personalGroup") {
+        console.log(this.selections.personalGroup + " | " + event.detail.UID)
+        if (this.selections.personalGroup == event.detail.UID) {
+          console.log("IS SELECTED GROUP")
+          if (event.detail.cacheScroll) {
+            console.log("WEW CACHE")
+          } else {
+            console.log("AY SCROLL")
+            const contentContainer = this.$el.querySelector(".content-container")
+            contentContainer.scrollTop = contentContainer.scrollHeight
+          }
+        }
+      }
     },
   
     onClientUpdateMessageView(event) {
