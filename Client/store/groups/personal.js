@@ -43,7 +43,8 @@ export const mutations = {
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
 
     Array.from(groupMessages.messages).forEach(function(messageData) {
-      let lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
+      let lastArrayRef = state.userGroups[(groupMessages.UID)].messages
+      lastArrayRef = (groupMessages.isPostLoad && lastArrayRef[0]) || lastArrayRef[(lastArrayRef.length - 1)]
       let isArrayToBeAppended = (groupMessages.isPostLoad) || !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
         // TODO: THIS IS BUGGY FOR NOW..
