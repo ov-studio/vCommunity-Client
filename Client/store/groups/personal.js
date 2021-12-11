@@ -77,11 +77,11 @@ export const mutations = {
       containerREF = state.userGroups[(groupMessages.UID)].messages
       containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
       vue.set(containerREF.ownerMessages, messageData.UID, messageData)
-      let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
-      if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
+      let isMessagesToBeScrolled = false
+      if (groupMessages.isPostLoad && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
         isMessagesToBeScrolled = true
       }
-      //if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
+      if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
     })
   }
 }
