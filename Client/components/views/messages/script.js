@@ -72,8 +72,8 @@ export default {
       if (event.target.scrollTop > 0) return false
       if (this.selections.serverGroup) {
 
-      } else if(this.selections.personalGroup) {
-        this.$store.dispatch("groups/personal/onClientFetchMessages", {
+      } else if (this.selections.personalGroup) {
+        this.$store.commit("groups/personal/onClientFetchMessages", {
           UID: this.selections.personalGroup
         })
       }

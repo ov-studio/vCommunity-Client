@@ -25,12 +25,6 @@ export const state = () => ({
 })
 
 export const actions = {
-  onClientFetchMessages(state, payload) {
-    if (!state.state.userGroups[(payload.UID)]) return false
-    payload.messageUID = Object.keys(state.state.userGroups[(payload.UID)].messages[0].ownerMessages)[0]
-    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", payload)
-  },
-
   onClientSendMessage(state, payload) {
     return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientSendMessage", payload)
   }
@@ -43,6 +37,16 @@ export const mutations = {
       groupData.messages = []
       vue.set(state.userGroups, groupData.UID, groupData)
     })
+  },
+
+  onClientFetchMessages(state, payload) {
+    if (!state.userGroups[(payload.UID)]) return false
+    const containerREF = state.userGroups[(payload.UID)].messages[0]
+    if (containerREF.isPostFetched) return false
+
+    containerREF.isPostFetched = true
+    payload.messageUID = Object.keys(containerREF.ownerMessages)[0]
+    importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", payload)
   },
 
   onSyncMessages(state, groupMessages) {
@@ -78,7 +82,7 @@ export const mutations = {
       containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
       vue.set(containerREF.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = false
-      if (groupMessages.isPostLoad && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
+      if (!groupMessages.isPostLoad && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
         isMessagesToBeScrolled = true
       }
       if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
