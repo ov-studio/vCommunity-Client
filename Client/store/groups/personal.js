@@ -65,7 +65,7 @@ export const mutations = {
         }
       }
 
-      lastArrayRef = (groupMessages.isPostLoad && state.userGroups[(groupMessages.UID)].messages[0]) || state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
+      lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(groupMessages.isPostLoad && 0) || (state.userGroups[(groupMessages.UID)].messages.length - 1)]
       vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
