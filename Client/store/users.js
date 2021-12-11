@@ -57,7 +57,7 @@ export const getters = {
 
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
-  appSocket.socket.on("App:User:Datas:OnSync", function(userDatas) {
-    $nuxt.$store.commit("users/onSyncUserDatas", userDatas)
+  appSocket.socket.on("App:User:Datas:OnSync", function(...parameters) {
+    $nuxt.$store.commit("users/onSyncUserDatas", ...parameters)
   })
 }, false)

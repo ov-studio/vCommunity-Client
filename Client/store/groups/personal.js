@@ -44,32 +44,28 @@ export const mutations = {
 
     Array.from(groupMessages.messages).forEach(function(messageData) {
       let lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
-      let isArrayToBeAppended = groupMessages.topPush || !lastArrayRef || (messageData.owner != lastArrayRef.owner)
+      let isArrayToBeAppended = groupMessages.isPostLoad || !lastArrayRef || (messageData.owner != lastArrayRef.owner)
       if (!isArrayToBeAppended) {
+        // TODO: THIS IS BUGGY FOR NOW..
         //const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - lastArrayRef.ownerMessages[(Object.keys(lastArrayRef.ownerMessages)[0])].timestamp)
         //if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isArrayToBeAppended = true
       }
       if (isArrayToBeAppended) {
-        if (groupMessages.topPush) {
-          if (!groupMessages.isAppended) {
-            groupMessages.isAppended = true
-            state.userGroups[(groupMessages.UID)].messages.splice(0, 0, {
-              owner: messageData.owner,
-              ownerMessages: {}
-            })
+        const appendData = {
+          owner: messageData.owner,
+          ownerMessages: {}
+        }
+        if (groupMessages.isPostLoad) {
+          if (!groupMessages.isPostLoaded) {
+            groupMessages.isPostLoaded = true
+            state.userGroups[(groupMessages.UID)].messages.splice(0, 0, appendData)
           }
         } else {
-          vue.set(state.userGroups[(groupMessages.UID)].messages, state.userGroups[(groupMessages.UID)].messages.length, {
-            owner: messageData.owner,
-            ownerMessages: {}
-          })
+          state.userGroups[(groupMessages.UID)].messages.push(appendData)
         }
       }
 
-      lastArrayRef = state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
-      if (groupMessages.topPush) {
-        lastArrayRef = state.userGroups[(groupMessages.UID)].messages[0]
-      }
+      lastArrayRef = (groupMessages.isPostLoad && state.userGroups[(groupMessages.UID)].messages[0]) || state.userGroups[(groupMessages.UID)].messages[(state.userGroups[(groupMessages.UID)].messages.length - 1)]
       vue.set(lastArrayRef.ownerMessages, messageData.UID, messageData)
       let isMessagesToBeScrolled = true //TODO: MODIFY THIS LATER
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
@@ -78,8 +74,12 @@ export const mutations = {
       if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
     })
 
+    // TODO: Bind to component stream later
     let indexMessage = state.userGroups[(groupMessages.UID)].messages[0].ownerMessages[(Object.keys(state.userGroups[(groupMessages.UID)].messages[0].ownerMessages)[0])]
-    importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", groupMessages.UID, indexMessage.UID)
+    importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", {
+      UID: groupMessages.UID,
+      messageUID: indexMessage.UID
+    })
   }
 }
 
