@@ -25,6 +25,12 @@ export const state = () => ({
 })
 
 export const actions = {
+  onClientFetchMessages(state, payload) {
+    if (!state.state.userGroups[(payload.UID)]) return false
+    payload.messageUID = Object.keys(state.state.userGroups[(payload.UID)].messages[0].ownerMessages)[0]
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", payload)
+  },
+
   onClientSendMessage(state, payload) {
     return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientSendMessage", payload)
   }
@@ -75,13 +81,7 @@ export const mutations = {
       if ($nuxt.$store.state.auth.userCredentials && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
         isMessagesToBeScrolled = true
       }
-      if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
-    })
-
-    // TODO: Bind to component stream later
-    importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", {
-      UID: groupMessages.UID,
-      messageUID: Object.keys(state.userGroups[(groupMessages.UID)].messages[0].ownerMessages)[0]
+      //if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
     })
   }
 }

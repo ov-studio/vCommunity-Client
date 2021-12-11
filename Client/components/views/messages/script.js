@@ -70,17 +70,12 @@ export default {
   
     onClientUpdateMessageView(event) {
       if (event.target.scrollTop > 0) return false
-      const selectedGroup = this.selections.personalGroup
       if (this.selections.serverGroup) {
 
       } else if(this.selections.personalGroup) {
-        console.log(this.selections.personalGroup)
-        /*
-        importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Personal:onClientFetchMessages", {
-          UID: selectedGroup,
-          messageUID: Object.keys(state.userGroups[(groupMessages.UID)].messages[0].ownerMessages)[0]
+        this.$store.dispatch("groups/personal/onClientFetchMessages", {
+          UID: this.selections.personalGroup
         })
-        */
       }
     },
   
@@ -91,7 +86,7 @@ export default {
 
       } else if (this.selections.personalGroup) {
         this.$store.dispatch("groups/personal/onClientSendMessage", {
-          UID: this.selections.serverGroup || this.selections.personalGroup,
+          UID: this.selections.personalGroup,
           message: event.target.value
         })
       }
