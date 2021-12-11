@@ -57,7 +57,7 @@ export const mutations = {
         detail: {
           type: "personalGroup",
           UID: groupMessages.UID,
-          cacheScroll: false
+          cacheScroll: true
         }
       }))
     }
@@ -90,11 +90,17 @@ export const mutations = {
       containerREF = state.userGroups[(groupMessages.UID)].messages
       containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
       vue.set(containerREF.ownerMessages, messageData.UID, messageData)
-      let isMessagesToBeScrolled = false
-      if (!groupMessages.isPostLoad && ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner)) {
-        isMessagesToBeScrolled = true
+      if (groupMessages.isPostLoad) {
+        dispatchEvent(new CustomEvent(importedJS.Generic.eventDatas.messageView.forcescroll.name, {
+          detail: {
+            type: "personalGroup",
+            UID: groupMessages.UID,
+            restoreScroll: true
+          }
+        }))
+      } else if ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner) {
+        dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
       }
-      //if (isMessagesToBeScrolled) dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event, "personalGroup", groupMessages.UID)
     })
   }
 }

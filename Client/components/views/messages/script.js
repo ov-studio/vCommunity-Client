@@ -3,6 +3,9 @@ import {Generic} from "@/assets/import"
 export default {
   data() {
     return {
+      cache: {
+        messageView: {}
+      },
       selections: {
         serverGroup: false,
         personalGroup: false
@@ -62,19 +65,22 @@ export default {
     },
 
     onClientForceMessageViewScroll(event) {
-      if (!event.detail) return false
-      if (event.detail.type == "serverGroup") {
-
-      } else if (event.detail.type == "personalGroup") {
-        console.log(this.selections.personalGroup + " | " + event.detail.UID)
-        if (this.selections.personalGroup == event.detail.UID) {
-          console.log("IS SELECTED GROUP")
+      const contentContainer = this.$el.querySelector(".content-container")
+      if (!event.detail) {
+        this.$nextTick(() => {
+          contentContainer.scrollTop = contentContainer.scrollHeight
+        })
+      } else {
+        const selection = this.selections[(event.detail.type)] || false
+        if (!selection) return false
+        if (selection == event.detail.UID) {
           if (event.detail.cacheScroll) {
-            console.log("WEW CACHE")
-          } else {
-            console.log("AY SCROLL")
-            const contentContainer = this.$el.querySelector(".content-container")
-            contentContainer.scrollTop = contentContainer.scrollHeight
+            this.cache.messageView.scrollValue = contentContainer.scrollTop
+            this.cache.messageView.scrollHeight = contentContainer.scrollHeight
+          } else if (event.detail.restoreScroll) {
+            this.$nextTick(() => {
+              contentContainer.scrollTop = (contentContainer.scrollHeight - this.cache.messageView.scrollHeight) + this.cache.messageView.scrollValue
+            })
           }
         }
       }
