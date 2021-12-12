@@ -16,7 +16,7 @@
     overflow-x: hidden !important
     overflow-y: scroll !important
     .servers-container > .server-logo, .action-container > .option-container
-      $margin-vertical: 25px
+      $margin-vertical: 15px
       $size: $width - ($border-width*1.5)
       $background-color: map-read($config_palette, "wrapper-tertiary-color")
       $border-radius: 50%
@@ -37,7 +37,7 @@
       border-color: $border-color !important
       filter: saturate($saturate) !important
       +vendor("transition", "all 0.5s ease !important")
-      &.option-container:last-child
+      &:last-child
         margin-bottom: $margin-vertical !important
       &:hover
         $saturate: 250%
@@ -57,7 +57,7 @@
         transform: scale($scale, $scale) !important
         &:hover
           $font-color: map-read($config_palette, "wrapper-secondary-color")
-          $background-color: map-read($config_palette, "accent-secondary-color")
+          $background-color: map-read($config_palette, "accent-primary-color")
           color: $font-color !important
           stroke: $font-color !important
           background-color: $background-color !important
