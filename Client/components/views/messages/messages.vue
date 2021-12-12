@@ -15,13 +15,18 @@
 <template>
   <div class="position-relative w-100 min-w-100 max-w-100 d-flex flex-row align-items-center overflow-hidden view-messages-container">
     <!---- Server Manager ---->
-    <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start align-items-center justify-content-start disable-selection hide-scroller server-container">
-      <img class="server" src="https://avatars.githubusercontent.com/u/92739628?s=400&u=bdd3e78f102ac3d1da615208c1beb55908d99064&v=4">
-      <img class="server" src="https://preview.redd.it/ofvcoonrpt051.png?width=640&crop=smart&auto=webp&s=333e4e109fe5bc7d6c3678acb2f15f200f842eb2">
-      <img class="server" src="https://i.pinimg.com/736x/c4/a2/93/c4a293aad71f5ac683b236a9efebbb3b.jpg">
-      <img class="server" src="https://i.pinimg.com/736x/c4/a2/93/c4a293aad71f5ac683b236a9efebbb3b.jpg">
-      <img class="server" src="https://i.pinimg.com/736x/c4/a2/93/c4a293aad71f5ac683b236a9efebbb3b.jpg">
-      <img class="server" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VV-jJ2SyljYTWgdBWq2ZNwMQWR-BmLsCRA&usqp=CAU">
+    <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start align-items-center justify-content-start disable-selection hide-scroller server-navigation-container">
+      <span class="d-flex flex-column align-items-center servers-container">
+        <img class="server-logo" src="https://avatars.githubusercontent.com/u/92739628?s=400&u=bdd3e78f102ac3d1da615208c1beb55908d99064&v=4">
+        <img class="server-logo" src="https://preview.redd.it/ofvcoonrpt051.png?width=640&crop=smart&auto=webp&s=333e4e109fe5bc7d6c3678acb2f15f200f842eb2">
+        <img class="server-logo" src="https://i.pinimg.com/736x/c4/a2/93/c4a293aad71f5ac683b236a9efebbb3b.jpg">
+        <img class="server-logo" src="https://i.pinimg.com/736x/c4/a2/93/c4a293aad71f5ac683b236a9efebbb3b.jpg">
+        <img class="server-logo" src="https://i.pinimg.com/736x/c4/a2/93/c4a293aad71f5ac683b236a9efebbb3b.jpg">
+        <img class="server-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VV-jJ2SyljYTWgdBWq2ZNwMQWR-BmLsCRA&usqp=CAU">
+      </span>
+      <span class="d-flex flex-column align-items-center action-container">
+        <b-icon icon="plus" class="option-container"/>
+      </span>
     </div>
 
     <!---- Navigation Manager ---->

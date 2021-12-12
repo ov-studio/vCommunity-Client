@@ -1,7 +1,7 @@
 @import "@/assets/import"
 
 .view-messages-container
-  .server-container
+  .server-navigation-container
     $border-width: 5px
     $width: calc(map-read($config_element, "side-bar", "size")*1.2 + $border-width)
     $background-color: rgba(map-read($config_palette, "accent-secondary-color"), 0.25)
@@ -15,12 +15,12 @@
     border-color: $border-color !important
     overflow-x: hidden !important
     overflow-y: scroll !important
-    .server
+    .servers-container > .server-logo, .action-container > .option-container
       $margin-vertical: 25px
-      $size: $width - $border-width
+      $size: $width - ($border-width*1.5)
       $background-color: map-read($config_palette, "wrapper-tertiary-color")
       $border-radius: 50%
-      $border-color: map-read($config_palette, "wrapper-primary-color")
+      $border-color: map-read($config_palette, "wrapper-secondary-color")
       $saturate: 25%
       margin-top: $margin-vertical !important
       width: $size !important
@@ -35,13 +35,33 @@
       border-width: $border-width !important
       border-style: solid !important
       border-color: $border-color !important
-      filter: saturate($saturate)
+      filter: saturate($saturate) !important
       +vendor("transition", "all 0.5s ease !important")
-      &:last-child
+      &.option-container:last-child
         margin-bottom: $margin-vertical !important
       &:hover
         $saturate: 250%
-        filter: saturate($saturate)
+        filter: saturate($saturate) !important
+    .action-container
+      .option-container
+        $font-stroke: 0.5px
+        $font-color: map-read($config_palette, "accent-primary-color")
+        $background-color: map-read($config_palette, "wrapper-secondary-color")
+        $scale: 0.7
+        stroke-width: $font-stroke !important
+        color: $font-color !important
+        stroke: $font-color !important
+        background-color: $background-color !important
+        border-color: $background-color !important
+        filter: saturate(100%) !important
+        transform: scale($scale, $scale) !important
+        &:hover
+          $font-color: map-read($config_palette, "wrapper-secondary-color")
+          $background-color: map-read($config_palette, "accent-secondary-color")
+          color: $font-color !important
+          stroke: $font-color !important
+          background-color: $background-color !important
+          filter: saturate(100%) !important
   .navigation-container
     $padding: 5px
     $width: map-read($config_element, "content-bar", "size")
