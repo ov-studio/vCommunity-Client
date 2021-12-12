@@ -57,11 +57,12 @@
         transform: scale($scale, $scale) !important
         &:hover
           $font-color: map-read($config_palette, "wrapper-secondary-color")
-          $background-color: map-read($config_palette, "accent-primary-color")
+          $background-color: map-read($config_palette, "accent-quinary-color")
           color: $font-color !important
           stroke: $font-color !important
           background-color: $background-color !important
           filter: saturate(100%) !important
+          transform: scale($scale, $scale) rotate(360deg) !important
   .navigation-container
     $padding: 5px
     $width: map-read($config_element, "content-bar", "size")
