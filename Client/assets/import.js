@@ -14,6 +14,7 @@ module.exports = {
   ------------------*/
   Generic: require("@/assets/configs/javascripts/generic"),
 
+
   /*-------------
   -- Libraries --
   -------------*/
