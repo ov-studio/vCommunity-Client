@@ -3,8 +3,8 @@
 .view-messages-container
   .server-container
     $border-width: 5px
-    $width: calc(map-read($config_element, "side-bar", "size") + $border-width)
-    $background-color: rgba(map-read($config_palette, "wrapper-primary-color"), 0.75)
+    $width: calc(map-read($config_element, "side-bar", "size")*1.2 + $border-width)
+    $background-color: rgba(map-read($config_palette, "accent-secondary-color"), 0.25)
     $border-color: map-read($config_palette, "wrapper-secondary-color")
     width: $width !important
     min-width: $width !important
@@ -15,6 +15,33 @@
     border-color: $border-color !important
     overflow-x: hidden !important
     overflow-y: scroll !important
+    .server
+      $margin-vertical: 25px
+      $size: $width - $border-width
+      $background-color: map-read($config_palette, "wrapper-tertiary-color")
+      $border-radius: 50%
+      $border-color: map-read($config_palette, "wrapper-primary-color")
+      $saturate: 25%
+      margin-top: $margin-vertical !important
+      width: $size !important
+      height: $size !important
+      min-width: $size !important
+      min-height: $size !important
+      background-color: $background-color !important
+      object-fit: cover !important
+      background-repeat: no-repeat !important
+      background-position: center center !important
+      border-radius: $border-radius !important
+      border-width: $border-width !important
+      border-style: solid !important
+      border-color: $border-color !important
+      filter: saturate($saturate)
+      +vendor("transition", "all 0.5s ease !important")
+      &:last-child
+        margin-bottom: $margin-vertical !important
+      &:hover
+        $saturate: 250%
+        filter: saturate($saturate)
   .navigation-container
     $padding: 5px
     $width: map-read($config_element, "content-bar", "size")
