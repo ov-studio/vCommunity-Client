@@ -14,6 +14,7 @@
 
 .disable-selection {
   @include vendor("user-select", "none !important");
+  @include vendor("user-drag", "none !important");
   @include vendor("touch-callout", "none !important");
 }
 
