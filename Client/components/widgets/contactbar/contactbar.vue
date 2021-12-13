@@ -14,7 +14,7 @@
 
 <template>
   <div class="position-relative w-100 min-w-100 max-w-100 d-flex flex-row align-items-center justify-content-start overflow-hidden disable-selection widget-contactbar-container">
-    <img class="contact-avatar" :src="contactAvatar">
+    <img class="disable-selection contact-avatar" :src="contactAvatar">
     <div class="overflow-hidden contact-name">{{getContactName(contactUID)}}</div>
     <div v-for="(optionData, optionIndex) in contactOptions" :key="optionIndex" class="contact-option" @click.prevent="contactOptionHandler(contactUID, optionData)">{{optionData.type}}</div>
   </div>
