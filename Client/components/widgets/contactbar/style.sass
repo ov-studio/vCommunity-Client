@@ -55,6 +55,30 @@
     border-width: $border-width !important
     border-style: solid !important
     border-color: $border-color !important
+  .contact-online-status
+    $size: map-read($config_element, "contact-bar", "avatar", "size")*0.4
+    $background-color: map-read($config_palette, "user-status-offline")
+    $border-radius: 50%
+    $border-width: 3px
+    $border-color: map-read($config_palette, "wrapper-primary-color")
+    margin-right: $size/4 !important
+    margin-bottom: $size/4 !important
+    right: 0 !important
+    bottom: 0 !important
+    width: $size !important
+    min-width: $size !important
+    max-width: $size !important
+    height: $size !important
+    min-height: $size !important
+    max-height: $size !important
+    background-color: $background-color !important
+    border-radius: $border-radius !important
+    border-width: $border-width !important
+    border-style: solid !important
+    border-color: $border-color !important
+    &[isOnline="true"]
+      $background-color: map-read($config_palette, "user-status-online")
+      background-color: $background-color !important
   .contact-name
     width: fit-content !important
     text-overflow: ellipsis !important

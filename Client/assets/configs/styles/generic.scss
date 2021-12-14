@@ -28,14 +28,15 @@ $config_element: (
     size: 250px
   ),
   "contact-bar": (
-    size: 35px,
+    size: 40px,
     avatar: (
-      size: 30px
+      size: 35px
     )
   )
 );
 
 $config_palette: (
+  // Generic //
   "accent-primary-color": rgba(255, 80, 80, 1),
   "accent-secondary-color": rgba(200, 200, 200, 1),
   "accent-tertiary-color": rgba(100, 100, 100, 1),
@@ -43,5 +44,9 @@ $config_palette: (
   "accent-quinary-color": rgba(255, 255, 255, 1),
   "wrapper-primary-color": rgba(10, 10, 10, 1),
   "wrapper-secondary-color": rgba(0, 0, 0, 1),
-  "wrapper-tertiary-color": rgba(25, 25, 25, 1)
+  "wrapper-tertiary-color": rgba(25, 25, 25, 1),
+
+  // User //
+  "user-status-online": rgba(255, 80, 80, 1),
+  "user-status-offline": rgba(25, 25, 25, 1)
 );
