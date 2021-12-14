@@ -5,7 +5,7 @@
   $margin-vertical: 10px
   $height: map-read($config_element, "contact-bar", "size")
   $font: "Megi Sans"
-  $font-size: 12px
+  $font-size: 13px
   $font-weight: 800
   $font-spacing: 2px
   $font-color: map-read($config_palette, "accent-secondary-color")
@@ -80,6 +80,8 @@
       $background-color: map-read($config_palette, "user-status-online")
       background-color: $background-color !important
   .contact-name
+    $padding-horizontal: 5px
+    padding-left: $padding-horizontal !important
     width: fit-content !important
     text-overflow: ellipsis !important
   .contact-option
