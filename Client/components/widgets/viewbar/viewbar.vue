@@ -17,7 +17,10 @@
     <b-icon class="menu-headerIcon" icon="arrow-return-right"/>
     <div class="menu-header">{{this.$store.state.widgets.menubar.selection}}</div>
     <div class="w-100 min-w-100 max-w-100 d-flex flex-row align-items-center justify-content-end viewbar-container">
-      <b-icon class="menu" icon="box-arrow-in-left" @click.prevent="onClientLogout"/>
+      <div class="client-name">{{getClientName()}}</div>
+      <span class="d-flex flex-row align-items-center justify-content-center client-subscriber" isSelected="true"><b-icon icon="patch-check"/></span>
+      <span class="d-flex flex-row align-items-center justify-content-center" isSelected="true"><b-icon icon="plus"/>100</span>
+      <span class="d-flex flex-row align-items-center justify-content-center option-container"><b-icon icon="box-arrow-in-right" @click.prevent="onClientLogout"/></span>
     </div>
   </div>
 </template>

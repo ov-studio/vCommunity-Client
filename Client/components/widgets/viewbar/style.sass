@@ -23,6 +23,7 @@
     $padding: 0px 5px
     $font: "Megi Sans"
     $font-size: 12px
+    $font-weight: 800
     $font-spacing: 2px
     $font-color: map-read($config_palette, "accent-primary-color")
     padding: $padding !important
@@ -31,28 +32,59 @@
     font-family: $font !important
     font-size: $font-size !important
     letter-spacing: $font-spacing !important
-    font-weight: 800 !important
+    font-weight: $font-weight !important
     color: $font-color !important
     +vendor("text-transform", "uppercase !important")
   .viewbar-container
-    $padding-horizontal: 10px
+    $padding-horizontal: 7px
     padding: 0px $padding-horizontal !important
     height: $height !important
-    .menu
-      $font-size: 14px
-      $font-stroke: 0.8px
-      $font-color: map-read($config_palette, "accent-tertiary-color")
+    > *
+      $margin-horizontal: 7px
+      $padding-horizontal: 10px
+      $height: $height - 25px
+      $font: "Typo Round"
+      $font-size: 12px
+      $font-weight: 800
+      $font-spacing: 2px
+      $font-color: map-read($config_palette, "wrapper-secondary-color")
+      $background-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
+      $border-radius: 25px
+      margin-left: $margin-horizontal !important
+      padding: 0px $padding-horizontal !important
+      height: $height !important
       line-height: $height !important
       +vendor("white-space", "nowrap")
+      font-family: $font !important
       font-size: $font-size !important
-      stroke-width: $font-stroke !important
+      font-weight: $font-weight !important
+      letter-spacing: $font-spacing !important
       color: $font-color !important
       stroke: $font-color !important
+      background-color: $background-color !important
+      border-radius: $border-radius !important
       +vendor("transition", "all 0.25s ease !important")
-    &:hover
-      .menu
-        $font-color: map-read($config_palette, "accent-primary-color")
-        $scale: 1.4
-        color: $font-color !important
-        stroke: $font-color !important
-        transform: scale($scale, $scale) !important
+      &:first-child
+        margin-left: 0px !important
+      &[isSelected="true"], &:hover
+        $background-color: map-read($config_palette, "accent-secondary-color")
+        background-color: $background-color !important
+    .option-container
+      $font-stroke: 0.7px
+      stroke-width: $font-stroke !important
+      &:hover
+        $padding-horizontal: 20px
+        padding: 0px $padding-horizontal !important
+    .client-name
+      $min-width: 75px
+      $font: "Megi Sans"
+      $font-size: 12px
+      $background-color: map-read($config_palette, "accent-primary-color")
+      min-width: $min-width !important
+      +vendor("text-align", "center !important")
+      font-family: $font !important
+      font-size: $font-size !important
+      background-color: $background-color !important
+    .client-subscriber
+      $background-color: map-read($config_palette, "accent-primary-color")
+      background-color: $background-color !important
