@@ -34,3 +34,25 @@
     font-weight: 800 !important
     color: $font-color !important
     +vendor("text-transform", "uppercase !important")
+  .viewbar-container
+    $padding-horizontal: 10px
+    padding: 0px $padding-horizontal !important
+    height: $height !important
+    .menu
+      $font-size: 14px
+      $font-stroke: 0.8px
+      $font-color: map-read($config_palette, "accent-tertiary-color")
+      line-height: $height !important
+      +vendor("white-space", "nowrap")
+      font-size: $font-size !important
+      stroke-width: $font-stroke !important
+      color: $font-color !important
+      stroke: $font-color !important
+      +vendor("transition", "all 0.25s ease !important")
+    &:hover
+      .menu
+        $font-color: map-read($config_palette, "accent-primary-color")
+        $scale: 1.4
+        color: $font-color !important
+        stroke: $font-color !important
+        transform: scale($scale, $scale) !important

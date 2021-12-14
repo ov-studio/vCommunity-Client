@@ -1,7 +1,6 @@
 export default {
   data() {
     return {
-      logoutMenu: "logout",
       menus: {
         messages: {
           icon: "chat-right-text"
@@ -15,12 +14,6 @@ export default {
         settings: {
           icon: "gear-fill"
         }
-        /*
-        TODO: REMOVE LOGOUT FROM HERE
-        logout: {
-          icon: "box-arrow-in-left"
-        }
-        */
       }
     }
   },
@@ -35,8 +28,6 @@ export default {
     },
 
     onClientChangeMenu(menuType) {
-      // TODO: REMOVE LOGOUT FROM HERE
-      //if (menuType == this.logoutMenu) return this.$store.dispatch("auth/onClientLogout")
       this.$store.commit("widgets/menubar/setSelection", menuType)
     }
   }
