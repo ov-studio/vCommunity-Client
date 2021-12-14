@@ -4,20 +4,23 @@ export default {
       logoutMenu: "logout",
       menus: {
         messages: {
-          icon: "chat-left"
+          icon: "chat-right-text"
         },
-        notifications: {
-          icon: "bell"
+        applications: {
+          icon: "grid"
         },
         contacts: {
-          icon: "people"
+          icon: "person-lines-fill"
         },
         settings: {
-          icon: "gear"
-        },
+          icon: "gear-fill"
+        }
+        /*
+        TODO: REMOVE LOGOUT FROM HERE
         logout: {
           icon: "box-arrow-in-left"
         }
+        */
       }
     }
   },
@@ -32,7 +35,8 @@ export default {
     },
 
     onClientChangeMenu(menuType) {
-      if (menuType == this.logoutMenu) return this.$store.dispatch("auth/onClientLogout")
+      // TODO: REMOVE LOGOUT FROM HERE
+      //if (menuType == this.logoutMenu) return this.$store.dispatch("auth/onClientLogout")
       this.$store.commit("widgets/menubar/setSelection", menuType)
     }
   }
