@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------
      Resource: vClient (Server)
-     Script: store: views: contacts.js
+     Script: store: contacts.js
      Author: vStudio
      Developer(s): Aviril, Mario, Tron
      DOC: 23/11/2021
@@ -54,6 +54,6 @@ export const mutations = {
 addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
   appSocket.socket.on("App:Contacts:onSync", function(...parameters) {
-    $nuxt.$store.commit("views/contacts/onSyncContacts", ...parameters)
+    $nuxt.$store.commit("contacts/onSyncContacts", ...parameters)
   })
 }, false)

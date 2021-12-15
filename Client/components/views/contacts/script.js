@@ -60,14 +60,14 @@ export default {
     },
 
     contactDatas() {
-      return {contacts: (this.selectedNavigation && this.$store.state.views.contacts.userContacts[(this.selectedNavigation)]) || false, options: (this.selectedNavigation && this.navigations[(this.selectedNavigation)] && this.navigations[(this.selectedNavigation)].options) || false}
+      return {contacts: (this.selectedNavigation && this.$store.state.contacts.userContacts[(this.selectedNavigation)]) || false, options: (this.selectedNavigation && this.navigations[(this.selectedNavigation)] && this.navigations[(this.selectedNavigation)].options) || false}
     }
   },
 
   methods: {
     onClientGetNavigationLength(navigationIndex) {
       if (this.navigations[navigationIndex].isFriendFinder) return ''
-      return "(" + ((this.$store.state.views.contacts.userContacts[(navigationIndex)] && Object.entries(this.$store.state.views.contacts.userContacts[(navigationIndex)]).length) || 0) + ")"
+      return "(" + ((this.$store.state.contacts.userContacts[(navigationIndex)] && Object.entries(this.$store.state.contacts.userContacts[(navigationIndex)]).length) || 0) + ")"
     },
 
     onClientChangeNavigation(navigationIndex) {
@@ -76,13 +76,13 @@ export default {
 
     onClientProcessOption(UID, optionData) {
       if (!optionData.event) return false
-      this.$store.dispatch("views/contacts/onClientProcessOption", {UID: UID, optionData: optionData})
+      this.$store.dispatch("contacts/onClientProcessOption", {UID: UID, optionData: optionData})
     },
 
     onClientProcessInvitation() {
       if (this.finderDatas.username.length <= 0) return false
       const componentInstance = this
-      this.$store.dispatch("views/contacts/onClientProcessInvitation", {username: this.finderDatas.username, optionData: this.navigations[(this.selectedNavigation)].option})
+      this.$store.dispatch("contacts/onClientProcessInvitation", {username: this.finderDatas.username, optionData: this.navigations[(this.selectedNavigation)].option})
       Library.Socket.getSocket("app").socket.on("App:Contacts:onClientFriendRequest", function(result) {
         Library.Socket.getSocket("app").socket.off("App:Contacts:onClientFriendRequest")
         componentInstance.finderDatas.currentHeader = (componentInstance.finderDatas.headers[(result.status)] && result.status) || "void"
