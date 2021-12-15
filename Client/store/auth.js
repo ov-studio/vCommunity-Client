@@ -42,7 +42,7 @@ export const actions = {
     return $nuxt.$fire.auth.signOut()
   },
 
-  async onClientStateChange(state, {authUser, claims}) {
+  async onClientStateChange(state, {authUser}) {
     if (!authUser) {
       state.commit("setUserCredentials", false)
     } else {
@@ -57,13 +57,13 @@ export const mutations = {
   },
 
   setUserCredentials(state, payload) {
+    if (state.userCredentials && !payload) dispatchEvent(importedJS.Generic.eventDatas.app.disconnection.event)
     state.userCredentials = payload
     dispatchEvent(importedJS.Generic.eventDatas.auth.loaded.event)
     if (state.userCredentials) {
       importedJS.Library.Socket.create("app")
       this.$router.push("/")
-    }
-    else {
+    } else {
       importedJS.Library.Socket.destroy("app")
       this.$router.push(importedJS.Generic.routeDatas.authRoute)
     }
@@ -84,7 +84,8 @@ authSocket.socket.on("Auth:onClientLogin", function(result, isReAuthRequest) {
     } else {
       $nuxt.$store.commit("auth/setUserCredentials", result)
     }
-  } else {
+  } 
+  else {
     if (result.status) {
       loginPromise.promise = false
       loginPromise.resolver(result)
