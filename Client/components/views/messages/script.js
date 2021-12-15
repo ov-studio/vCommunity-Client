@@ -81,6 +81,12 @@ export default {
             this.$nextTick(() => {
               contentContainer.scrollTop = (contentContainer.scrollHeight - this.cache.messageView.scrollHeight) + this.cache.messageView.scrollValue
             })
+          } else if (event.detail.requestScroll) {
+            if ((contentContainer.scrollTop + contentContainer.clientHeight) >= contentContainer.scrollHeight) {
+              this.$nextTick(() => {
+                contentContainer.scrollTop = contentContainer.scrollHeight
+              })
+            }
           }
         }
       }

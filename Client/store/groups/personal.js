@@ -98,7 +98,15 @@ export const mutations = {
             restoreScroll: true
           }
         }))
-      } else if ($nuxt.$store.state.auth.userCredentials.UID == messageData.owner) {
+      } else if ($nuxt.$store.state.auth.userCredentials.UID != messageData.owner) {
+        dispatchEvent(new CustomEvent(importedJS.Generic.eventDatas.messageView.forcescroll.name, {
+          detail: {
+            type: "personalGroup",
+            UID: groupMessages.UID,
+            requestScroll: true
+          }
+        }))
+      } else {
         dispatchEvent(importedJS.Generic.eventDatas.messageView.forcescroll.event)
       }
     })
