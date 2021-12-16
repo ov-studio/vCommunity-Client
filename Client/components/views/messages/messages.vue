@@ -47,7 +47,7 @@
         <input class="w-100 min-w-100 max-w-100 chat-input" autocomplete="off" spellcheck="false" @keypress="onClientSendMessage">
       </div>
     </div>
-    <widget-contentbox contentHeader="Test">
+    <widget-contentbox contentHeader="Server">
       <input class="finder-control" placeholder="Enter Server UID" @paste.prevent>
       <div class="finder-action" @click.prevent="">
         <div class="form-button-text">Join</div>
