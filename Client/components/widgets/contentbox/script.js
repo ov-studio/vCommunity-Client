@@ -2,8 +2,18 @@ export default {
   props: ["contentHeader"],
 
   data() {
-    return {}
+    return {
+      isVisible: false
+    }
   },
 
-  methods: {}
+  methods: {
+    createWidget() {
+      this.isVisible = true
+    },
+
+    destroyWidget() {
+      this.isVisible = true
+    }
+  }
 }

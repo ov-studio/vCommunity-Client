@@ -137,9 +137,12 @@ export default {
 
     onClientCreateServer() {
       // TODO: ...
+      /*
       this.$store.dispatch("groups/server/onClientCreateGroup", {
         name: "test"
       })
+      */
+      this.$refs["option-server-creator"].createWidget()
     }
   }
 }
