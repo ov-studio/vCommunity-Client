@@ -60,13 +60,18 @@ export default {
     },
 
     onClientChangeSelection(selectionType, selection) {
-      if (selectionType == "personalGroup") {
-        const initialGroup = Object.entries(this.$store.state.groups.personal.userGroups)[0]
-        const selectedGroup = (selection && this.$store.state.groups.personal.userGroups[selection] && selection) || (initialGroup && initialGroup[0]) || false
-        if (this.selections.personalGroup == selectedGroup) return false
-        this.selections.personalGroup = selectedGroup
-        dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
+      var categoryStore = false
+      if (selectionType == "serverGroup") {
+        categoryStore = this.$store.state.groups.server.userGroups
+      } else if (selectionType == "personalGroup") {
+        categoryStore = this.$store.state.groups.personal.userGroups
       }
+      if (!categoryStore) return false
+      const initialGroup = Object.entries(categoryStore)[0]
+      const selectedGroup = (selection && categoryStore[selection] && selection) || ((selectionType != "serverGroup") && initialGroup && initialGroup[0]) || false
+      if (this.selections[selectionType] == selectedGroup) return false
+      this.selections[selectionType] = selectedGroup
+      dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     },
 
     onClientForceMessageViewScroll(event) {

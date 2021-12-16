@@ -17,7 +17,8 @@
     <!---- Server Manager ---->
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start align-items-center justify-content-start disable-selection hide-scroller server-navigation-container">
       <span class="d-flex flex-column align-items-center servers-container">
-        <img v-for="(serverGroup, groupUID) in serverGroups" :key="groupUID" :isSelected="selections.serverGroup == groupUID" class="disable-selection server-logo" src="https://avatars.githubusercontent.com/u/92739628?s=400&u=bdd3e78f102ac3d1da615208c1beb55908d99064&v=4">
+        <img :isSelected="!selections.serverGroup" class="disable-selection server-logo" src="https://cdn.discordapp.com/attachments/780432225815625768/921033051893563422/noserver.png" @click.prevent="onClientChangeSelection('serverGroup', false)">
+        <img v-for="(serverGroup, groupUID) in serverGroups" :key="groupUID" :isSelected="selections.serverGroup == groupUID" class="disable-selection server-logo" src="https://avatars.githubusercontent.com/u/92739628?s=400&u=bdd3e78f102ac3d1da615208c1beb55908d99064&v=4" @click.prevent="onClientChangeSelection('serverGroup', groupUID)">
       </span>
       <span class="d-flex flex-column align-items-center action-container">
         <b-icon icon="plus" class="option-container" @click.prevent="onClientCreateServer"/>

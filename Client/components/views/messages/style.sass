@@ -39,8 +39,8 @@
       +vendor("transition", "all 0.5s ease !important")
       &:last-child
         margin-bottom: $margin-vertical !important
-      &:hover
-        $saturate: 250%
+      &[isSelected="true"], &:hover
+        $saturate: 100%
         filter: saturate($saturate) !important
     .action-container
       .option-container
