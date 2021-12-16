@@ -20,7 +20,7 @@
       <div class="client-name">{{getClientName()}}</div>
       <span class="d-flex flex-row align-items-center justify-content-center client-subscriber" isSelected="true"><b-icon icon="patch-check"/></span>
       <span class="d-flex flex-row align-items-center justify-content-center" isSelected="true"><b-icon icon="plus"/>100</span>
-      <span class="d-flex flex-row align-items-center justify-content-center option-container"><b-icon icon="box-arrow-in-right" @click.prevent="onClientLogout"/></span>
+      <span class="d-flex flex-row align-items-center justify-content-center option-container" @click.prevent="onClientLogout"><b-icon icon="box-arrow-in-right"/></span>
     </div>
   </div>
 </template>
