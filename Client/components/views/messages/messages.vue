@@ -49,7 +49,7 @@
     </div>
     <widget-contentbox contentHeader="Test">
       <input class="finder-control" placeholder="Enter Server UID" @paste.prevent>
-      <div class="finder-action" @click.prevent="onClientProcessInvitation">
+      <div class="finder-action" @click.prevent="">
         <div class="form-button-text">Join</div>
       </div>
     </widget-contentbox>
