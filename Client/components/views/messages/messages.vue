@@ -47,12 +47,11 @@
         <input class="w-100 min-w-100 max-w-100 chat-input" autocomplete="off" spellcheck="false" @keypress="onClientSendMessage">
       </div>
     </div>
-    <widget-contentbox>
-      <div>Testing..</div>
-      <div>Testing..</div>
-      <input placeholder="Enter Server UID" @paste.prevent>
-      <div>Testing..</div>
-      <div>Testing..2</div>
+    <widget-contentbox contentHeader="Test">
+      <input class="finder-control" placeholder="Enter Server UID" @paste.prevent>
+      <div class="finder-action" @click.prevent="onClientProcessInvitation">
+        <div class="form-button-text">Join</div>
+      </div>
     </widget-contentbox>
   </div>
 </template>

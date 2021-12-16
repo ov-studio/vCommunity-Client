@@ -45,7 +45,87 @@
       background-repeat: no-repeat !important
       background-position: 50% 50% !important
     .container-body
-      $padding: 10px 10px
+      $padding: 25px 25px
       padding: $padding !important
       & > *
-        color: white !important
+        //color: white !important
+
+
+.finder-control
+  $width: 300px
+  $height: 30px
+  $font-size: 20px
+  $font-color: map-read($config_palette, "accent-quinary-color")
+  $border-width: 2px
+  $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
+  width: $width !important
+  height: calc($height - $border-width)
+  line-height: calc($height - $border-width) !important
+  +vendor("text-align", "center !important")
+  font-size: $font-size !important
+  color: $font-color !important
+  background-color: rgba(0, 0, 0, 0) !important
+  border-radius: 0px !important
+  border-width: 0px !important
+  border-style: solid !important
+  border-bottom-width: $border-width !important
+  border-color: $border-color !important
+  +vendor("transition", "all 0.5s ease !important")
+  &::placeholder
+    $font-color:  map-read($config_palette, "accent-tertiary-color")
+    color: $font-color !important
+    +vendor("transition", "all 0.5s ease !important")
+  &:focus::placeholder
+    $font-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.25)
+    color: $font-color !important
+  &::selection
+    $background-color: map-read($config_palette, "accent-quaternary-color")
+    background-color: $background-color !important
+  &:hover:not([disabled]), &:focus:not([disabled])
+    $width: $width + 50px
+    $border-color: map-read($config_palette, "accent-primary-color")
+    width: $width !important
+    border-color: $border-color !important
+
+.finder-action
+  $margin-vertical: 13px
+  $width: 300px
+  $height: 21px
+  $font: "Typo Round"
+  $font-size: 15px
+  $font-weight: 800
+  $font-spacing: 10px
+  $font-color: map-read($config_palette, "wrapper-secondary-color")
+  $background-color: map-read($config_palette, "accent-primary-color")
+  $skew: 20deg
+  margin-top: $margin-vertical !important
+  width: $width
+  min-width: fit-content !important
+  height: $height !important
+  line-height: $height !important
+  +vendor("text-align", "center !important")
+  +vendor("text-transform", "uppercase !important")
+  font-family: $font !important
+  font-size: $font-size !important
+  font-weight: $font-weight !important
+  letter-spacing: $font-spacing !important
+  color: $font-color !important
+  background-color: $background-color !important
+  transform: skewx($skew) scale(1, 1) !important
+  border-radius: 0.25rem !important
+  +vendor("transition", "all 0.25s ease !important")
+  &::first-letter
+    padding-left: $font-spacing !important
+  .form-button-text
+    $padding-vertical: 1.25px
+    padding-top: $padding-vertical
+    +vendor("transition", "all 0.25s ease !important")
+  > *
+    transform: skewx(calc($skew*-1)) !important
+  &:hover:not([disabled])
+    $scale: 1.1
+    $background-color: map-read($config_palette, "accent-quinary-color")
+    background-color: $background-color !important
+    transform: skewx($skew) scale($scale, $scale) !important
+    > *
+      transform: skewx(calc(360deg - $skew)) scale($scale, $scale) !important
