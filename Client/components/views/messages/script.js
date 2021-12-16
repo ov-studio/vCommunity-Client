@@ -31,6 +31,11 @@ export default {
       return this.$store.state.groups.personal.userGroups || false
     },
 
+    serverGroups() {
+      //this.onClientChangeSelection("serverGroup", this.selections.serverGroup)
+      return this.$store.state.groups.server.userGroups || false
+    },
+
     viewHeader() {
       if (this.selections.serverGroup) {
         return ''
