@@ -40,7 +40,7 @@ export default {
       if (this.selections.serverGroup) {
         return this.selections.serverGroup
       } else if (this.selections.personalGroup) {
-        return "@Private Messages"
+        return "Private Messages"
       }
     },
   
