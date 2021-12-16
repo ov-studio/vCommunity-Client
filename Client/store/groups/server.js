@@ -25,11 +25,9 @@ export const state = () => ({
 })
 
 export const actions = {
-  /*
-  onClientSendMessage(state, payload) {
-    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Server:onClientSendMessage", payload)
+  onClientCreateGroup(state, payload) {
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Server:onClientCreateGroup", payload)
   }
-  */
 }
 
 export const mutations = {
