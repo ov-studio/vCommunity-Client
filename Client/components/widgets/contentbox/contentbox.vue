@@ -15,7 +15,7 @@
 <template>
   <div class="position-fixed vw-100 vh-100 min-vw-100 min-vh-100 max-vw-100 max-vh-100 d-flex flex-row align-items-center disable-selection overflow-hidden widget-contentbox-container">
     <div class="position-absolute w-100 min-w-100 max-w-100 d-flex flex-column align-items-center justify-content-start overflow-hidden contentbox-container">
-        <div class="w-100 min-w-100 max-w-100 d-flex flex-row align-items-center justify-content-center overflow-hidden container-name">Server</div>
+        <div class="w-100 min-w-100 max-w-100 d-flex flex-row align-items-center justify-content-center overflow-hidden container-header">Server</div>
         <div>Aviril</div>
         <div>Aviril</div>
         <div>Aviril</div>
