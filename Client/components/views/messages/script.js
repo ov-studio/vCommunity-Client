@@ -32,10 +32,18 @@ export default {
     },
 
     serverGroups() {
-      //this.onClientChangeSelection("serverGroup", this.selections.serverGroup)
+      this.onClientChangeSelection("serverGroup", this.selections.serverGroup)
       return this.$store.state.groups.server.userGroups || false
     },
 
+    navigationHeader() {
+      if (this.selections.serverGroup) {
+        return this.selections.serverGroup
+      } else if (this.selections.personalGroup) {
+        return "@Private Messages"
+      }
+    },
+  
     viewHeader() {
       if (this.selections.serverGroup) {
         return ''
