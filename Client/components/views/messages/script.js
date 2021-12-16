@@ -115,6 +115,13 @@ export default {
         })
       }
       event.target.value = ""
+    },
+
+    onClientCreateServer() {
+      // TODO: ...
+      this.$store.dispatch("groups/server/onClientCreateGroup", {
+        name: "test"
+      })
     }
   }
 }

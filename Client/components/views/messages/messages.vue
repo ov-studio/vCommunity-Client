@@ -25,7 +25,7 @@
         <img class="disable-selection server-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VV-jJ2SyljYTWgdBWq2ZNwMQWR-BmLsCRA&usqp=CAU">
       </span>
       <span class="d-flex flex-column align-items-center action-container">
-        <b-icon icon="plus" class="option-container"/>
+        <b-icon icon="plus" class="option-container" @click.prevent="onClientCreateServer"/>
       </span>
     </div>
 
