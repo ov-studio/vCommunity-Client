@@ -48,7 +48,7 @@
       </div>
     </div>
     <widget-contentbox contentHeader="Server">
-      <input class="finder-control" placeholder="Enter Server UID" @paste.prevent>
+      <input class="finder-control" placeholder="Enter Invitation Code" @paste.prevent>
       <div class="finder-action" @click.prevent="">
         <div class="form-button-text">Join</div>
       </div>
