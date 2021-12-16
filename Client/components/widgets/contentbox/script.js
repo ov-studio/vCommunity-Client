@@ -13,7 +13,11 @@ export default {
     },
 
     destroyWidget() {
-      this.isVisible = true
+      this.isVisible = false
+    },
+
+    clickTest() {
+      console.log("CLICKED OUTSIDE CONTAINER..")
     }
   }
 }
