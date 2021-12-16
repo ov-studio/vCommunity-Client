@@ -14,10 +14,6 @@ export default {
 
     destroyWidget() {
       this.isVisible = false
-    },
-
-    clickTest() {
-      console.log("CLICKED OUTSIDE CONTAINER..")
     }
   }
 }
