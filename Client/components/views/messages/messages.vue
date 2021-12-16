@@ -47,7 +47,13 @@
         <input class="w-100 min-w-100 max-w-100 chat-input" autocomplete="off" spellcheck="false" @keypress="onClientSendMessage">
       </div>
     </div>
-    <widget-contentbox/>
+    <widget-contentbox>
+      <div>Testing..</div>
+      <div>Testing..</div>
+      <input placeholder="Enter Server UID" @paste.prevent>
+      <div>Testing..</div>
+      <div>Testing..2</div>
+    </widget-contentbox>
   </div>
 </template>
 
