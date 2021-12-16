@@ -47,6 +47,7 @@
         <input class="w-100 min-w-100 max-w-100 chat-input" autocomplete="off" spellcheck="false" @keypress="onClientSendMessage">
       </div>
     </div>
+    <widget-contentbox/>
   </div>
 </template>
 

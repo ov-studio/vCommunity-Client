@@ -1,0 +1,46 @@
+@import "@/assets/import"
+
+.widget-contentbox-container
+  $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 0.8)
+  left: 0px !important
+  top: 0px !important
+  background-color: $background-color !important
+  .contentbox-container
+    $width: 400px
+    $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 0.97)
+    $border-radius: 10px
+    $border-width: 3px
+    $border-color: rgba(map-read($config_palette, "wrapper-primary-color"), 1)
+    $box-shadow: 0px 10px 10px rgba(map-read($config_palette, "wrapper-secondary-color"), 1)
+    left: 50% !important
+    top: 50% !important
+    width: $width !important
+    max-height: calc(100% - (map-read($config_element, "side-bar", "size")*2)) !important
+    background-color: $background-color !important
+    border-radius: $border-radius !important
+    border-width: $border-width !important
+    border-bottom-width: 0px !important
+    border-style: solid !important
+    border-color: $border-color !important
+    box-shadow: $box-shadow !important
+    transform: translate(-50%, calc(-50% + (map-read($config_element, "side-bar", "size")*0.5))) !important
+    .container-name
+      $height: 85px
+      $font: "Megi Sans"
+      $font-size: 40px
+      $font-weight: 900
+      $font-spacing: 25px
+      $font-color: rgba(map-read($config_palette, "accent-quinary-color"), 0.6)
+      padding-left: $font-spacing !important
+      height: $height !important
+      +vendor("white-space", "nowrap")
+      +vendor("text-transform", "uppercase")
+      font-family: $font !important
+      font-size: $font-size !important
+      font-weight: $font-weight !important
+      letter-spacing: $font-spacing !important
+      color: $font-color !important
+      background-image: url(http://m.gettywallpapers.com/wp-content/uploads/2021/08/Halo-Infinite-Background-Images-1024x576.jpg) !important
+      background-size: cover !important
+      background-repeat: no-repeat !important
+      background-position: 50% 50% !important
