@@ -21,7 +21,7 @@
         <img v-for="(serverGroup, groupUID) in serverGroups" :key="groupUID" :isSelected="selections.serverGroup == groupUID" class="disable-selection server-logo" src="https://avatars.githubusercontent.com/u/92739628?s=400&u=bdd3e78f102ac3d1da615208c1beb55908d99064&v=4" @click.prevent="onClientChangeSelection('serverGroup', groupUID)">
       </span>
       <span class="d-flex flex-column align-items-center action-container">
-        <b-icon icon="plus" class="option-container" @click.prevent="onClientCreateServer"/>
+        <b-icon icon="plus" class="option-container" @click.prevent="onClientCreateServer()"/>
       </span>
     </div>
 
@@ -51,8 +51,8 @@
     <!--- Widgets --->
     <widget-contentbox contentHeader="Server" ref="option-server-creator">
       <input class="finder-control" placeholder="Enter Invitation Code" @paste.prevent>
-      <div class="finder-action" @click.prevent="">
-        <div class="form-button-text">Join</div>
+      <div class="finder-action">
+        <div class="form-button-text" @click.prevent="onClientCreateServer(true)">Join</div>
       </div>
     </widget-contentbox>
   </div>

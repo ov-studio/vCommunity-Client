@@ -135,14 +135,21 @@ export default {
       event.target.value = ""
     },
 
-    onClientCreateServer() {
-      // TODO: ...
-      /*
-      this.$store.dispatch("groups/server/onClientCreateGroup", {
-        name: "test"
-      })
-      */
-      this.$refs["option-server-creator"].createWidget()
+    onClientCreateServer(isCreationPhase) {
+      if (isCreationPhase) {
+        // TODO: ...
+        /*
+        this.$store.dispatch("groups/server/onClientCreateGroup", {
+          name: "test"
+        })
+        */
+       //console.log(this.$refs["option-server-creator"])
+       const contentContainer = this.$refs["option-server-creator"].querySelector(".finder-action")
+       console.log(contentContainer)
+        //this.$refs["option-server-creator"].destroyWidget()
+      } else {
+        this.$refs["option-server-creator"].createWidget()
+      }
     }
   }
 }
