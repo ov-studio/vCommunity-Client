@@ -6,45 +6,32 @@ export default {
   },
 
   computed: {
-    serverGroups() {
-      this.onClientSelectGroup(this.$store.state.app.serverGroup)
-      return this.$store.state.groups.server.userGroups || false
+    personalGroups() {
+      return this.$store.state.groups.personal.userGroups || false
+    },
+
+    containerHeader() {
+      if (this.$store.state.app.serverGroup) {
+        return this.$store.state.app.serverGroup
+      } else if (this.$store.state.app.personalGroup) {
+        return "Private Messages"
+      }
     }
   },
 
   methods: {
     isGroupSelected(selection) {
-      return this.$store.state.app.serverGroup == selection
+      return this.$store.state.app.personalGroup == selection
     },
 
     onClientSelectGroup(selection) {
-      const serverGroups = this.$store.state.groups.server.userGroups
-      if (!serverGroups) return false
-  
-      selection = (selection && serverGroups[selection] && selection) || false
-      if (this.$store.state.app.serverGroup == selection) return false
-      this.$store.commit("app/setServerGroupSelection", selection)
+      const personalGroups = this.$store.state.groups.personal.userGroups
+      if (!personalGroups) return false
+
+      selection = (selection && personalGroups[selection] && selection) || false
+      if (this.$store.state.app.personalGroup == selection) return false
+      this.$store.commit("app/setPersonalGroupSelection", selection)
       dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
-    },
-
-    onClientCreateGroup(isCreationPhase) {
-      if (isCreationPhase) {
-        const controlElement = this.$refs["server-creator"].$el.querySelector(".creator-control")
-        const serverName = controlElement.value
-        if (serverName.length <= 0) return false
-        /*
-        this.$store.dispatch("groups/server/onClientCreateGroup", {
-          name: serverName
-        })*/
-        this.$refs["server-creator"].destroyWidget()
-      }
-      else {
-        this.$refs["server-creator"].createWidget()
-      }
-    },
-
-    onClientJoinGroup() {
-      
     }
   }
 }
