@@ -41,6 +41,7 @@ export const mutations = {
 export const getters = {
   getUserData: (state) => (UID, ...parameters) => {
     if (!UID) return false
+
     if (state.userDatas[UID]) {
       if (state.userDatas[UID].isFetching) return false
       else if (state.userDatas[UID].isFetched) return importedJS.Library.Utility.getObjectData(state.userDatas[UID], ...parameters)

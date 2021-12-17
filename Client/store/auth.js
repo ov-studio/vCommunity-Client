@@ -27,6 +27,7 @@ export const state = () => ({
 export const actions = {
   onClientLogin(state, payload) {
     if (loginPromise.promise) return loginPromise.promise
+
     importedJS.Library.Socket.getSocket("auth").socket.emit("Auth:onClientLogin", payload)
     loginPromise.promise = new Promise(function(resolve) {
       loginPromise.resolver = resolve
