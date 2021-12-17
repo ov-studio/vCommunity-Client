@@ -16,6 +16,7 @@
   <div class="position-relative w-100 min-w-100 max-w-100 d-flex flex-row align-items-center overflow-hidden view-messages-container">
     <widget-serverbar/>
     <widget-groupbar v-if="!isServerGroupSelected"/>
+    <widget-server-channelbar v-if="isServerGroupSelected"/>
 
     <!---- Navigation Renderer ---->
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column view-container">

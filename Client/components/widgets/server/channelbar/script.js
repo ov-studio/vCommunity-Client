@@ -6,32 +6,29 @@ export default {
   },
 
   computed: {
-    personalGroups() {
-      return this.$store.state.groups.personal.userGroups || false
+    serverChannels() {
+      //return this.$store.state.groups.server.userGroups || false
+      return {}
     },
 
     containerHeader() {
-      if (this.$store.state.app.serverGroup) {
-        return this.$store.state.app.serverGroup
-      } else if (this.$store.state.app.personalGroup) {
-        return "Private Messages"
-      }
+      return this.$store.state.app.serverGroup
     }
   },
 
   methods: {
-    isGroupSelected(selection) {
-      return this.$store.state.app.personalGroup == selection
+    isChannelSelected(selection) {
+      return this.$store.state.app.serverChannel == selection
     },
 
     onClientSelectGroup(selection) {
-      const personalGroups = this.$store.state.groups.personal.userGroups
-      if (!personalGroups) return false
+      const serverChannels = this.$store.state.groups.server.userGroups
+      if (!serverChannels) return false
 
-      selection = (selection && personalGroups[selection] && selection) || false
-      if (this.$store.state.app.personalGroup == selection) return false
-      this.$store.commit("app/setPersonalGroupSelection", selection)
-      dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
+      //selection = (selection && serverChannels[selection] && selection) || false
+      //if (this.$store.state.app.serverChannel == selection) return false
+      //this.$store.commit("app/setPersonalGroupSelection", selection)
+      //dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     }
   }
 }
