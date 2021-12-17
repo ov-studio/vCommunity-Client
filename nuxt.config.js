@@ -39,7 +39,6 @@ module.exports = {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
-    "@/components",
     {path: "@/components/icons/logo", extensions: ["vue"], prefix: "icon"},
     {path: "@/components/widgets/menubar", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/widgets/viewbar", extensions: ["vue"], prefix: "widget"},
@@ -49,7 +48,8 @@ module.exports = {
     {path: "@/components/widgets/contentbox", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/views/messages", extensions: ["vue"], prefix: "view"},
     {path: "@/components/views/contacts", extensions: ["vue"], prefix: "view"},
-    {path: "@/components/views/settings", extensions: ["vue"], prefix: "view"}
+    {path: "@/components/views/settings", extensions: ["vue"], prefix: "view"},
+    {path: "@/components/layouts/app", extensions: ["vue"], prefix: "layout"}
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
