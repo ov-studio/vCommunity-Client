@@ -25,10 +25,10 @@
     <widget-contentbox contentHeader="Server" ref="server-creator">
       <!--input class="creator-control" placeholder="Enter Server" autocomplete="off" spellcheck="false"-->
       <div class="creator-action">
-        <div class="form-button-text" @click.prevent="onClientCreateGroup(true)">Create Server</div>
+        <div class="form-button-text" @click.prevent="onClientCreateGroup('create')">Create Server</div>
       </div>
       <div class="creator-action">
-        <div class="form-button-text" @click.prevent="onClientJoinGroup(true)">Join Server</div>
+        <div class="form-button-text" @click.prevent="onClientJoinGroup('join')">Join Server</div>
       </div>
     </widget-contentbox>
   </div>
