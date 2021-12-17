@@ -7,8 +7,7 @@ export default {
         messageView: {}
       },
       selections: {
-        serverGroup: false,
-        personalGroup: false
+        personalGroup: false //TODO: REMOVE..
       }
     }
   },
@@ -27,36 +26,34 @@ export default {
 
   computed: {
     personalGroups() {
-      this.onClientChangeSelection("personalGroup", this.selections.personalGroup)
       return this.$store.state.groups.personal.userGroups || false
     },
 
-    serverGroups() {
-      this.onClientChangeSelection("serverGroup", this.selections.serverGroup)
-      return this.$store.state.groups.server.userGroups || false
-    },
-
     navigationHeader() {
-      if (this.selections.serverGroup) {
-        return this.selections.serverGroup
-      } else if (this.selections.personalGroup) {
+      if (this.$store.state.app.serverGroup) {
+        return this.$store.state.app.serverGroup
+      } else if (this.$store.state.app.personalGroup) {
         return "Private Messages"
       }
     },
   
+    isServerSelected() {
+      return this.$store.state.app.serverGroup
+    },
+
     viewHeader() {
-      if (this.selections.serverGroup) {
+      if (this.$store.state.app.serverGroup) {
         return ''
-      } else if (this.selections.personalGroup) {
-        return "@" + this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)].participantUID
+      } else if (this.$store.state.app.personalGroup) {
+        return "@" + this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].participantUID
       }
     },
 
     viewMessages() {
-      if (this.selections.serverGroup) {
+      if (this.$store.state.app.serverGroup) {
 
-      } else if (this.selections.personalGroup) {
-        return (this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.selections.personalGroup)].messages) || false
+      } else if (this.$store.state.app.personalGroup) {
+        return (this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].messages) || false
       }
       return false
     }
@@ -67,18 +64,16 @@ export default {
       return (new Date(milliseconds)).toLocaleString()
     },
 
-    onClientChangeSelection(selectionType, selection) {
-      var categoryStore = false
-      if (selectionType == "serverGroup") {
-        categoryStore = this.$store.state.groups.server.userGroups
-      } else if (selectionType == "personalGroup") {
-        categoryStore = this.$store.state.groups.personal.userGroups
-      }
-      if (!categoryStore) return false
-      const initialGroup = Object.entries(categoryStore)[0]
-      const selectedGroup = (selection && categoryStore[selection] && selection) || ((selectionType != "serverGroup") && initialGroup && initialGroup[0]) || false
-      if (this.selections[selectionType] == selectedGroup) return false
-      this.selections[selectionType] = selectedGroup
+    isGroupSelected(selection) {
+      return this.$store.state.app.personalGroup == selection
+    },
+
+    onClientSelectGroup(selection) {
+      const personalGroups = this.$store.state.groups.personal.userGroups
+      if (!personalGroups) return false
+      selection = (selection && personalGroups[selection] && selection) || false
+      if (this.$store.state.app.personalGroup == selection) return false
+      this.$store.commit("app/setPersonalGroupSelection", selection)
       dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     },
 
@@ -114,9 +109,9 @@ export default {
       if (event.target.scrollTop > 0) return false
       if (this.selections.serverGroup) {
 
-      } else if (this.selections.personalGroup) {
+      } else if (this.$store.state.app.personalGroup) {
         this.$store.commit("groups/personal/onClientFetchMessages", {
-          UID: this.selections.personalGroup
+          UID: this.$store.state.app.personalGroup
         })
       }
     },
@@ -126,31 +121,13 @@ export default {
       event.preventDefault()
       if (this.selections.serverGroup) {
 
-      } else if (this.selections.personalGroup) {
+      } else if (this.$store.state.app.personalGroup) {
         this.$store.dispatch("groups/personal/onClientSendMessage", {
-          UID: this.selections.personalGroup,
+          UID: this.$store.state.app.personalGroup,
           message: event.target.value
         })
       }
       event.target.value = ""
-    },
-
-    onClientCreateServer(isCreationPhase) {
-      if (isCreationPhase) {
-        const controlElement = this.$refs["option-server-creator"].$el.querySelector(".creator-control")
-        const serverName = controlElement.value
-        if (serverName.length <= 0) return false
-        this.$store.dispatch("groups/server/onClientCreateGroup", {
-          name: serverName
-        })
-        this.$refs["option-server-creator"].destroyWidget()
-      } else {
-        this.$refs["option-server-creator"].createWidget()
-      }
-    },
-
-    onClientJoinServer() {
-      
     }
   }
 }

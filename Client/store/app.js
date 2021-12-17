@@ -13,11 +13,21 @@
 ------------------*/
 
 export const state = () => ({
-  menu: false
+  menu: false,
+  personalGroup: false,
+  serverGroup: false
 })
 
 export const mutations = {
   setMenuSelection(state, selection) {
     state.menu = selection
+  },
+
+  setPersonalGroupSelection(state, selection) {
+    state.personalGroup = selection
+  },
+
+  setServerGroupSelection(state, selection) {
+    state.serverGroup = selection
   }
 }

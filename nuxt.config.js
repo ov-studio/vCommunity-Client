@@ -43,6 +43,7 @@ module.exports = {
     {path: "@/components/icons/logo", extensions: ["vue"], prefix: "icon"},
     {path: "@/components/widgets/menubar", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/widgets/viewbar", extensions: ["vue"], prefix: "widget"},
+    {path: "@/components/widgets/serverbar", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/widgets/contactbar", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/widgets/chatbox", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/widgets/contentbox", extensions: ["vue"], prefix: "widget"},

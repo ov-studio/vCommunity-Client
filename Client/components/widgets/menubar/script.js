@@ -23,12 +23,12 @@ export default {
   },
 
   methods: {
-    isMenuSelected(menuType) {
-      return menuType == this.$store.state.app.menu
+    isMenuSelected(selection) {
+      return selection == this.$store.state.app.menu
     },
 
-    onClientSelectMenu(menuType) {
-      this.$store.commit("app/setMenuSelection", menuType)
+    onClientSelectMenu(selection) {
+      this.$store.commit("app/setMenuSelection", selection)
     }
   }
 }
