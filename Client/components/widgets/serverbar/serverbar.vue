@@ -19,17 +19,17 @@
       <img v-for="(serverGroup, groupUID) in serverGroups" :key="groupUID" class="disable-selection server" src="https://avatars.githubusercontent.com/u/92739628?s=400&u=bdd3e78f102ac3d1da615208c1beb55908d99064&v=4" :isSelected="isGroupSelected(groupUID)" @click.prevent="onClientSelectGroup(groupUID)">
     </span>
     <span class="d-flex flex-column align-items-center option-container">
-      <b-icon icon="plus" class="option" @click.prevent="onClientCreateGroup()"/>
+      <b-icon icon="plus" class="option" @click.prevent="onGroupCreatorProcess()"/>
     </span>
 
-    <widget-contentbox contentHeader="Server" ref="server-creator" :onDestroyed="onClientDestroyGroup">
+    <widget-contentbox contentHeader="Server" ref="server-creator" @destroyed="onGroupCreatorProcess(null, true)">
       <input v-if="creator.currentPhase" class="v-input" :placeholder="creator.phases[(creator.currentPhase)].placeholder" autocomplete="off" spellcheck="false">
       <span v-for="(creatorPhase, phaseIndex) in creator.phases" :key="phaseIndex">
-        <div v-if="!creator.currentPhase || (creator.currentPhase == phaseIndex)" class="v-button" @click.prevent="onClientCreateGroup(phaseIndex)">
+        <div v-if="!creator.currentPhase || (creator.currentPhase == phaseIndex)" class="v-button" @click.prevent="onGroupCreatorProcess(phaseIndex)">
           <div class="v-button-text creator-button">{{((creator.currentPhase == phaseIndex) && creatorPhase.altText) || creatorPhase.text}}</div>
         </div>
       </span>
-      <div v-if="creator.currentPhase" class="v-button" @click.prevent="onClientCreateGroup('back')">
+      <div v-if="creator.currentPhase" class="v-button" @click.prevent="onGroupCreatorProcess('back')">
         <div class="v-button-text creator-button">{{creator.returnText}}</div>
       </div>
     </widget-contentbox>

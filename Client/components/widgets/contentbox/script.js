@@ -1,5 +1,5 @@
 export default {
-  props: ["contentHeader", "onCreated", "onDestroyed"],
+  props: ["contentHeader"],
 
   data() {
     return {
@@ -12,14 +12,14 @@ export default {
       if (this.isVisible) return false
 
       this.isVisible = true
-      if (this.$props.onCreated) this.$props.onCreated()
+      this.$emit("created")
     },
 
     destroyWidget() {
       if (!this.isVisible) return false
 
       this.isVisible = false
-      if (this.$props.onDestroyed) this.$props.onDestroyed()
+      this.$emit("destroyed")
     }
   }
 }

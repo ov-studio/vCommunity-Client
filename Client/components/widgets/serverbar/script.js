@@ -45,11 +45,10 @@ export default {
       dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     },
 
-    onClientCreateGroup(phase, isWidgetDestroyed) {
+    onGroupCreatorProcess(phase, isWidgetDestroyed) {
       if (isWidgetDestroyed) {
         this.creator.controlInput = ""
         this.creator.currentPhase = false
-        console.log("DESTROYED...")
         return true
       } else if (!phase) {
         this.$refs["server-creator"].createWidget()
@@ -59,24 +58,19 @@ export default {
       if (phase == "back") {
         this.creator.currentPhase = false
       } else {
-        if (!this.creator.phases[phase]) return this.onClientCreateGroup('back')
+        if (!this.creator.phases[phase]) return this.onGroupCreatorProcess('back')
         if (this.creator.currentPhase != phase) {
           this.creator.currentPhase = phase
         } else {
           console.log("TRYING TO SUBMIT PHASE RESULTS..")
           //const serverName = controlElement.value
           //if (serverName.length <= 0) return false
-          //this.$store.dispatch("groups/server/onClientCreateGroup", {
+          //this.$store.dispatch("groups/server/onGroupCreatorProcess", {
             //name: serverName
           //})
           //this.$refs["server-creator"].destroyWidget()
         }
       }
-    },
-
-    onClientDestroyGroup() {
-        //onClientCreateGroup
-        console.log("hehe destroyyyy")
     }
   }
 }
