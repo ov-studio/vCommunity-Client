@@ -50,9 +50,12 @@
 
     <!--- Widgets --->
     <widget-contentbox contentHeader="Server" ref="option-server-creator">
-      <input class="finder-control" placeholder="Enter Invitation Code" @paste.prevent>
-      <div class="finder-action">
-        <div class="form-button-text" @click.prevent="onClientCreateServer(true)">Join</div>
+      <!--input class="creator-control" placeholder="Enter Server" autocomplete="off" spellcheck="false"-->
+      <div class="creator-action">
+        <div class="form-button-text" @click.prevent="onClientCreateServer(true)">Create Server</div>
+      </div>
+      <div class="creator-action">
+        <div class="form-button-text" @click.prevent="onClientJoinServer(true)">Join Server</div>
       </div>
     </widget-contentbox>
   </div>

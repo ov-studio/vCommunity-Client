@@ -137,19 +137,20 @@ export default {
 
     onClientCreateServer(isCreationPhase) {
       if (isCreationPhase) {
-        // TODO: ...
-        /*
+        const controlElement = this.$refs["option-server-creator"].$el.querySelector(".creator-control")
+        const serverName = controlElement.value
+        if (serverName.length <= 0) return false
         this.$store.dispatch("groups/server/onClientCreateGroup", {
-          name: "test"
+          name: serverName
         })
-        */
-       //console.log(this.$refs["option-server-creator"])
-       const contentContainer = this.$refs["option-server-creator"].querySelector(".finder-action")
-       console.log(contentContainer)
-        //this.$refs["option-server-creator"].destroyWidget()
+        this.$refs["option-server-creator"].destroyWidget()
       } else {
         this.$refs["option-server-creator"].createWidget()
       }
+    },
+
+    onClientJoinServer() {
+      
     }
   }
 }
