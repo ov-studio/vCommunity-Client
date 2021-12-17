@@ -25,7 +25,7 @@ export default {
   },
 
   computed: {
-    isServerSelected() {
+    isServerGroupSelected() {
       return this.$store.state.app.serverGroup
     },
 

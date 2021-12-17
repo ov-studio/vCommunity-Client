@@ -8,6 +8,14 @@ export default {
   computed: {
     personalGroups() {
       return this.$store.state.groups.personal.userGroups || false
+    },
+
+    containerHeader() {
+      if (this.$store.state.app.serverGroup) {
+        return this.$store.state.app.serverGroup
+      } else if (this.$store.state.app.personalGroup) {
+        return "Private Messages"
+      }
     }
   },
 
