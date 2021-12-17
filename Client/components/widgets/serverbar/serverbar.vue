@@ -22,13 +22,15 @@
       <b-icon icon="plus" class="option" @click.prevent="onClientCreateGroup()"/>
     </span>
 
-    <widget-contentbox contentHeader="Server" ref="server-creator">
-      <!--input class="creator-control" placeholder="Enter Server" autocomplete="off" spellcheck="false"-->
-      <div class="creator-action">
-        <div class="form-button-text" @click.prevent="onClientCreateGroup('create')">Create Server</div>
-      </div>
-      <div class="creator-action">
-        <div class="form-button-text" @click.prevent="onClientJoinGroup('join')">Join Server</div>
+    <widget-contentbox contentHeader="Server" ref="server-creator" :onDestroyed="onClientDestroyGroup">
+      <input v-if="creator.currentPhase" class="v-input" :placeholder="creator.phases[(creator.currentPhase)].placeholder" autocomplete="off" spellcheck="false">
+      <span v-for="(creatorPhase, phaseIndex) in creator.phases" :key="phaseIndex">
+        <div v-if="!creator.currentPhase || (creator.currentPhase == phaseIndex)" class="v-button" @click.prevent="onClientCreateGroup(phaseIndex)">
+          <div class="v-button-text creator-button">{{((creator.currentPhase == phaseIndex) && creatorPhase.altText) || creatorPhase.text}}</div>
+        </div>
+      </span>
+      <div v-if="creator.currentPhase" class="v-button" @click.prevent="onClientCreateGroup('back')">
+        <div class="v-button-text creator-button">{{creator.returnText}}</div>
       </div>
     </widget-contentbox>
   </div>

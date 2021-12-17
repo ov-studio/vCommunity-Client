@@ -48,11 +48,8 @@
     .container-body
       $padding: 25px 25px
       padding: $padding !important
-      & > *
-        //color: white !important
 
-
-.creator-control
+.v-input
   $width: 300px
   $height: 30px
   $font-size: 20px
@@ -88,7 +85,7 @@
     width: $width !important
     border-color: $border-color !important
 
-.creator-action
+.v-button
   $margin-vertical: 13px
   $width: 300px
   $height: 21px
@@ -117,7 +114,7 @@
   +vendor("transition", "all 0.25s ease !important")
   &::first-letter
     padding-left: $font-spacing !important
-  .form-button-text
+  .v-button-text
     $padding-vertical: 1.25px
     padding-top: $padding-vertical
     +vendor("transition", "all 0.25s ease !important")

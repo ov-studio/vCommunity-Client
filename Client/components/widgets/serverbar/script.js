@@ -2,7 +2,25 @@ import {Generic} from "@/assets/import"
 
 export default {
   data() {
-    return {}
+    return {
+      creator: {
+        currentPhase: false,
+        controlInput: "",
+        returnText: "Back",
+        phases: {
+          create: {
+            placeholder: "Enter Server Name",
+            text: "Create Server",
+            altText: "Create",
+          },
+          join: {
+            placeholder: "Enter Invitation Code",
+            text: "Join Server",
+            altText: "Join"
+          }
+        }
+      }
+    }
   },
 
   computed: {
@@ -27,24 +45,38 @@ export default {
       dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     },
 
-    onClientCreateGroup(isCreationPhase) {
-      if (isCreationPhase) {
-        const controlElement = this.$refs["server-creator"].$el.querySelector(".creator-control")
-        const serverName = controlElement.value
-        if (serverName.length <= 0) return false
-        /*
-        this.$store.dispatch("groups/server/onClientCreateGroup", {
-          name: serverName
-        })*/
-        this.$refs["server-creator"].destroyWidget()
-      }
-      else {
+    onClientCreateGroup(phase, isWidgetDestroyed) {
+      if (isWidgetDestroyed) {
+        this.creator.controlInput = ""
+        this.creator.currentPhase = false
+        console.log("DESTROYED...")
+        return true
+      } else if (!phase) {
         this.$refs["server-creator"].createWidget()
+        return true
+      }
+  
+      if (phase == "back") {
+        this.creator.currentPhase = false
+      } else {
+        if (!this.creator.phases[phase]) return this.onClientCreateGroup('back')
+        if (this.creator.currentPhase != phase) {
+          this.creator.currentPhase = phase
+        } else {
+          console.log("TRYING TO SUBMIT PHASE RESULTS..")
+          //const serverName = controlElement.value
+          //if (serverName.length <= 0) return false
+          //this.$store.dispatch("groups/server/onClientCreateGroup", {
+            //name: serverName
+          //})
+          //this.$refs["server-creator"].destroyWidget()
+        }
       }
     },
 
-    onClientJoinGroup() {
-      
+    onClientDestroyGroup() {
+        //onClientCreateGroup
+        console.log("hehe destroyyyy")
     }
   }
 }
