@@ -1,36 +1,7 @@
 @import "@/assets/import"
 
 .view-messages-container
-  .navigation-container
-    $padding: 5px
-    $width: map-read($config_element, "content-bar", "size")
-    $font: "Typo Round"
-    $font-size: 10px
-    $font-weight: 800
-    $font-spacing: 2px
-    $font-color: map-read($config_palette, "wrapper-secondary-color")
-    $background-color: map-read($config_palette, "wrapper-primary-color")
-    $border-width: 0px
-    $border-color: rgba(map-read($config_palette, "wrapper-secondary-color"), 1)
-    padding: 0px !important
-    padding-right: $padding !important
-    width: $width !important
-    min-width: $width !important
-    font-family: $font !important
-    font-size: $font-size !important
-    font-weight: $font-weight !important
-    letter-spacing: $font-spacing !important
-    color: $font-color !important
-    background-color: $background-color !important
-    border-width: 0px !important
-    border-style: solid !important
-    border-color: $border-color !important
-    .contacts-container
-      overflow-x: hidden !important
-      overflow-y: scroll !important
-      .widget-contactbar-container
-        cursor: pointer !important
-  .navigation-header, .view-header
+  .view-header
     $height: 35px
     $font: "Megi Sans"
     $font-size: 12px
@@ -53,8 +24,6 @@
     border-bottom-width: $border-width !important
     border-style: solid !important
     border-color: map-read($config_palette, "wrapper-secondary-color")
-    &.navigation-header
-      +vendor("text-transform", "uppercase !important")
   .view-container
     $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 0.9)
     background-color: $background-color !important

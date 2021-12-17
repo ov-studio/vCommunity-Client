@@ -1,0 +1,55 @@
+@import "@/assets/import"
+
+.widget-groupbar-container
+  $padding: 5px
+  $width: map-read($config_element, "content-bar", "size")
+  $font: "Typo Round"
+  $font-size: 10px
+  $font-weight: 800
+  $font-spacing: 2px
+  $font-color: map-read($config_palette, "wrapper-secondary-color")
+  $background-color: map-read($config_palette, "wrapper-primary-color")
+  $border-width: 0px
+  $border-color: rgba(map-read($config_palette, "wrapper-secondary-color"), 1)
+  padding: 0px !important
+  padding-right: $padding !important
+  width: $width !important
+  min-width: $width !important
+  font-family: $font !important
+  font-size: $font-size !important
+  font-weight: $font-weight !important
+  letter-spacing: $font-spacing !important
+  color: $font-color !important
+  background-color: $background-color !important
+  border-width: 0px !important
+  border-style: solid !important
+  border-color: $border-color !important
+  .contacts-container
+    overflow-x: hidden !important
+    overflow-y: scroll !important
+    .widget-contactbar-container
+      cursor: pointer !important
+  .navigation-header
+    $height: 35px
+    $font: "Megi Sans"
+    $font-size: 12px
+    $font-weight: 800
+    $font-spacing: 2px
+    $background-color: map-read($config_palette, "accent-secondary-color")
+    $border-width: 5px
+    padding-left: 10px !important
+    color: rgba(map-read($config_palette, "wrapper-primary-color"), 1)
+    height: $height !important
+    min-height: $height !important
+    max-height: $height !important
+    line-height: calc($height - 5px) !important
+    +vendor("text-transform", "uppercase !important")
+    font-family: $font !important
+    font-size: $font-size !important
+    font-weight: $font-weight !important
+    letter-spacing: $font-spacing !important
+    background-color: $background-color !important
+    border-width: 0px !important
+    border-bottom-width: $border-width !important
+    border-style: solid !important
+    border-color: map-read($config_palette, "wrapper-secondary-color")
