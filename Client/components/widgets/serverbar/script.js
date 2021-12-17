@@ -29,17 +29,17 @@ export default {
 
     onClientCreateGroup(isCreationPhase) {
       if (isCreationPhase) {
-        const controlElement = this.$refs["option-server-creator"].$el.querySelector(".creator-control")
+        const controlElement = this.$refs["server-creator"].$el.querySelector(".creator-control")
         const serverName = controlElement.value
         if (serverName.length <= 0) return false
         /*
         this.$store.dispatch("groups/server/onClientCreateGroup", {
           name: serverName
         })*/
-        this.$refs["option-server-creator"].destroyWidget()
+        this.$refs["server-creator"].destroyWidget()
       }
       else {
-        this.$refs["option-server-creator"].createWidget()
+        this.$refs["server-creator"].createWidget()
       }
     },
 

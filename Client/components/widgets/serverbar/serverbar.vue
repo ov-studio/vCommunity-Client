@@ -23,7 +23,7 @@
     </span>
 
     <!--- Widgets --->
-    <widget-contentbox contentHeader="Server" ref="option-server-creator">
+    <widget-contentbox contentHeader="Server" ref="server-creator">
       <!--input class="creator-control" placeholder="Enter Server" autocomplete="off" spellcheck="false"-->
       <div class="creator-action">
         <div class="form-button-text" @click.prevent="onClientCreateGroup(true)">Create Server</div>
