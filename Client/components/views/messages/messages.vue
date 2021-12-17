@@ -18,7 +18,6 @@
     <widget-groupbar v-if="!isServerGroupSelected"/>
     <widget-server-channelbar v-if="isServerGroupSelected"/>
 
-    <!---- Navigation Renderer ---->
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column view-container">
       <div class="disable-selection view-header">{{viewHeader}}</div>
       <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column overflow-hidden">
@@ -27,7 +26,6 @@
         </div>
       </div>
 
-      <!---- Action Manager ---->
       <div v-if="viewMessages" class="w-100 min-w-100 max-w-100 d-flex flex-row disable-selection action-container">
         <input class="w-100 min-w-100 max-w-100 chat-input" autocomplete="off" spellcheck="false" @keypress="onClientSendMessage">
       </div>
