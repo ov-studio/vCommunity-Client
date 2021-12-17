@@ -14,7 +14,6 @@
 
 <template>
   <div class="position-relative w-100 min-w-100 max-w-100 d-flex flex-row align-items-center overflow-hidden view-messages-container">
-    <!---- Components ---->
     <widget-serverbar/>
     <widget-groupbar/>
 
