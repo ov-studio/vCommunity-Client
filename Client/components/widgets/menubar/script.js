@@ -19,16 +19,16 @@ export default {
   },
 
   mounted() {
-    this.onClientChangeMenu(Object.entries(this.menus)[0][0])
+    this.onClientSelectMenu(Object.entries(this.menus)[0][0])
   },
 
   methods: {
     isMenuSelected(menuType) {
-      return menuType == this.$store.state.widgets.menubar.selection
+      return menuType == this.$store.state.app.menu
     },
 
-    onClientChangeMenu(menuType) {
-      this.$store.commit("widgets/menubar/setSelection", menuType)
+    onClientSelectMenu(menuType) {
+      this.$store.commit("app/setMenuSelection", menuType)
     }
   }
 }

@@ -1,10 +1,10 @@
 /*----------------------------------------------------------------
      Resource: vClient (Server)
-     Script: store: index.js
+     Script: store: app.js
      Author: vStudio
      Developer(s): Aviril, Mario, Tron
      DOC: 23/11/2021
-     Desc: Store -- Index
+     Desc: Store -- App
 ----------------------------------------------------------------*/
 
 
@@ -12,10 +12,12 @@
 -- Store Handlers --
 ------------------*/
 
-export const state = () => ({})
+export const state = () => ({
+  menu: false
+})
 
-export const actions = {}
-
-export const mutations = {}
-
-export const getters = {}
+export const mutations = {
+  setMenuSelection(state, selection) {
+    state.menu = selection
+  }
+}

@@ -7,7 +7,7 @@
       <div class="overflow-hidden view-container">
         <div class="d-flex flex-row overflow-hidden view-render">
           <keep-alive>
-            <component :is="'view-' + this.$store.state.widgets.menubar.selection"/>
+            <component :is="'view-' + this.$store.state.app.menu"/>
           </keep-alive>
         </div>
       </div>
