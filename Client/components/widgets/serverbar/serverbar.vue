@@ -21,6 +21,7 @@
     <span class="d-flex flex-column align-items-center option-container">
       <b-icon icon="plus" class="option" @click.prevent="onClientCreateGroup()"/>
     </span>
+
     <widget-contentbox contentHeader="Server" ref="server-creator">
       <!--input class="creator-control" placeholder="Enter Server" autocomplete="off" spellcheck="false"-->
       <div class="creator-action">
