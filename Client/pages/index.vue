@@ -1,6 +1,5 @@
 <template>
   <div class="position-relative vw-100 vh-100 min-vw-100 min-vh-100 max-vw-100 max-vh-100 d-flex flex-row overflow-hidden">
-    <!---- Components ---->
     <widget-menubar/>
     <div class="d-flex flex-column overflow-hidden view-render-container">
       <widget-viewbar/>
