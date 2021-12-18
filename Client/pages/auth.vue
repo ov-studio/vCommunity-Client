@@ -187,7 +187,7 @@ export default {
           email: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.email,
           password: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.password,
           username: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.username,
-          DOB: componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.DOB
+          DOB: Library.Utility.isDateValid(componentInstance.formDatas[(componentInstance.formDatas.currentPhase)].inputDatas.DOB)
         })
         componentInstance.socketBuffer.auth["Auth:onClientRegister"] = true
         Library.Socket.getSocket("auth").socket.on("Auth:onClientRegister", function(result) {

@@ -72,7 +72,7 @@ export function isDateValid(date) {
   if (!date || (typeof(date) != "object")) return false
 
   const cDate = new Date(date.year + "/" + date.month + "/" + date.day)
-  return ((cDate != "Invalid Date") && (!isNaN(cDate)) && true) || false
+  return ((cDate != "Invalid Date") && (!isNaN(cDate)) && cDate) || false
 }
 
 export function isAgeValid(date, age) {
