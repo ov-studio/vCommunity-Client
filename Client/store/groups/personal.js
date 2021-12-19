@@ -33,6 +33,7 @@ export const actions = {
 export const mutations = {
   onSyncGroups(state, groups) {
     vue.set(state, "userGroups", {})
+    $nuxt.$store.commit("app/setPersonalGroupSelection", $nuxt.$store.state.app.personalGroup)
     Array.from(groups).forEach(function(groupData) {
       groupData.messages = []
       vue.set(state.userGroups, groupData.UID, groupData)
