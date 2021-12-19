@@ -5,9 +5,6 @@ export default {
     return {
       cache: {
         messageView: {}
-      },
-      selections: {
-        personalGroup: false //TODO: REMOVE..
       }
     }
   },
@@ -58,23 +55,30 @@ export default {
         this.$nextTick(() => {
           contentContainer.scrollTop = contentContainer.scrollHeight
         })
-      } else {
-        const selection = this.selections[(event.detail.type)] || false
-        if (!selection) return false
-        if (selection == event.detail.UID) {
-          if (event.detail.cacheScroll) {
-            this.cache.messageView.scrollValue = contentContainer.scrollTop
-            this.cache.messageView.scrollHeight = contentContainer.scrollHeight
-          } else if (event.detail.restoreScroll) {
+      }
+      else {
+        var selection = false
+        if (event.detail.type == "serverGroup") {
+          selection = this.$store.state.app.personalGroup
+        } else if (event.detail.type == "personalGroup") {
+          selection = this.$store.state.app.personalGroup
+        }
+        if (!selection || (selection != event.detail.UID)) return false
+
+        if (event.detail.cacheScroll) {
+          this.cache.messageView.scrollValue = contentContainer.scrollTop
+          this.cache.messageView.scrollHeight = contentContainer.scrollHeight
+        } 
+        else if (event.detail.restoreScroll) {
+          this.$nextTick(() => {
+            contentContainer.scrollTop = (contentContainer.scrollHeight - this.cache.messageView.scrollHeight) + this.cache.messageView.scrollValue
+          })
+        } 
+        else if (event.detail.requestScroll) {
+          if ((contentContainer.scrollTop + contentContainer.clientHeight) >= contentContainer.scrollHeight) {
             this.$nextTick(() => {
-              contentContainer.scrollTop = (contentContainer.scrollHeight - this.cache.messageView.scrollHeight) + this.cache.messageView.scrollValue
+              contentContainer.scrollTop = contentContainer.scrollHeight
             })
-          } else if (event.detail.requestScroll) {
-            if ((contentContainer.scrollTop + contentContainer.clientHeight) >= contentContainer.scrollHeight) {
-              this.$nextTick(() => {
-                contentContainer.scrollTop = contentContainer.scrollHeight
-              })
-            }
           }
         }
       }
@@ -82,7 +86,7 @@ export default {
   
     onClientUpdateMessageView(event) {
       if (event.target.scrollTop > 0) return false
-      if (this.selections.serverGroup) {
+      if (this.$store.state.app.serverGroup) {
 
       } else if (this.$store.state.app.personalGroup) {
         this.$store.commit("groups/personal/onClientFetchMessages", {
@@ -94,7 +98,7 @@ export default {
     onClientSendMessage(event) {
       if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
       event.preventDefault()
-      if (this.selections.serverGroup) {
+      if (this.$store.state.app.serverGroup) {
 
       } else if (this.$store.state.app.personalGroup) {
         this.$store.dispatch("groups/personal/onClientSendMessage", {
