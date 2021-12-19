@@ -30,7 +30,8 @@ export default {
       if (this.$store.state.app.serverGroup) {
         return ''
       } else if (this.$store.state.app.personalGroup) {
-        return "@" + this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].participantUID
+        const participantUID = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].participantUID
+        return "@" + (this.$store.getters["users/getUserData"](participantUID, "username") || participantUID)
       }
     },
 
