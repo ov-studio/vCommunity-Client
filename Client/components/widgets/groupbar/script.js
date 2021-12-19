@@ -7,7 +7,8 @@ export default {
 
   computed: {
     personalGroups() {
-      return this.$store.state.groups.personal.userGroups || false
+      this.onClientSelectGroup(this.$store.state.app.personalGroup)
+      return this.$store.state.groups.personal.userGroups
     }
   },
 
