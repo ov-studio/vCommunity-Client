@@ -76,16 +76,18 @@
         $padding-horizontal: 20px
         padding: 0px $padding-horizontal !important
     .client-name
+      $padding-horizontal: 5px
       $font: "Typo Round"
       $font-size: 14px
       $font-color: map-read($config_palette, "accent-secondary-color")
+      padding: 0px !important
+      padding-right: $padding-horizontal !important
       +vendor("text-align", "left !important")
       font-family: $font !important
       font-size: $font-size !important
       color: $font-color !important
       background-color: rgba(0, 0, 0, 0) !important
       .client-subscriber
-        $padding-horizontal: 5px
         $font-color: map-read($config_palette, "accent-secondary-color")
         padding-right: $padding-horizontal !important
         color: $font-color !important
