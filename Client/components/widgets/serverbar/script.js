@@ -61,19 +61,19 @@ export default {
       if (!this.creator.phases[phase]) return this.onGroupCreatorProcess('back')
       if (this.creator.currentPhase != phase) {
         this.creator.currentPhase = phase
-      } else {
-        const currentPhase = this.creator.currentPhase
-        const controlValue = controlElement.value
-        if (controlValue.length <= 0) return false
+      } 
+      else {
+        if (this.creator.controlInput.length <= 0) return false
 
+        const currentPhase = this.creator.currentPhase
         if (currentPhase == "create") {
           this.$store.dispatch("groups/server/onClientCreateGroup", {
-            name: controlValue
+            name: this.creator.controlInput
           })
         } else if (currentPhase == "join") {
           /*
           this.$store.dispatch("groups/server/onClientJoinGroup", {
-            REF: controlValue
+            REF: this.creator.controlInput
           })*/
         }
         this.$refs["server-creator"].destroyWidget()

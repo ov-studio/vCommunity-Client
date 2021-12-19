@@ -26,7 +26,7 @@ export const state = () => ({
 
 export const actions = {
   onClientCreateGroup(state, payload) {
-    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Server:onClientCreateGroup", payload)
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientCreateGroup", payload)
   }
 }
 
@@ -47,7 +47,7 @@ export const mutations = {
 
     containerREF.isPostFetched = true
     payload.messageUID = Object.keys(containerREF.ownerMessages)[0]
-    importedJS.Library.Socket.getSocket("app").socket.emit("App:Group:Server:onClientFetchMessages", payload)
+    importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientFetchMessages", payload)
   },
 
   onSyncMessages(state, groupMessages) {

@@ -23,7 +23,7 @@
     </span>
 
     <widget-contentbox contentHeader="Server" ref="server-creator" @destroyed="onGroupCreatorProcess(null, true)">
-      <input v-if="creator.currentPhase" class="v-input" :placeholder="creator.phases[(creator.currentPhase)].placeholder" autocomplete="off" spellcheck="false">
+      <input v-if="creator.currentPhase" class="v-input" v-model="creator.controlInput" :placeholder="creator.phases[(creator.currentPhase)].placeholder" autocomplete="off" spellcheck="false">
       <span v-for="(creatorPhase, phaseIndex) in creator.phases" :key="phaseIndex">
         <div v-if="!creator.currentPhase || (creator.currentPhase == phaseIndex)" class="v-button" @click.prevent="onGroupCreatorProcess(phaseIndex)">
           <div class="v-button-text creator-button">{{((creator.currentPhase == phaseIndex) && creatorPhase.altText) || creatorPhase.text}}</div>
