@@ -53,23 +53,30 @@ export default {
       } else if (!phase) {
         this.$refs["server-creator"].createWidget()
         return true
-      }
-  
-      if (phase == "back") {
+      } else if (phase == "back") {
         this.creator.currentPhase = false
+        return true
+      }
+
+      if (!this.creator.phases[phase]) return this.onGroupCreatorProcess('back')
+      if (this.creator.currentPhase != phase) {
+        this.creator.currentPhase = phase
       } else {
-        if (!this.creator.phases[phase]) return this.onGroupCreatorProcess('back')
-        if (this.creator.currentPhase != phase) {
-          this.creator.currentPhase = phase
-        } else {
-          console.log("TRYING TO SUBMIT PHASE RESULTS..")
-          //const serverName = controlElement.value
-          //if (serverName.length <= 0) return false
-          //this.$store.dispatch("groups/server/onGroupCreatorProcess", {
-            //name: serverName
-          //})
-          //this.$refs["server-creator"].destroyWidget()
+        const currentPhase = this.creator.currentPhase
+        const controlValue = controlElement.value
+        if (controlValue.length <= 0) return false
+
+        if (currentPhase == "create") {
+          this.$store.dispatch("groups/server/onClientCreateGroup", {
+            name: controlValue
+          })
+        } else if (currentPhase == "join") {
+          /*
+          this.$store.dispatch("groups/server/onClientJoinGroup", {
+            REF: controlValue
+          })*/
         }
+        this.$refs["server-creator"].destroyWidget()
       }
     }
   }
