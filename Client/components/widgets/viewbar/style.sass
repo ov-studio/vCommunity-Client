@@ -76,15 +76,18 @@
         $padding-horizontal: 20px
         padding: 0px $padding-horizontal !important
     .client-name
-      $min-width: 75px
-      $font: "Megi Sans"
-      $font-size: 12px
-      $background-color: map-read($config_palette, "accent-primary-color")
-      min-width: $min-width !important
-      +vendor("text-align", "center !important")
+      $font: "Typo Round"
+      $font-size: 14px
+      $font-color: map-read($config_palette, "accent-secondary-color")
+      +vendor("text-align", "left !important")
       font-family: $font !important
       font-size: $font-size !important
-      background-color: $background-color !important
-    .client-subscriber
-      $background-color: map-read($config_palette, "accent-primary-color")
-      background-color: $background-color !important
+      color: $font-color !important
+      background-color: rgba(0, 0, 0, 0) !important
+      .client-subscriber
+        $padding-horizontal: 5px
+        $font-color: map-read($config_palette, "accent-secondary-color")
+        padding-right: $padding-horizontal !important
+        color: $font-color !important
+        stroke: $font-color !important
+        background-color: rgba(0, 0, 0, 0) !important
