@@ -24,7 +24,7 @@ export const mutations = {
   },
 
   setPersonalGroupSelection(state, selection) {
-    state.personalGroup = ($nuxt.$store.state.groups.personal.userGroups[selection] && selection) || false
+    state.personalGroup = ($nuxt.$store.state.groups.personal.userGroups[selection] && selection) || Object.keys($nuxt.$store.state.groups.personal.userGroups)[0] || false
   },
 
   setServerGroupSelection(state, selection) {
