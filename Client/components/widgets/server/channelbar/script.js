@@ -12,7 +12,7 @@ export default {
     },
 
     containerHeader() {
-      return this.$store.state.app.serverGroup
+      return this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup)].name
     }
   },
 
