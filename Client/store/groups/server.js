@@ -32,11 +32,26 @@ export const actions = {
 
 export const mutations = {
   onSyncGroups(state, groups) {
-    vue.set(state, "userGroups", {})
-    Array.from(groups).forEach(function(groupData) {
-      groupData.messages = []
-      vue.set(state.userGroups, groupData.UID, groupData)
+    groups = Array.from(groups)
+    Object.keys(state.userGroups).forEach(function(UID) {
+      let isGroupMember = false
+      for (const groupIndex in groups) {
+        const groupData = groups[groupIndex]
+        if (UID == groupData.UID) {
+          isGroupMember = true
+          break
+        }
+      }
+      if (!isGroupMember) vue.delete(state.userGroups, UID)
     })
+    for (const groupIndex in groups) {
+      const groupData = groups[groupIndex]
+      if (!state.userGroups[(groupData.UID)]) {
+        groupData.channels = []
+        vue.set(state.userGroups, groupData.UID, groupData)
+      }
+    }
+    $nuxt.$store.commit("app/setServerGroupSelection", $nuxt.$store.state.app.serverGroup)
   },
 
   /*
@@ -125,9 +140,7 @@ addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   appSocket.socket.on("App:Groups:Server:onSync", function(...paramaters) {
     $nuxt.$store.commit("groups/server/onSyncGroups", ...paramaters)
   })
-  /*
   appSocket.socket.on("App:Groups:Server:onSyncMessages", function(...paramaters) {
-    $nuxt.$store.commit("groups/server/onSyncMessages", ...paramaters)
+    //$nuxt.$store.commit("groups/server/onSyncMessages", ...paramaters)
   })
-  */
 }, false)
