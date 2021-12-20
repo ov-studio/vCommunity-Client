@@ -32,11 +32,25 @@ export const actions = {
 
 export const mutations = {
   onSyncGroups(state, groups) {
-    vue.set(state, "userGroups", {})
-    Array.from(groups).forEach(function(groupData) {
-      groupData.messages = []
-      vue.set(state.userGroups, groupData.UID, groupData)
+    groups = Array.from(groups)
+    Object.keys(state.userGroups).forEach(function(UID) {
+      let isGroupExisting = false
+      for (const groupIndex in groups) {
+        const groupData = groups[groupIndex]
+        if (UID == groupData.UID) {
+          isGroupExisting = true
+          break
+        }
+      }
+      if (!isGroupExisting) vue.delete(state.userGroups, UID)
     })
+    for (const groupIndex in groups) {
+      const groupData = groups[groupIndex]
+      if (!state.userGroups[(groupData.UID)]) {
+        groupData.messages = []
+        vue.set(state.userGroups, groupData.UID, groupData)
+      }
+    }
     $nuxt.$store.commit("app/setPersonalGroupSelection", $nuxt.$store.state.app.personalGroup)
   },
 
