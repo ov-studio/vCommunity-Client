@@ -34,15 +34,15 @@ export const mutations = {
   onSyncGroups(state, groups) {
     groups = Array.from(groups)
     Object.keys(state.userGroups).forEach(function(UID) {
-      let isGroupExisting = false
+      let isGroupMember = false
       for (const groupIndex in groups) {
         const groupData = groups[groupIndex]
         if (UID == groupData.UID) {
-          isGroupExisting = true
+          isGroupMember = true
           break
         }
       }
-      if (!isGroupExisting) vue.delete(state.userGroups, UID)
+      if (!isGroupMember) vue.delete(state.userGroups, UID)
     })
     for (const groupIndex in groups) {
       const groupData = groups[groupIndex]
