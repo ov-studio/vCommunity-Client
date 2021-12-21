@@ -51,7 +51,7 @@ export const mutations = {
     for (const groupIndex in groups) {
       const groupData = groups[groupIndex]
       if (!state.userGroups[(groupData.UID)]) {
-        groupData.channels = []
+        groupData.channels = {}
         vue.set(state.userGroups, groupData.UID, groupData)
       }
     }
@@ -59,9 +59,30 @@ export const mutations = {
   },
 
   onSyncChannels(state, payload) {
-    console.log("SYNCING CHANNELS 1")
-    console.log(payload)
+    if (!state.userGroups[(payload.UID)]) return false
+    const containerREF = state.userGroups[(payload.UID)].channels
+
+    payload.channels = Array.from(payload.channels)
+    Object.keys(containerREF).forEach(function(UID) {
+      let isChannelValid = false
+      for (const channelIndex in payload.channels) {
+        const channelData = payload.channels[channelIndex]
+        if (UID == channelData.UID) {
+          isChannelValid = true
+          break
+        }
+      }
+      if (!isChannelValid) vue.delete(containerREF, UID)
+    })
+    for (const channelIndex in payload.channels) {
+      const channelData = payload.channels[channelIndex]
+      if (!containerREF[(channelData.UID)]) {
+        channelData.messages = {}
+        vue.set(containerREF, channelData.UID, channelData)
+      }
+    }
   }
+
   /*
   onClientFetchMessages(state, payload) {
     if (!state.userGroups[(payload.UID)]) return false
