@@ -37,7 +37,7 @@ export default {
 
     viewMessages() {
       if (this.$store.state.app.serverGroup.group) {
-
+        return (this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)] && this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)].channels[(this.$store.state.app.serverGroup.channel)].messages) || false
       } else if (this.$store.state.app.personalGroup) {
         return (this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].messages) || false
       }
