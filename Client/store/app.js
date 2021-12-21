@@ -22,18 +22,16 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setMenuSelection(state, selection) {
-    state.menu = selection
+  setMenuSelection(state, menu) {
+    state.menu = menu
   },
 
-  setPersonalGroupSelection(state, selection) {
-    state.personalGroup = ($nuxt.$store.state.groups.personal.userGroups[selection] && selection) || Object.keys($nuxt.$store.state.groups.personal.userGroups)[0] || false
+  setPersonalGroupSelection(state, group) {
+    state.personalGroup = ($nuxt.$store.state.groups.personal.userGroups[group] && group) || Object.keys($nuxt.$store.state.groups.personal.userGroups)[0] || false
   },
 
-  setServerGroupSelection(state, selection) {
-    if (state.serverGroup.group == selection) return false
-
-    state.serverGroup.group = selection
-    state.serverGroup.channel = false
+  setServerGroupSelection(state, group, channel) {
+    state.serverGroup.group = group
+    state.serverGroup.channel = (channel && $nuxt.$store.state.groups.server.userGroups[group].channels[channel] && channel) || false
   }
 }
