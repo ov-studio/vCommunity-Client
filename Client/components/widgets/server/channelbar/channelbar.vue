@@ -16,7 +16,26 @@
   <div class="position-relative w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start align-items-center justify-content-start overflow-hidden disable-selection widget-server-channelbar-container">
     <div class="w-100 min-w-100 max-w-100 groupbar-header">{{containerHeader}}</div>
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller contacts-container">
-      <widget-contactbar v-for="(serverChannel, groupUID) in serverChannels" :key="groupUID" :contactUID="serverChannel.participantUID" contactAvatar="https://hi-static.z-dn.net/files/d60/c746efb8807770ea7ad2af25ee7ed2ab.jpg" :isSelected="isChannelSelected(groupUID)" @click.native="onClientSelectGroup(groupUID)"/>
+      <div class="d-flex flex-column align-items-center justify-content-start channel-container">
+        <div class="d-flex flex-row align-items-center justify-content-start container-header"><div>CATEGORY 1</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 1</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 2</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 3</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 4</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 5</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 6</div></div>
+      </div>
+      <div class="d-flex flex-column align-items-center justify-content-start channel-container">
+        <div class="d-flex flex-row align-items-center justify-content-start container-header"><div>CATEGORY 2</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 1</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 2</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 3</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 4</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 5</div></div>
+        <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 6</div></div>
+        <!--div class="channel">CHANNEL 1</!--div-->
+      </div>
+      <!--widget-contactbar v-for="(serverChannel, groupUID) in serverChannels" :key="groupUID" :contactUID="serverChannel.participantUID" contactAvatar="https://hi-static.z-dn.net/files/d60/c746efb8807770ea7ad2af25ee7ed2ab.jpg" :isSelected="isChannelSelected(groupUID)" @click.native="onClientSelectGroup(groupUID)"/-->
     </div>
   </div>
 </template>

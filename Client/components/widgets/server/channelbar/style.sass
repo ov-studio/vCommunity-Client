@@ -25,8 +25,10 @@
   .contacts-container
     overflow-x: hidden !important
     overflow-y: scroll !important
-    .widget-contactbar-container
-      cursor: pointer !important
+    > *
+      margin-top: 15px !important
+      &:first-child
+        margin-top: 0px !important
   .groupbar-header
     $height: 35px
     $font: "Typo Round"
@@ -51,3 +53,57 @@
     border-bottom-width: $border-width !important
     border-style: solid !important
     border-color: map-read($config_palette, "wrapper-secondary-color")
+
+  .channel-container
+    $height: map-read($config_element, "contact-bar", "size")
+    $font-color: map-read($config_palette, "accent-secondary-color")
+    color: $font-color !important
+    //background-color: red !important
+    .container-header
+      $height: 30px
+      $border-radius: 4px
+      $font-size: 14px
+      $font-color: map-read($config_palette, "wrapper-secondary-color")
+      $background-color: map-read($config_palette, "accent-secondary-color")
+      padding-left: 10px !important
+      text-align: left !important
+      width: 100% !important
+      font-size: $font-size !important
+      color: $font-color !important
+      height: $height !important
+      min-height: $height !important
+      max-height: $height !important
+      border-radius: 0px !important
+      border-top-left-radius: $border-radius !important
+      border-top-right-radius: $border-radius !important
+      background-color: $background-color !important
+    .channel
+      $height: 32px
+      $border-radius: 4px
+      $font-size: 14px
+      $font-color: map-read($config_palette, "accent-secondary-color")
+      $background-color: rgba(map-read($config_palette, "wrapper-secondary-color"), 1)
+      padding-left: 10px !important
+      text-align: left !important
+      width: 100% !important
+      font-size: $font-size !important
+      color: $font-color !important
+      height: $height !important
+      min-height: $height !important
+      max-height: $height !important
+      border-radius: $border-radius !important
+      background-color: $background-color !important
+      margin-top: 5px !important
+      border-width: 0px !important
+      border-bottom-width: 2px !important
+      border-top-width: 2px !important
+      border-style: solid !important
+      border-color: rgba(0, 0, 0, 0) !important
+      +vendor("transition", "all 0.5s ease !important")
+      &:first-child
+        margin-top: 0px !important
+      &:hover
+        $font-color: map-read($config_palette, "accent-primary-color")
+        color: $font-color !important
+        border-color: rgba(map-read($config_palette, "accent-primary-color"), 1) !important
+        letter-spacing: 5px !important
