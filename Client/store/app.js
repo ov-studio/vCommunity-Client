@@ -27,11 +27,11 @@ export const mutations = {
   },
 
   setPersonalGroupSelection(state, group) {
-    state.personalGroup = ($nuxt.$store.state.groups.personal.userGroups[group] && group) || Object.keys($nuxt.$store.state.groups.personal.userGroups)[0] || false
+    state.personalGroup = (group && $nuxt.$store.state.groups.personal.userGroups[group] && group) || Object.keys($nuxt.$store.state.groups.personal.userGroups)[0] || false
   },
 
   setServerGroupSelection(state, group, channel) {
-    state.serverGroup.group = group
-    state.serverGroup.channel = (channel && $nuxt.$store.state.groups.server.userGroups[group].channels[channel] && channel) || false
+    state.serverGroup.group = ($nuxt.$store.state.groups.server.userGroups[group] && group) || false
+    state.serverGroup.channel = (state.serverGroup.group && channel && $nuxt.$store.state.groups.server.userGroups[(state.serverGroup.group)].channels[channel] && channel) || Object.keys($nuxt.$store.state.groups.server.userGroups)[(state.serverGroup.group)].channels[0] || false
   }
 }
