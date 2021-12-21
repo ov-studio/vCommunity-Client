@@ -34,7 +34,7 @@ export default {
     },
 
     onCreateChannel() {
-      console.log("TRYING TO CREATE CHANNEL")
+        //TODO: BIND WITH WIDGET LATER
       this.$store.dispatch("groups/server/onClientCreateChannel", {
           UID: this.$store.state.app.serverGroup.group,
           name: "test"

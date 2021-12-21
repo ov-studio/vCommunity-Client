@@ -104,7 +104,6 @@ export const mutations = {
   */
 
   onSyncMessages(state, groupMessages) {
-    console.log(groupMessages)
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
     if (groupMessages.isPostLoad) {
       groupMessages.postLoadIndex = 0
