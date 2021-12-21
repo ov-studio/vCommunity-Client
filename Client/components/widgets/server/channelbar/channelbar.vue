@@ -18,6 +18,7 @@
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller contacts-container">
       <div class="d-flex flex-column align-items-center justify-content-start channel-container">
         <div class="d-flex flex-row align-items-center justify-content-start container-header"><div class="w-100">CATEGORY 1</div><b-icon class="channel-adder" icon="plus" @click.prevent="onCreateChannel()"/></div>
+        <div v-for="(serverChannel, channelUID) in serverChannels" :key="channelUID"  class="d-flex flex-row align-items-center justify-content-start channel"><div>{{serverChannel}}</div></div>
         <!--div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 1</div></!--div>
         <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 2</div></div>
         <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 3</div></div>

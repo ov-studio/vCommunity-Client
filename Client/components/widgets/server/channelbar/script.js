@@ -7,8 +7,7 @@ export default {
 
   computed: {
     serverChannels() {
-      //return this.$store.state.groups.server.userGroups || false
-      return {}
+      return (this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)] && this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)].channels) || false
     },
 
     containerHeader() {
