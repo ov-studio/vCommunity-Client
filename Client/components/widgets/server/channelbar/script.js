@@ -29,6 +29,14 @@ export default {
       //if (this.$store.state.app.serverChannel == selection) return false
       //this.$store.commit("app/setPersonalGroupSelection", selection)
       //dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
+    },
+
+    onCreateChannel() {
+      console.log("TRYING TO CREATE CHANNEL")
+      this.$store.dispatch("groups/server/onClientCreateChannel", {
+          UID: this.$store.state.app.serverGroup,
+          name: "test"
+      })
     }
   }
 }

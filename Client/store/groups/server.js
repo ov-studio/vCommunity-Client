@@ -27,6 +27,10 @@ export const state = () => ({
 export const actions = {
   onClientCreateGroup(state, payload) {
     return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientCreateGroup", payload)
+  },
+
+  onClientCreateChannel(state, payload) {
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientCreateChannel", payload)
   }
 }
 
@@ -54,6 +58,10 @@ export const mutations = {
     $nuxt.$store.commit("app/setServerGroupSelection", $nuxt.$store.state.app.serverGroup)
   },
 
+  onSyncChannels(state, payload) {
+    console.log("SYNCING CHANNELS 1")
+    console.log(payload)
+  }
   /*
   onClientFetchMessages(state, payload) {
     if (!state.userGroups[(payload.UID)]) return false
@@ -139,6 +147,9 @@ addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
   const appSocket = importedJS.Library.Socket.getSocket("app")
   appSocket.socket.on("App:Groups:Server:onSync", function(...paramaters) {
     $nuxt.$store.commit("groups/server/onSyncGroups", ...paramaters)
+  })
+  appSocket.socket.on("App:Groups:Server:onSyncChannels", function(...paramaters) {
+    $nuxt.$store.commit("groups/server/onSyncChannels", ...paramaters)
   })
   appSocket.socket.on("App:Groups:Server:onSyncMessages", function(...paramaters) {
     //$nuxt.$store.commit("groups/server/onSyncMessages", ...paramaters)
