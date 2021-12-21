@@ -81,7 +81,7 @@ export const mutations = {
     for (const channelIndex in payload.channels) {
       const channelData = payload.channels[channelIndex]
       if (!containerREF[(channelData.UID)]) {
-        channelData.messages = {}
+        channelData.messages = []
         vue.set(containerREF, channelData.UID, channelData)
       }
     }
@@ -100,6 +100,7 @@ export const mutations = {
   */
 
   onSyncMessages(state, groupMessages) {
+    console.log(groupMessages)
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
     if (groupMessages.isPostLoad) {
       groupMessages.postLoadIndex = 0
