@@ -15,7 +15,10 @@
 export const state = () => ({
   menu: false,
   personalGroup: false,
-  serverGroup: false
+  serverGroup: {
+    group: false,
+    channel: false
+  }
 })
 
 export const mutations = {
@@ -28,6 +31,9 @@ export const mutations = {
   },
 
   setServerGroupSelection(state, selection) {
-    state.serverGroup = selection
+    if (state.serverGroup.group == selection) return false
+
+    state.serverGroup.group = selection
+    state.serverGroup.channel = false
   }
 }

@@ -23,11 +23,11 @@ export default {
 
   computed: {
     isServerGroupSelected() {
-      return this.$store.state.app.serverGroup
+      return this.$store.state.app.serverGroup.group
     },
 
     viewHeader() {
-      if (this.$store.state.app.serverGroup) {
+      if (this.$store.state.app.serverGroup.group) {
         return ''
       } else if (this.$store.state.app.personalGroup) {
         const participantUID = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].participantUID
@@ -36,7 +36,7 @@ export default {
     },
 
     viewMessages() {
-      if (this.$store.state.app.serverGroup) {
+      if (this.$store.state.app.serverGroup.group) {
 
       } else if (this.$store.state.app.personalGroup) {
         return (this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].messages) || false
@@ -87,7 +87,7 @@ export default {
   
     onClientUpdateMessageView(event) {
       if (event.target.scrollTop > 0) return false
-      if (this.$store.state.app.serverGroup) {
+      if (this.$store.state.app.serverGroup.group) {
 
       } else if (this.$store.state.app.personalGroup) {
         this.$store.commit("groups/personal/onClientFetchMessages", {
@@ -99,7 +99,7 @@ export default {
     onClientSendMessage(event) {
       if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
       event.preventDefault()
-      if (this.$store.state.app.serverGroup) {
+      if (this.$store.state.app.serverGroup.group) {
 
       } else if (this.$store.state.app.personalGroup) {
         this.$store.dispatch("groups/personal/onClientSendMessage", {

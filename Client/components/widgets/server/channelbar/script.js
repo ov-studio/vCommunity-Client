@@ -12,7 +12,7 @@ export default {
     },
 
     containerHeader() {
-      return this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup)].name
+      return this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)].name
     }
   },
 
@@ -34,7 +34,7 @@ export default {
     onCreateChannel() {
       console.log("TRYING TO CREATE CHANNEL")
       this.$store.dispatch("groups/server/onClientCreateChannel", {
-          UID: this.$store.state.app.serverGroup,
+          UID: this.$store.state.app.serverGroup.group,
           name: "test"
       })
     }

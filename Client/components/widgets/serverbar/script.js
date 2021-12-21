@@ -25,14 +25,14 @@ export default {
 
   computed: {
     serverGroups() {
-      this.onClientSelectGroup(this.$store.state.app.serverGroup)
+      this.onClientSelectGroup(this.$store.state.app.serverGroup.group)
       return this.$store.state.groups.server.userGroups || false
     }
   },
 
   methods: {
     isGroupSelected(selection) {
-      return this.$store.state.app.serverGroup == selection
+      return this.$store.state.app.serverGroup.group == selection
     },
 
     onClientSelectGroup(selection) {
@@ -40,7 +40,7 @@ export default {
       if (!serverGroups) return false
   
       selection = (selection && serverGroups[selection] && selection) || false
-      if (this.$store.state.app.serverGroup == selection) return false
+      if (this.$store.state.app.serverGroup.group == selection) return false
       this.$store.commit("app/setServerGroupSelection", selection)
       dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     },

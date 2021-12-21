@@ -55,7 +55,7 @@ export const mutations = {
         vue.set(state.userGroups, groupData.UID, groupData)
       }
     }
-    $nuxt.$store.commit("app/setServerGroupSelection", $nuxt.$store.state.app.serverGroup)
+    $nuxt.$store.commit("app/setServerGroupSelection", $nuxt.$store.state.app.serverGroup.group)
   },
 
   onSyncChannels(state, payload) {
