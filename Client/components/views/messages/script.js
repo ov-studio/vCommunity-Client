@@ -100,7 +100,11 @@ export default {
       if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
       event.preventDefault()
       if (this.$store.state.app.serverGroup.group) {
-
+        this.$store.dispatch("groups/server/onClientSendMessage", {
+          UID: this.$store.state.app.serverGroup.group,
+          channelUID: this.$store.state.app.serverGroup.channel,
+          message: event.target.value
+        })
       } else if (this.$store.state.app.personalGroup) {
         this.$store.dispatch("groups/personal/onClientSendMessage", {
           UID: this.$store.state.app.personalGroup,
