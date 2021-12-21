@@ -73,10 +73,9 @@ export default {
             name: this.creator.controlInput
           })
         } else if (currentPhase == "join") {
-          /*
           this.$store.dispatch("groups/server/onClientJoinGroup", {
             REF: this.creator.controlInput
-          })*/
+          })
         }
         this.$refs["server-creator"].destroyWidget()
       }

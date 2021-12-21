@@ -29,6 +29,10 @@ export const actions = {
     return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientCreateGroup", payload)
   },
 
+  onClientJoinGroup(state, payload) {
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientJoinGroup", payload)
+  },
+
   onClientCreateChannel(state, payload) {
     return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientCreateChannel", payload)
   },
