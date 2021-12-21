@@ -31,7 +31,7 @@ export const mutations = {
   },
 
   setServerGroupSelection(state, group, channel) {
-    state.serverGroup.group = ($nuxt.$store.state.groups.server.userGroups[group] && group) || false
+    state.serverGroup.group = (group && $nuxt.$store.state.groups.server.userGroups[group] && group) || false
     state.serverGroup.channel = (state.serverGroup.group && channel && $nuxt.$store.state.groups.server.userGroups[(state.serverGroup.group)].channels[channel] && channel) || Object.keys($nuxt.$store.state.groups.server.userGroups)[(state.serverGroup.group)].channels[0] || false
   }
 }
