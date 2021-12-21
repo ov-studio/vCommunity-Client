@@ -31,6 +31,10 @@ export const actions = {
 
   onClientCreateChannel(state, payload) {
     return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientCreateChannel", payload)
+  },
+
+  onClientSendMessage(state, payload) {
+    return importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientSendMessage", payload)
   }
 }
 
@@ -81,7 +85,7 @@ export const mutations = {
         vue.set(containerREF, channelData.UID, channelData)
       }
     }
-  }
+  },
 
   /*
   onClientFetchMessages(state, payload) {
@@ -93,6 +97,7 @@ export const mutations = {
     payload.messageUID = Object.keys(containerREF.ownerMessages)[0]
     importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientFetchMessages", payload)
   },
+  */
 
   onSyncMessages(state, groupMessages) {
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
@@ -108,7 +113,7 @@ export const mutations = {
     }
 
     Array.from(groupMessages.messages).forEach(function(messageData) {
-      let containerREF = state.userGroups[(groupMessages.UID)].messages
+      let containerREF = state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages
       containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
       let isContainerValid = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !containerREF
       let isOwnerValid = containerREF && (messageData.owner != containerREF.owner)
@@ -126,13 +131,13 @@ export const mutations = {
         if (groupMessages.isPostLoad) {
           if (groupMessages.isPostLoaded && isOwnerValid) groupMessages.postLoadIndex = groupMessages.postLoadIndex + 1
           groupMessages.isPostLoaded = true
-          state.userGroups[(groupMessages.UID)].messages.splice(groupMessages.postLoadIndex, 0, appendData)
+          state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages.splice(groupMessages.postLoadIndex, 0, appendData)
         } else {
-          state.userGroups[(groupMessages.UID)].messages.push(appendData)
+          state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages.push(appendData)
         }
       }
 
-      containerREF = state.userGroups[(groupMessages.UID)].messages
+      containerREF = state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages
       containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
       vue.set(containerREF.ownerMessages, messageData.UID, messageData)
       if (groupMessages.isPostLoad) {
@@ -156,7 +161,6 @@ export const mutations = {
       }
     })
   }
-  */
 }
 
 
@@ -173,6 +177,6 @@ addEventListener(importedJS.Generic.eventDatas.app.connection.name, function() {
     $nuxt.$store.commit("groups/server/onSyncChannels", ...paramaters)
   })
   appSocket.socket.on("App:Groups:Server:onSyncMessages", function(...paramaters) {
-    //$nuxt.$store.commit("groups/server/onSyncMessages", ...paramaters)
+    $nuxt.$store.commit("groups/server/onSyncMessages", ...paramaters)
   })
 }, false)
