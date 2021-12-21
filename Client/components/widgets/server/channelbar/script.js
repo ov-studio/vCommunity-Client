@@ -17,17 +17,20 @@ export default {
 
   methods: {
     isChannelSelected(selection) {
-      return this.$store.state.app.serverChannel == selection
+      return this.$store.state.app.serverGroup.channel == selection
     },
 
-    onClientSelectGroup(selection) {
-      const serverChannels = this.$store.state.groups.server.userGroups
+    onClientSelectChannel(selection) {
+      const serverChannels = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)] && this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)].channels
       if (!serverChannels) return false
 
-      //selection = (selection && serverChannels[selection] && selection) || false
-      //if (this.$store.state.app.serverChannel == selection) return false
-      //this.$store.commit("app/setPersonalGroupSelection", selection)
-      //dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
+      selection = (selection && serverChannels[selection] && selection) || false
+      if (this.$store.state.app.serverGroup.channel == selection) return false
+      this.$store.commit("app/setServerGroupSelection", {
+        group: this.$store.state.app.serverGroup.group,
+        channel: selection
+      })
+      dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     },
 
     onCreateChannel() {

@@ -17,9 +17,9 @@
     <div class="w-100 min-w-100 max-w-100 groupbar-header">{{containerHeader}}</div>
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller contacts-container">
       <div class="d-flex flex-column align-items-center justify-content-start channel-container">
-        <div class="d-flex flex-row align-items-center justify-content-start container-header"><div class="w-100">CATEGORY 1</div><b-icon class="channel-adder" icon="plus" @click.prevent="onCreateChannel()"/></div>
-        <div v-for="(serverChannel, channelUID) in serverChannels" :key="channelUID"  class="d-flex flex-row align-items-center justify-content-start channel"><div>{{serverChannel}}</div></div>
-        <!--div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 1</div></!--div>
+        <div class="d-flex flex-row align-items-center justify-content-start container-header"><div class="w-100">CHANNELS</div><b-icon class="channel-adder" icon="plus" @click.prevent="onCreateChannel()"/></div>
+        <div v-for="(serverChannel, channelUID) in serverChannels" :key="channelUID"  class="d-flex flex-row align-items-center justify-content-start channel" :isSelected="isChannelSelected(channelUID)" @click.prevent="onClientSelectChannel(channelUID)"><div>{{serverChannel.name}}</div></div>
+        <!--:isSelected="isChannelSelected(groupUID)" div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 1</div></!--:isSelected=>
         <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 2</div></div>
         <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 3</div></div>
         <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 4</div></div>
@@ -35,7 +35,6 @@
         <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 5</div></div>
         <div class="d-flex flex-row align-items-center justify-content-start channel"><div>Channel 6</div></div>
       </!--div-->
-      <!--widget-contactbar v-for="(serverChannel, groupUID) in serverChannels" :key="groupUID" :contactUID="serverChannel.participantUID" contactAvatar="https://hi-static.z-dn.net/files/d60/c746efb8807770ea7ad2af25ee7ed2ab.jpg" :isSelected="isChannelSelected(groupUID)" @click.native="onClientSelectGroup(groupUID)"/-->
     </div>
   </div>
 </template>

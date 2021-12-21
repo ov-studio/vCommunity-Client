@@ -41,7 +41,9 @@ export default {
   
       selection = (selection && serverGroups[selection] && selection) || false
       if (this.$store.state.app.serverGroup.group == selection) return false
-      this.$store.commit("app/setServerGroupSelection", selection)
+      this.$store.commit("app/setServerGroupSelection", {
+        group: selection
+      })
       dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
     },
 

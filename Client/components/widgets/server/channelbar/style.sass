@@ -106,7 +106,7 @@
       +vendor("transition", "all 0.5s ease !important")
       &:first-child
         margin-top: 0px !important
-      &:hover
+      &[isSelected="true"], &:hover
         $font-color: map-read($config_palette, "accent-primary-color")
         color: $font-color !important
         border-color: rgba(map-read($config_palette, "accent-primary-color"), 1) !important
