@@ -58,11 +58,11 @@
     color: $font-color !important
     //background-color: red !important
     .container-header
-      $height: 35px
+      $height: 30px
       $border-radius: 4px
       $font-size: 14px
       $font-color: map-read($config_palette, "accent-primary-color")
-      $background-color: map-read($config_palette, "accent-secondary-color")
+      $background-color: map-read($config_palette, "wrapper-secondary-color")
       padding-left: 10px !important
       text-align: left !important
       width: 100% !important
@@ -74,19 +74,24 @@
       border-radius: 0px !important
       border-top-left-radius: $border-radius !important
       border-top-right-radius: $border-radius !important
+      letter-spacing: 5px !important
+      text-transform: uppercase !important
       //background-color: $background-color !important
       .channel-adder
         $font-size: 25px
+        stroke-width: 0.4px !important
         font-size: $font-size !important
-        $font-color: map-read($config_palette, "accent-secondary-color")
+        $font-color: map-read($config_palette, "accent-primary-color")
         +vendor("transition", "all 0.5s ease !important")
         color: $font-color !important
+        stroke: $font-color !important
         &:hover
-          $font-color: map-read($config_palette, "accent-primary-color")
+          $font-color: map-read($config_palette, "accent-secondary-color")
           color: $font-color !important
-          transform: rotate(360deg) scale(1.15, 1.15) !important
+          stroke: $font-color !important
+          transform: rotate(360deg) scale(1.07, 1.07) !important
     .channel
-      $height: 32px
+      $height: 30px
       $border-radius: 2px
       $font-size: 14px
       $font-color: map-read($config_palette, "accent-secondary-color")
