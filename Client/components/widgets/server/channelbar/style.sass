@@ -63,16 +63,17 @@
       .container-header
         $height: 30px
         $font-size: 14px
+        $font-spacing: 2px
         $font-color: map-read($config_palette, "accent-primary-color")
-        +vendor("white-space", "nowrap")
-        font-family: "Megi Sans" !important
-        font-size: $font-size !important
-        color: $font-color !important
         height: $height !important
         min-height: $height !important
         max-height: $height !important
-        letter-spacing: 2px !important
-        text-transform: uppercase !important
+        +vendor("white-space", "nowrap")
+        +vendor("text-transform", "uppercase !important")
+        font-size: $font-size !important
+        letter-spacing: $font-spacing !important
+        font-family: "Megi Sans" !important
+        color: $font-color !important
         .channel-adder
           $font-size: 25px
           stroke-width: 0.4px !important
