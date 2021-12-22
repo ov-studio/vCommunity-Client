@@ -6,64 +6,25 @@
   left: 0px !important
   top: 0px !important
   background-color: $background-color !important
-
-
-  
-  .contentbox-container
-    $width: 400px
-    $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 0.97)
-    $border-radius: 10px
-    $border-width: 3px
-    $border-color: rgba(map-read($config_palette, "wrapper-primary-color"), 1)
-    $box-shadow: 0px 10px 10px rgba(map-read($config_palette, "wrapper-secondary-color"), 1)
-    left: 50% !important
-    top: 50% !important
-    width: $width !important
-    max-height: calc(100% - (map-read($config_element, "side-bar", "size")*2)) !important
-    background-color: $background-color !important
-    border-radius: $border-radius !important
-    border-width: $border-width !important
-    border-bottom-width: 0px !important
-    border-style: solid !important
-    border-color: $border-color !important
-    box-shadow: $box-shadow !important
-    transform: translate(-50%, calc(-50% + (map-read($config_element, "side-bar", "size")*0.5))) !important
-    .container-header
-      $height: 85px
-      $font: "Megi Sans"
-      $font-size: 40px
-      $font-weight: 900
-      $font-spacing: 25px
-      $font-color: rgba(map-read($config_palette, "accent-quinary-color"), 0.6)
-      padding-left: $font-spacing !important
-      height: $height !important
-      +vendor("white-space", "nowrap")
-      +vendor("text-transform", "uppercase")
-      font-family: $font !important
-      font-size: $font-size !important
-      font-weight: $font-weight !important
-      letter-spacing: $font-spacing !important
-      color: $font-color !important
-      background-image: url(http://m.gettywallpapers.com/wp-content/uploads/2021/08/Halo-Infinite-Background-Images-1024x576.jpg) !important
-      background-size: cover !important
-      background-repeat: no-repeat !important
-      background-position: 50% 50% !important
-    .container-body
-      $padding: 25px 25px
-      padding: $padding !important
+  .container-body
+    $padding: 25px 25px
+    margin-top: map-read($config_element, "side-bar", "size") !important
+    padding: $padding !important
 
 .v-input
-  $width: 300px
+  margin-bottom: 7px
+  $width: 400px
   $height: 30px
   $font-size: 20px
   $font-color: map-read($config_palette, "accent-quinary-color")
   $border-width: 2px
-  $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
+  $border-color: rgba(map-read($config_palette, "accent-primary-color"), 1)
   width: $width !important
   height: calc($height - $border-width)
   line-height: calc($height - $border-width) !important
   +vendor("text-align", "center !important")
   font-size: $font-size !important
+  font-weight: 500 !important
   color: $font-color !important
   background-color: rgba(0, 0, 0, 0) !important
   border-radius: 0px !important
@@ -73,31 +34,31 @@
   border-color: $border-color !important
   +vendor("transition", "all 0.5s ease !important")
   &::placeholder
-    $font-color:  map-read($config_palette, "accent-tertiary-color")
+    $font-color:  map-read($config_palette, "accent-primary-color")
     color: $font-color !important
     +vendor("transition", "all 0.5s ease !important")
   &:focus::placeholder
-    $font-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.25)
+    $font-color: rgba(map-read($config_palette, "accent-primary-color"), 1)
     color: $font-color !important
   &::selection
     $background-color: map-read($config_palette, "accent-quaternary-color")
     background-color: $background-color !important
   &:hover:not([disabled]), &:focus:not([disabled])
     $width: $width + 50px
-    $border-color: map-read($config_palette, "accent-quinary-color")
+    $border-color: map-read($config_palette, "accent-primary-color")
     width: $width !important
     border-color: $border-color !important
 
 .v-button
   $margin-vertical: 13px
-  $width: 300px
+  $width: 375px
   $height: 21px
   $font: "Typo Round"
   $font-size: 15px
   $font-weight: 800
   $font-spacing: 10px
   $font-color: map-read($config_palette, "wrapper-secondary-color")
-  $background-color: map-read($config_palette, "accent-tertiary-color")
+  $background-color: map-read($config_palette, "accent-primary-color")
   $skew: 20deg
   margin-top: $margin-vertical !important
   width: $width
@@ -125,7 +86,9 @@
     transform: skewx(calc($skew*-1)) !important
   &:hover:not([disabled])
     $scale: 1.1
+    $font-color: map-read($config_palette, "wrapper-secondary-color")
     $background-color: map-read($config_palette, "accent-quinary-color")
+    color: $font-color !important
     background-color: $background-color !important
     transform: skewx($skew) scale($scale, $scale) !important
     > *

@@ -1,6 +1,4 @@
 export default {
-  props: ["contentHeader"],
-
   data() {
     return {
       isVisible: false
