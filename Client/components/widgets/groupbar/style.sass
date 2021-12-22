@@ -26,9 +26,13 @@
     overflow-x: hidden !important
     overflow-y: scroll !important
     .widget-contactbar-container
+      $margin-vertical: 5px
       cursor: pointer !important
-      margin-bottom: 0px !important
+      margin-top: $margin-vertical !important
+      &:first-child
+        margin-top: 0px !important
   .groupbar-header
+    $padding-horizontal: 10px
     $height: 35px
     $font: "Typo Round"
     $font-size: 13px
@@ -38,11 +42,11 @@
     $background-color: map-read($config_palette, "accent-secondary-color")
     $border-width: 5px
     $border-color: map-read($config_palette, "wrapper-secondary-color")
-    padding-left: 10px !important
+    padding-left: $padding-horizontal !important
     height: $height !important
     min-height: $height !important
     max-height: $height !important
-    line-height: calc($height - 5px) !important
+    line-height: calc($height - $border-width) !important
     +vendor("text-transform", "uppercase !important")
     font-family: $font !important
     font-size: $font-size !important
