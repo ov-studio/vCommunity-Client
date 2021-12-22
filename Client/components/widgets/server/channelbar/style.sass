@@ -56,14 +56,13 @@
     $height: map-read($config_element, "contact-bar", "size")
     $font-color: map-read($config_palette, "accent-secondary-color")
     color: $font-color !important
-    //background-color: red !important
+    > *
+     padding-left: 10px !important
+
     .container-header
       $height: 30px
-      $border-radius: 4px
       $font-size: 14px
       $font-color: map-read($config_palette, "accent-primary-color")
-      $background-color: map-read($config_palette, "wrapper-secondary-color")
-      padding-left: 10px !important
       text-align: left !important
       font-family: "Megi Sans" !important
       width: 100% !important
@@ -72,12 +71,8 @@
       height: $height !important
       min-height: $height !important
       max-height: $height !important
-      border-radius: 0px !important
-      border-top-left-radius: $border-radius !important
-      border-top-right-radius: $border-radius !important
       letter-spacing: 2px !important
       text-transform: uppercase !important
-      //background-color: $background-color !important
       .channel-adder
         $font-size: 25px
         stroke-width: 0.4px !important
@@ -97,7 +92,6 @@
       $font-size: 14px
       $font-color: map-read($config_palette, "accent-secondary-color")
       $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 1)
-      padding-left: 10px !important
       text-align: left !important
       width: 100% !important
       font-size: $font-size !important
