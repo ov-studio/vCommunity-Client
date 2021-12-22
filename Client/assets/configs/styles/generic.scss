@@ -27,6 +27,15 @@ $config_element: (
   "content-bar": (
     size: 250px
   ),
+  "title-bar": (
+    size: 35px
+  ),
+  "channel-bar": (
+    size: 30px,
+    category: (
+      size: 30px
+    )
+  ),
   "contact-bar": (
     size: 40px,
     avatar: (

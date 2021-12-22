@@ -24,7 +24,7 @@
   border-color: rgba(0, 0, 0, 0) !important
   .channelbar-header
     $padding-horizontal: 10px
-    $height: 35px
+    $height: map-read($config_element, "title-bar", "size")
     $font: "Typo Round"
     $font-size: 13px
     $font-weight: 800
@@ -61,7 +61,7 @@
         $padding-horizontal: 10px
         padding-left: $padding-horizontal !important
       .container-header
-        $height: 30px
+        $height: map-read($config_element, "channel-bar", "category", "size")
         $font-size: 14px
         $font-spacing: 2px
         $font-color: map-read($config_palette, "accent-primary-color")
@@ -92,7 +92,7 @@
             transform: rotate($rotation) scale($scale $scale) !important
       .channel
         $margin-vertical: 5px
-        $height: 30px
+        $height: map-read($config_element, "channel-bar", "size")
         $font-size: 14px
         $font-color: map-read($config_palette, "accent-secondary-color")
         $background-color: map-read($config_palette, "wrapper-tertiary-color")
