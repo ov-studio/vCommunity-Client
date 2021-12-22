@@ -4,7 +4,7 @@
      Author: vStudio
      Developer(s): Aviril, Mario, Tron
      DOC: 23/11/2021
-     Desc: Layouts -- App
+     Desc: Layout -- App
 ----------------------------------------------------------------->
 
 

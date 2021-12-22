@@ -25,13 +25,9 @@
     <widget-contentbox ref="server-creator" @destroyed="onGroupCreatorProcess(null, true)">
       <input v-if="creator.currentPhase" class="v-input" v-model="creator.controlInput" :placeholder="creator.phases[(creator.currentPhase)].placeholder" autocomplete="off" spellcheck="false">
       <span v-for="(creatorPhase, phaseIndex) in creator.phases" :key="phaseIndex">
-        <div v-if="!creator.currentPhase || (creator.currentPhase == phaseIndex)" class="v-button" @click.prevent="onGroupCreatorProcess(phaseIndex)">
-          <div class="v-button-text creator-button">{{((creator.currentPhase == phaseIndex) && creatorPhase.altText) || creatorPhase.text}}</div>
-        </div>
+        <element-button v-if="!creator.currentPhase || (creator.currentPhase == phaseIndex)" @click.native="onGroupCreatorProcess(phaseIndex)">{{((creator.currentPhase == phaseIndex) && creatorPhase.altText) || creatorPhase.text}}</element-button>
       </span>
-      <div v-if="creator.currentPhase" class="v-button" @click.prevent="onGroupCreatorProcess('back')">
-        <div class="v-button-text creator-button">{{creator.returnText}}</div>
-      </div>
+      <element-button v-if="creator.currentPhase" @click.native="onGroupCreatorProcess('back')">{{creator.returnText}}</element-button>
     </widget-contentbox>
   </div>
 </template>

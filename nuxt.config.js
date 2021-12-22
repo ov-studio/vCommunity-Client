@@ -40,6 +40,7 @@ module.exports = {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
     {path: "@/components/icons/logo", extensions: ["vue"], prefix: "icon"},
+    {path: "@/components/elements/button", extensions: ["vue"], prefix: "element"},
     {path: "@/components/widgets/menubar", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/widgets/viewbar", extensions: ["vue"], prefix: "widget"},
     {path: "@/components/widgets/serverbar", extensions: ["vue"], prefix: "widget"},
