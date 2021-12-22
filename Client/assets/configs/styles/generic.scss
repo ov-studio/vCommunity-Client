@@ -21,25 +21,31 @@ $config_fonts: (
 );
 
 $config_element: (
+  // Elements //
+  "button": (
+    height: 21px
+  ),
+
+  // Others //
   "side-bar": (
     size: 45px
-  ),
-  "content-bar": (
-    size: 250px
   ),
   "info-bar": (
     size: 35px
   ),
-  "channel-bar": (
-    size: 30px,
-    category: (
-      size: 30px
-    )
+  "content-bar": (
+    size: 250px
   ),
   "contact-bar": (
     size: 40px,
     avatar: (
       size: 35px
+    )
+  ),
+  "channel-bar": (
+    size: 30px,
+    category: (
+      size: 30px
     )
   )
 );
