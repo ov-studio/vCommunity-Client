@@ -26,17 +26,20 @@
     overflow-x: hidden !important
     overflow-y: scroll !important
     > *
-      margin-bottom: 15px !important
+      $margin-vertical: 15px
+      margin-bottom: $margin-vertical !important
   .channelbar-header
+    $padding-horizontal: 10px
     $height: 35px
     $font: "Typo Round"
     $font-size: 13px
     $font-weight: 800
     $font-spacing: 2px
+    $font-color: map-read($config_palette, "wrapper-primary-color")
     $background-color: map-read($config_palette, "accent-secondary-color")
     $border-width: 5px
-    padding-left: 10px !important
-    color: rgba(map-read($config_palette, "wrapper-primary-color"), 1)
+    $border-color: map-read($config_palette, "wrapper-secondary-color")
+    padding-left: $padding-horizontal !important
     height: $height !important
     min-height: $height !important
     max-height: $height !important
@@ -47,12 +50,13 @@
     font-size: $font-size !important
     font-weight: $font-weight !important
     letter-spacing: $font-spacing !important
+    color: $font-color !important
     background-color: $background-color !important
     border-width: 0px !important
     border-bottom-width: $border-width !important
     border-style: solid !important
-    border-color: map-read($config_palette, "wrapper-secondary-color")
-
+    border-color: $border-color !important
+  
   .channel-container
     $height: map-read($config_element, "contact-bar", "size")
     $font-color: map-read($config_palette, "accent-secondary-color")
