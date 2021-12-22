@@ -22,12 +22,6 @@
   border-width: 0px !important
   border-style: solid !important
   border-color: rgba(0, 0, 0, 0) !important
-  .channelbar-container
-    overflow-x: hidden !important
-    overflow-y: scroll !important
-    > *
-      $margin-vertical: 15px
-      margin-bottom: $margin-vertical !important
   .channelbar-header
     $padding-horizontal: 10px
     $height: 35px
@@ -43,7 +37,7 @@
     height: $height !important
     min-height: $height !important
     max-height: $height !important
-    line-height: calc($height - 5px) !important
+    line-height: calc($height - $border-width) !important
     +vendor("white-space", "nowrap")
     +vendor("text-transform", "uppercase !important")
     font-family: $font !important
@@ -56,67 +50,75 @@
     border-bottom-width: $border-width !important
     border-style: solid !important
     border-color: $border-color !important
-  
-  .channel-container
-    $height: map-read($config_element, "contact-bar", "size")
-    $font-color: map-read($config_palette, "accent-secondary-color")
-    color: $font-color !important
+  .channelbar-container
+    overflow-x: hidden !important
+    overflow-y: scroll !important
     > *
-     padding-left: 10px !important
-
-    .container-header
-      $height: 30px
-      $font-size: 14px
-      $font-color: map-read($config_palette, "accent-primary-color")
-      text-align: left !important
-      font-family: "Megi Sans" !important
-      width: 100% !important
-      font-size: $font-size !important
+      $margin-vertical: 15px
+      margin-bottom: $margin-vertical !important
+    .channel-container
+      $height: map-read($config_element, "contact-bar", "size")
+      $font-color: map-read($config_palette, "accent-secondary-color")
       color: $font-color !important
-      height: $height !important
-      min-height: $height !important
-      max-height: $height !important
-      letter-spacing: 2px !important
-      text-transform: uppercase !important
-      .channel-adder
-        $font-size: 25px
-        stroke-width: 0.4px !important
-        font-size: $font-size !important
+      > *
+        $padding-horizontal: 10px
+        padding-left: $padding-horizontal !important
+
+      .container-header
+        $height: 30px
+        $font-size: 14px
         $font-color: map-read($config_palette, "accent-primary-color")
-        +vendor("transition", "all 0.5s ease !important")
+        +vendor("white-space", "nowrap")
+        text-align: left !important
+        font-family: "Megi Sans" !important
+        width: 100% !important
+        font-size: $font-size !important
         color: $font-color !important
-        stroke: $font-color !important
-        &:hover
-          $font-color: map-read($config_palette, "accent-secondary-color")
+        height: $height !important
+        min-height: $height !important
+        max-height: $height !important
+        letter-spacing: 2px !important
+        text-transform: uppercase !important
+        .channel-adder
+          $font-size: 25px
+          stroke-width: 0.4px !important
+          font-size: $font-size !important
+          $font-color: map-read($config_palette, "accent-primary-color")
+          +vendor("transition", "all 0.5s ease !important")
           color: $font-color !important
           stroke: $font-color !important
-          transform: rotate(360deg) scale(1.07, 1.07) !important
-    .channel
-      $height: 30px
-      $border-radius: 2px
-      $font-size: 14px
-      $font-color: map-read($config_palette, "accent-secondary-color")
-      $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 1)
-      text-align: left !important
-      width: 100% !important
-      font-size: $font-size !important
-      color: $font-color !important
-      height: $height !important
-      min-height: $height !important
-      max-height: $height !important
-      border-radius: $border-radius !important
-      background-color: $background-color !important
-      margin-top: 5px !important
-      border-width: 0px !important
-      border-style: solid !important
-      border-color: rgba(0, 0, 0, 0) !important
-      +vendor("transition", "all 0.5s ease !important")
-      &:first-child
-        margin-top: 0px !important
-      &[isSelected="true"], &:hover
-        $font-color: map-read($config_palette, "wrapper-secondary-color")
-        $background-color: rgba(map-read($config_palette, "accent-secondary-color"), 1)
+          &:hover
+            $font-color: map-read($config_palette, "accent-secondary-color")
+            color: $font-color !important
+            stroke: $font-color !important
+            transform: rotate(360deg) scale(1.07, 1.07) !important
+      .channel
+        $height: 30px
+        $border-radius: 2px
+        $font-size: 14px
+        $font-color: map-read($config_palette, "accent-secondary-color")
+        $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 1)
+        +vendor("white-space", "nowrap")
+        text-align: left !important
+        width: 100% !important
+        font-size: $font-size !important
         color: $font-color !important
+        height: $height !important
+        min-height: $height !important
+        max-height: $height !important
+        border-radius: $border-radius !important
         background-color: $background-color !important
-      &[isSelected="true"]
-        transform: translateX(15px) !important
+        margin-top: 5px !important
+        border-width: 0px !important
+        border-style: solid !important
+        border-color: rgba(0, 0, 0, 0) !important
+        +vendor("transition", "all 0.5s ease !important")
+        &:first-child
+          margin-top: 0px !important
+        &[isSelected="true"], &:hover
+          $font-color: map-read($config_palette, "wrapper-secondary-color")
+          $background-color: rgba(map-read($config_palette, "accent-secondary-color"), 1)
+          color: $font-color !important
+          background-color: $background-color !important
+        &[isSelected="true"]
+          transform: translateX(15px) !important
