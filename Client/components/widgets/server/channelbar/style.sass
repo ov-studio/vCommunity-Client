@@ -57,21 +57,15 @@
       $margin-vertical: 15px
       margin-bottom: $margin-vertical !important
     .channel-container
-      $height: map-read($config_element, "contact-bar", "size")
-      $font-color: map-read($config_palette, "accent-secondary-color")
-      color: $font-color !important
       > *
         $padding-horizontal: 10px
         padding-left: $padding-horizontal !important
-
       .container-header
         $height: 30px
         $font-size: 14px
         $font-color: map-read($config_palette, "accent-primary-color")
         +vendor("white-space", "nowrap")
-        text-align: left !important
         font-family: "Megi Sans" !important
-        width: 100% !important
         font-size: $font-size !important
         color: $font-color !important
         height: $height !important
@@ -99,7 +93,6 @@
         $font-color: map-read($config_palette, "accent-secondary-color")
         $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 1)
         +vendor("white-space", "nowrap")
-        text-align: left !important
         width: 100% !important
         font-size: $font-size !important
         color: $font-color !important
