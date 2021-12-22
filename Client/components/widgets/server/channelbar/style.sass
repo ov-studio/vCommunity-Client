@@ -61,7 +61,7 @@
       $height: 35px
       $border-radius: 4px
       $font-size: 14px
-      $font-color: map-read($config_palette, "wrapper-secondary-color")
+      $font-color: map-read($config_palette, "accent-primary-color")
       $background-color: map-read($config_palette, "accent-secondary-color")
       padding-left: 10px !important
       text-align: left !important
@@ -74,13 +74,17 @@
       border-radius: 0px !important
       border-top-left-radius: $border-radius !important
       border-top-right-radius: $border-radius !important
-      background-color: $background-color !important
+      //background-color: $background-color !important
       .channel-adder
         $font-size: 25px
         font-size: $font-size !important
+        $font-color: map-read($config_palette, "accent-secondary-color")
         +vendor("transition", "all 0.5s ease !important")
+        color: $font-color !important
         &:hover
-         transform: rotate(360deg) scale(1.15, 1.15) !important
+          $font-color: map-read($config_palette, "accent-primary-color")
+          color: $font-color !important
+          transform: rotate(360deg) scale(1.15, 1.15) !important
     .channel
       $height: 32px
       $border-radius: 2px
@@ -99,16 +103,16 @@
       background-color: $background-color !important
       margin-top: 5px !important
       border-width: 0px !important
-      border-left-width: 4px !important
       border-style: solid !important
       border-color: rgba(0, 0, 0, 0) !important
       +vendor("transition", "all 0.5s ease !important")
       &:first-child
         margin-top: 0px !important
       &[isSelected="true"], &:hover
-        $font-color: map-read($config_palette, "accent-primary-color")
-        $background-color: rgba(map-read($config_palette, "wrapper-secondary-color"), 1)
+        $font-color: map-read($config_palette, "wrapper-secondary-color")
+        $background-color: rgba(map-read($config_palette, "accent-secondary-color"), 1)
         color: $font-color !important
         background-color: $background-color !important
-        border-color: rgba(map-read($config_palette, "accent-primary-color"), 1) !important
+      &[isSelected="true"]
+        transform: translateX(5px) !important
         //letter-spacing: 4px !important
