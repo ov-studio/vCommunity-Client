@@ -76,33 +76,36 @@
         color: $font-color !important
         .channel-adder
           $font-size: 25px
-          stroke-width: 0.4px !important
-          font-size: $font-size !important
+          $font-stroke: 0.4px
           $font-color: map-read($config_palette, "accent-primary-color")
           +vendor("transition", "all 0.5s ease !important")
+          font-size: $font-size !important
+          stroke-width: $font-stroke !important
           color: $font-color !important
           stroke: $font-color !important
           &:hover
             $font-color: map-read($config_palette, "accent-secondary-color")
+            $rotation: 360deg
+            $scale: 1.07
             color: $font-color !important
             stroke: $font-color !important
-            transform: rotate(360deg) scale(1.07, 1.07) !important
+            transform: rotate($rotation) scale($scale $scale) !important
       .channel
+        $margin-vertical: 5px
         $height: 30px
-        $border-radius: 2px
         $font-size: 14px
         $font-color: map-read($config_palette, "accent-secondary-color")
-        $background-color: rgba(map-read($config_palette, "wrapper-tertiary-color"), 1)
-        +vendor("white-space", "nowrap")
-        width: 100% !important
-        font-size: $font-size !important
-        color: $font-color !important
+        $background-color: map-read($config_palette, "wrapper-tertiary-color")
+        $border-radius: 2px
+        margin-top: $margin-vertical !important
         height: $height !important
         min-height: $height !important
         max-height: $height !important
-        border-radius: $border-radius !important
+        +vendor("white-space", "nowrap")
+        font-size: $font-size !important
+        color: $font-color !important
         background-color: $background-color !important
-        margin-top: 5px !important
+        border-radius: $border-radius !important
         border-width: 0px !important
         border-style: solid !important
         border-color: rgba(0, 0, 0, 0) !important
@@ -111,8 +114,9 @@
           margin-top: 0px !important
         &[isSelected="true"], &:hover
           $font-color: map-read($config_palette, "wrapper-secondary-color")
-          $background-color: rgba(map-read($config_palette, "accent-secondary-color"), 1)
+          $background-color: map-read($config_palette, "accent-secondary-color")
           color: $font-color !important
           background-color: $background-color !important
         &[isSelected="true"]
-          transform: translateX(15px) !important
+          $margin-horizontal: 30px
+          margin-left: $margin-horizontal !important
