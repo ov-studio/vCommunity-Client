@@ -65,6 +65,8 @@
         $font-size: 14px
         $font-spacing: 2px
         $font-color: map-read($config_palette, "accent-primary-color")
+        $border-width: 1px
+        $border-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
         height: $height !important
         min-height: $height !important
         max-height: $height !important
@@ -74,6 +76,10 @@
         letter-spacing: $font-spacing !important
         font-family: "Megi Sans" !important
         color: $font-color !important
+        border-width: 0px
+        border-bottom-width: $border-width !important
+        border-style: solid !important
+        border-color: $border-color !important
         .channel-adder
           $font-size: 25px
           $font-stroke: 0.4px
