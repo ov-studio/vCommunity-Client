@@ -20,6 +20,7 @@ module.exports = {
   -------------*/
   Library: {
     Socket: require("@/assets/libraries/javascripts/socket"),
+    Chat: require("@/assets/libraries/javascripts/chat"),
     Utility: require("@/assets/libraries/javascripts/utility")
   }
 }
