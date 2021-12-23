@@ -54,7 +54,7 @@
     overflow-x: hidden !important
     overflow-y: scroll !important
     > *
-      $margin-vertical: 15px
+      $margin-vertical: 5px
       margin-bottom: $margin-vertical !important
     .channel-container
       > *
@@ -65,6 +65,7 @@
         $font-size: 13px
         $font-spacing: 2px
         $font-color: map-read($config_palette, "accent-primary-color")
+        $background-color: map-read($config_palette, "wrapper-secondary-color")
         $border-width: 1px
         $border-color: map-read($config_palette, "accent-primary-color")
         height: $height !important
@@ -76,6 +77,7 @@
         letter-spacing: $font-spacing !important
         font-family: "Megi Sans" !important
         color: $font-color !important
+        background-color: $background-color !important
         border-width: 0px
         border-bottom-width: $border-width !important
         border-style: solid !important
