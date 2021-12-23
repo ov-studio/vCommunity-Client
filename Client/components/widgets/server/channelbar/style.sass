@@ -63,7 +63,6 @@
       .container-header
         $height: map-read($config_element, "channel-bar", "category", "size")
         $font-size: 13px
-        $font-spacing: 2px
         $font-color: map-read($config_palette, "accent-primary-color")
         $background-color: map-read($config_palette, "wrapper-secondary-color")
         $border-width: 1px
@@ -74,7 +73,6 @@
         +vendor("white-space", "nowrap")
         +vendor("text-transform", "uppercase !important")
         font-size: $font-size !important
-        letter-spacing: $font-spacing !important
         color: $font-color !important
         background-color: $background-color !important
         border-width: 0px
