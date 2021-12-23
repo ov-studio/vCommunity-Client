@@ -36,8 +36,8 @@ export default {
     onCreateChannel() {
         //TODO: BIND WITH WIDGET LATER
       this.$store.dispatch("groups/server/onClientCreateChannel", {
-          UID: this.$store.state.app.serverGroup.group,
-          name: "test"
+        UID: this.$store.state.app.serverGroup.group,
+        name: "test"
       })
     }
   }

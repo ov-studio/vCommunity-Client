@@ -31,7 +31,8 @@ export default {
         const selectedGroup = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)]
         const selectedChannel = (selectedGroup && selectedGroup.channels[(this.$store.state.app.serverGroup.channel)]) || false
         return (selectedChannel && selectedChannel.description) || ""
-      } else if (this.$store.state.app.personalGroup) {
+      }
+      else if (this.$store.state.app.personalGroup) {
         const selectedGroup = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)]
         const participantUID = selectedGroup.participantUID
         return "@" + (this.$store.getters["users/getUserData"](participantUID, "username") || participantUID)
@@ -43,7 +44,8 @@ export default {
         const selectedGroup = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)]
         const selectedChannel = (selectedGroup && selectedGroup.channels[(this.$store.state.app.serverGroup.channel)]) || false
         return (selectedChannel && selectedChannel.messages) || false
-      } else if (this.$store.state.app.personalGroup) {
+      }
+      else if (this.$store.state.app.personalGroup) {
         const selectedGroup = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)]
         return (selectedGroup && selectedGroup.messages) || false
       }
@@ -93,9 +95,11 @@ export default {
   
     onClientUpdateMessageView(event) {
       if (event.target.scrollTop > 0) return false
+
       if (this.$store.state.app.serverGroup.group) {
 
-      } else if (this.$store.state.app.personalGroup) {
+      }
+      else if (this.$store.state.app.personalGroup) {
         this.$store.commit("groups/personal/onClientFetchMessages", {
           UID: this.$store.state.app.personalGroup
         })
@@ -104,6 +108,7 @@ export default {
   
     onClientSendMessage(event) {
       if ((event.keyCode != 13) || (event.target.value.length <= 0)) return false
+
       event.preventDefault()
       if (this.$store.state.app.serverGroup.group) {
         this.$store.dispatch("groups/server/onClientSendMessage", {
@@ -111,7 +116,8 @@ export default {
           channelUID: this.$store.state.app.serverGroup.channel,
           message: event.target.value
         })
-      } else if (this.$store.state.app.personalGroup) {
+      }
+      else if (this.$store.state.app.personalGroup) {
         this.$store.dispatch("groups/personal/onClientSendMessage", {
           UID: this.$store.state.app.personalGroup,
           message: event.target.value

@@ -66,7 +66,7 @@ export default {
 
   methods: {
     onClientGetNavigationLength(navigationIndex) {
-      if (this.navigations[navigationIndex].isFriendFinder) return ''
+      if (this.navigations[navigationIndex].isFriendFinder) return ""
       return "(" + ((this.$store.state.contacts.userContacts[(navigationIndex)] && Object.entries(this.$store.state.contacts.userContacts[(navigationIndex)]).length) || 0) + ")"
     },
 
@@ -76,11 +76,13 @@ export default {
 
     onClientProcessOption(UID, optionData) {
       if (!optionData.event) return false
+
       this.$store.dispatch("contacts/onClientProcessOption", {UID: UID, optionData: optionData})
     },
 
     onClientProcessInvitation() {
       if (this.finderDatas.username.length <= 0) return false
+
       const componentInstance = this
       this.$store.dispatch("contacts/onClientProcessInvitation", {username: this.finderDatas.username, optionData: this.navigations[(this.selectedNavigation)].option})
       Library.Socket.getSocket("app").socket.on("App:Contacts:onClientFriendRequest", function(result) {
