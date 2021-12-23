@@ -19,7 +19,7 @@ const CSocket = require("./socket")
 -- Utility Library --
 -------------------*/
 
-export function getFileExtension(url) {
+exports.getFileExtension = function(url) {
   if (!url) return false
 
   let index = url.lastIndexOf("/")
@@ -32,7 +32,7 @@ export function getFileExtension(url) {
   return (index != -1) ? url.substring(index + 1) : ""
 }
 
-export function getObjectData(object, ...parameters) {
+exports.getObjectData = function(object, ...parameters) {
   if (!object || (typeof(object) != "object")) return false
 
   if (parameters.length <= 1) {
@@ -43,7 +43,7 @@ export function getObjectData(object, ...parameters) {
   }
 }
 
-export function clearObjectStrings(object, isRecursive) {
+exports.clearObjectStrings = function(object, isRecursive) {
   if (!object || (typeof(object) != "object")) return false
 
   Object.entries(object).forEach(function(objectData) {
@@ -57,7 +57,7 @@ export function clearObjectStrings(object, isRecursive) {
   return true
 }
 
-export function parseMS(milliseconds) {
+exports.parseMS = function(milliseconds) {
   if (!milliseconds) return false
 
   return {
@@ -68,14 +68,14 @@ export function parseMS(milliseconds) {
   }
 }
 
-export function isDateValid(date) {
+exports.isDateValid = function(date) {
   if (!date || (typeof(date) != "object")) return false
 
   const cDate = new Date(date.year + "/" + date.month + "/" + date.day)
   return ((cDate != "Invalid Date") && (!isNaN(cDate)) && cDate) || false
 }
 
-export function isAgeValid(date, age) {
+exports.isAgeValid = function(date, age) {
   if (!isDateValid(date) || !age || !Number.isInteger(age) || age <= 0) return false
 
   const nDate = new Date(), cDate = new Date(date.year + "/" + date.month + "/" + date.day)
@@ -91,7 +91,7 @@ export function isAgeValid(date, age) {
   return true, yearDifference
 }
 
-export function unsubSocketBuffer(buffer) {
+exports.unsubSocketBuffer = function(buffer) {
   if (!buffer || (typeof(buffer) != "object")) return false
 
   Object.entries(buffer).forEach(function(socketCategory) {
@@ -105,7 +105,7 @@ export function unsubSocketBuffer(buffer) {
   return true
 }
 
-export function clearTimerBuffer(buffer) {
+exports.clearTimerBuffer = function(buffer) {
   if (!buffer || (typeof(buffer) != "object")) return false
 
   Object.entries(buffer).forEach(function(timerCategory) {

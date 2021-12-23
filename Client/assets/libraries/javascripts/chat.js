@@ -12,7 +12,7 @@
 -- Imports --
 -----------*/
 
-import vue from "vue"
+const vue = require("vue").default
 
 
 /*--------------------
@@ -20,7 +20,8 @@ import vue from "vue"
 --------------------*/
 
 
-export function push(containerData, messagesData, callbackHandler) {
+module.exports = {
+  push: function(containerData, messagesData, callbackHandler) {
     if (!containerData || !messagesData) return false
 
     if (messagesData.isPostLoad) messagesData.postLoadIndex = 0
@@ -31,7 +32,8 @@ export function push(containerData, messagesData, callbackHandler) {
       isContainerInvalid = isContainerInvalid || isOwnerValid
 
       if (!isContainerInvalid) {
-          //TOOD: TIME PARSNG HERE
+        //const parsedMS = importedJS.Library.Utility.parseMS((new Date(messageData.createdAt)) - (new Date(containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].createdAt)))
+        //if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerInvalid = true
       }
       if (isContainerInvalid) {
         const appendData = {
@@ -52,3 +54,4 @@ export function push(containerData, messagesData, callbackHandler) {
     })
     return true
   }
+}

@@ -105,8 +105,8 @@ export const mutations = {
 
   onSyncMessages(state, groupMessages) {
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
+
     if (groupMessages.isPostLoad) {
-      groupMessages.postLoadIndex = 0
       dispatchEvent(new CustomEvent(importedJS.Generic.eventDatas.messageView.forcescroll.name, {
         detail: {
           type: "serverGroup",
@@ -115,34 +115,7 @@ export const mutations = {
         }
       }))
     }
-
-    Array.from(groupMessages.messages).forEach(function(messageData) {
-      let containerREF = state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages
-      containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
-      let isContainerInvalid = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !containerREF
-      let isOwnerValid = containerREF && (messageData.owner != containerREF.owner)
-      isContainerInvalid = isContainerInvalid || isOwnerValid
-      if (!isContainerInvalid) {
-        const parsedMS = importedJS.Library.Utility.parseMS((new Date(messageData.createdAt)) - (new Date(containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].createdAt)))
-        if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerInvalid = true
-      }
-      if (isContainerInvalid) {
-        const appendData = {
-          owner: messageData.owner,
-          ownerMessages: {}
-        }
-        if (groupMessages.isPostLoad) {
-          if (groupMessages.isPostLoaded && isOwnerValid) groupMessages.postLoadIndex = groupMessages.postLoadIndex + 1
-          groupMessages.isPostLoaded = true
-          state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages.splice(groupMessages.postLoadIndex, 0, appendData)
-        } else {
-          state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages.push(appendData)
-        }
-      }
-
-      containerREF = state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages
-      containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
-      vue.set(containerREF.ownerMessages, messageData.UID, messageData)
+    importedJS.Library.Chat.push(state.userGroups[(groupMessages.UID)].channels[(groupMessages.channelUID)].messages, groupMessages, function(messageData) {
       if (groupMessages.isPostLoad) {
         dispatchEvent(new CustomEvent(importedJS.Generic.eventDatas.messageView.forcescroll.name, {
           detail: {
