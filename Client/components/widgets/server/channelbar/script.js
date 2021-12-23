@@ -2,7 +2,13 @@ import {Generic} from "@/assets/import"
 
 export default {
   data() {
-    return {}
+    return {
+      creator: {
+        controlInput: "",
+        placeholder: "Enter Channel Name",
+        text: "Create Channel"
+      }
+    }
   },
 
   computed: {
@@ -20,6 +26,23 @@ export default {
       return this.$store.state.app.serverGroup.channel == selection
     },
 
+    onChannelCreatorProcess(isChannelCreation, isWidgetDestroyed) {
+      if (isWidgetDestroyed) {
+        this.creator.controlInput = ""
+        return true
+      } else if (!isChannelCreation) {
+        this.$refs["server-channel-creator"].createWidget()
+        return true
+      }
+      if (this.creator.controlInput.length <= 0) return false
+
+      this.$store.dispatch("groups/server/onClientCreateChannel", {
+        UID: this.$store.state.app.serverGroup.group,
+        name: this.creator.controlInput
+      })
+      this.$refs["server-channel-creator"].destroyWidget()
+    },
+
     onClientSelectChannel(selection) {
       const serverChannels = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)] && this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)].channels
       if (!serverChannels) return false
@@ -31,14 +54,6 @@ export default {
         channel: selection
       })
       dispatchEvent(Generic.eventDatas.messageView.forcescroll.event)
-    },
-
-    onCreateChannel() {
-        //TODO: BIND WITH WIDGET LATER
-      this.$store.dispatch("groups/server/onClientCreateChannel", {
-        UID: this.$store.state.app.serverGroup.group,
-        name: "test"
-      })
     }
   }
 }
