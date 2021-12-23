@@ -92,10 +92,9 @@
           &:hover
             $font-color: map-read($config_palette, "accent-secondary-color")
             $rotation: 360deg
-            $scale: 1.07
             color: $font-color !important
             stroke: $font-color !important
-            transform: rotate($rotation) scale($scale $scale) !important
+            transform: rotate($rotation) !important
       .channel
         $margin-vertical: 5px
         $height: map-read($config_element, "channel-bar", "size")
