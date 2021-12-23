@@ -41,21 +41,21 @@
     border-style: solid !important
     border-color: $border-color !important
   .channelbar-container
+    $font: "Typo Round"
+    $font-size: 10px
+    $font-weight: 800
+    $font-spacing: 2px
+    $font-color: map-read($config_palette, "wrapper-secondary-color")
+    font-family: $font !important
+    font-size: $font-size !important
+    font-weight: $font-weight !important
+    letter-spacing: $font-spacing !important
+    color: $font-color !important
     overflow-x: hidden !important
     overflow-y: scroll !important
     > *
       $margin-vertical: 5px
-      $font: "Typo Round"
-      $font-size: 10px
-      $font-weight: 800
-      $font-spacing: 2px
-      $font-color: map-read($config_palette, "wrapper-secondary-color")
       margin-bottom: $margin-vertical !important
-      font-family: $font !important
-      font-size: $font-size !important
-      font-weight: $font-weight !important
-      letter-spacing: $font-spacing !important
-      color: $font-color !important
     .channel-container
       > *
         $padding-horizontal: 10px
