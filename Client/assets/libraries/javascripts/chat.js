@@ -20,7 +20,6 @@ const utilityHandler = require("./utility")
 -->> Chat Library <<--
 --------------------*/
 
-
 module.exports = {
   push: function(containerData, messagesData, callbackHandler) {
     if (!containerData || !messagesData) return false
