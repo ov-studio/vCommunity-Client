@@ -91,17 +91,15 @@ export const mutations = {
     }
   },
 
-  /*
   onClientFetchMessages(state, payload) {
-    if (!state.userGroups[(payload.UID)]) return false
-    const containerREF = state.userGroups[(payload.UID)].messages[0]
+    if (!state.userGroups[(payload.UID)] || !state.userGroups[(payload.UID)].channels[(payload.channelUID)]) return false
+    const containerREF = state.userGroups[(payload.UID)].channels[(payload.channelUID)].messages[0]
     if (!containerREF || containerREF.isPostFetched) return false
 
     containerREF.isPostFetched = true
     payload.messageUID = Object.keys(containerREF.ownerMessages)[0]
     importedJS.Library.Socket.getSocket("app").socket.emit("App:Groups:Server:onClientFetchMessages", payload)
   },
-  */
 
   onSyncMessages(state, groupMessages) {
     if (!state.userGroups[(groupMessages.UID)] || (groupMessages.messages.length <= 0)) return false
