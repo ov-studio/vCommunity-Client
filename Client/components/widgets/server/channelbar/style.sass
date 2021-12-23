@@ -3,21 +3,11 @@
 .widget-server-channelbar-container
   $padding-horizontal: 5px
   $width: map-read($config_element, "content-bar", "size")
-  $font: "Typo Round"
-  $font-size: 10px
-  $font-weight: 800
-  $font-spacing: 2px
-  $font-color: map-read($config_palette, "wrapper-secondary-color")
   $background-color: map-read($config_palette, "wrapper-primary-color")
   padding: 0px !important
   padding-right: $padding-horizontal !important
   width: $width !important
   min-width: $width !important
-  font-family: $font !important
-  font-size: $font-size !important
-  font-weight: $font-weight !important
-  letter-spacing: $font-spacing !important
-  color: $font-color !important
   background-color: $background-color !important
   border-width: 0px !important
   border-style: solid !important
@@ -55,7 +45,17 @@
     overflow-y: scroll !important
     > *
       $margin-vertical: 5px
+      $font: "Typo Round"
+      $font-size: 10px
+      $font-weight: 800
+      $font-spacing: 2px
+      $font-color: map-read($config_palette, "wrapper-secondary-color")
       margin-bottom: $margin-vertical !important
+      font-family: $font !important
+      font-size: $font-size !important
+      font-weight: $font-weight !important
+      letter-spacing: $font-spacing !important
+      color: $font-color !important
     .channel-container
       > *
         $padding-horizontal: 10px
