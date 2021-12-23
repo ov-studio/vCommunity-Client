@@ -26,6 +26,7 @@ const CSocket = {
 
   create: function(socketName) {
     if (!socketName || !socketDatas[socketName] || socketBuffer[socketName]) return false
+
     const cSocket = socketIO.connect(socketDatas[socketName].url)
     const cSocketData = {
       name: socketName,
@@ -37,6 +38,7 @@ const CSocket = {
 
   destroy: function(socketName) {
     if (!socketName || !socketDatas[socketName] || !socketBuffer[socketName]) return false
+
     socketBuffer[socketName].socket.disconnect()
     delete socketBuffer[socketName]
     return true
@@ -44,11 +46,13 @@ const CSocket = {
 
   getSocket: function(socketName) {
     if (!socketName || !socketDatas[socketName] || !socketBuffer[socketName]) return false
+
     return socketBuffer[socketName]
   },
 
   isConnected: function(socketName) {
     if (!socketName || !socketDatas[socketName] || !socketBuffer[socketName]) return false
+
     return socketBuffer[socketName].socket.connected
   }
 }
