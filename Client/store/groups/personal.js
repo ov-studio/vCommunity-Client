@@ -80,14 +80,14 @@ export const mutations = {
     Array.from(groupMessages.messages).forEach(function(messageData) {
       let containerREF = state.userGroups[(groupMessages.UID)].messages
       containerREF = (groupMessages.isPostLoad && containerREF[groupMessages.postLoadIndex]) || containerREF[(containerREF.length - 1)]
-      let isContainerValid = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !containerREF
+      let isContainerInvalid = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !containerREF
       let isOwnerValid = containerREF && (messageData.owner != containerREF.owner)
-      isContainerValid = isContainerValid || isOwnerValid
-      if (isContainerValid) {
+      isContainerInvalid = isContainerInvalid || isOwnerValid
+      if (!isContainerInvalid) {
         const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].timestamp)
-        if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerValid = false
+        if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerInvalid = true
       }
-      if (isContainerValid) {
+      if (isContainerInvalid) {
         const appendData = {
           owner: messageData.owner,
           ownerMessages: {}
