@@ -122,10 +122,9 @@ export const mutations = {
       let isContainerValid = (groupMessages.isPostLoad && !groupMessages.isPostLoaded) || !containerREF
       let isOwnerValid = containerREF && (messageData.owner != containerREF.owner)
       isContainerValid = isContainerValid || isOwnerValid
-      if (!isContainerValid) {
-        // TODO: THIS IS BUGGY FOR NOW..
-        //const parsedMS = importedJS.Library.Utility.parseMS(messageData.timestamp - containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].timestamp)
-        //if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerValid = true
+      if (isContainerValid) {
+        const parsedMS = importedJS.Library.Utility.parseMS(messageData.createdAt - containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].createdAt)
+        if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerValid = false
       }
       if (isContainerValid) {
         const appendData = {
