@@ -30,7 +30,7 @@ export default {
       if (this.$store.state.app.serverGroup.group) {
         const selectedGroup = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)]
         const selectedChannel = (selectedGroup && selectedGroup.channels[(this.$store.state.app.serverGroup.channel)]) || false
-        return (selectedChannel && selectedChannel.description) || ""
+        return (selectedChannel && selectedChannel.description && ("━ " + selectedChannel.description)) || ""
       }
       else if (this.$store.state.app.personalGroup) {
         const selectedGroup = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)]
