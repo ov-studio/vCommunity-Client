@@ -60,48 +60,8 @@
         stroke: $font-color !important
         filter: saturate(100%) !important
         transform: scale($scale*1.1, $scale*1.1) rotate(360deg) !important
-
-.v-input
-  margin-bottom: 7px
-  $width: 400px
-  $height: 30px
-  $font-size: 20px
-  $font-color: map-read($config_palette, "accent-quinary-color")
-  $border-width: 2px
-  $border-color: rgba(map-read($config_palette, "accent-primary-color"), 1)
-  width: $width !important
-  height: calc($height - $border-width)
-  line-height: calc($height - $border-width) !important
-  +vendor("text-align", "center !important")
-  font-size: $font-size !important
-  font-weight: 500 !important
-  color: $font-color !important
-  background-color: rgba(0, 0, 0, 0) !important
-  border-radius: 0px !important
-  border-width: 0px !important
-  border-style: solid !important
-  border-bottom-width: $border-width !important
-  border-color: $border-color !important
-  +vendor("transition", "all 0.5s ease !important")
-  &::placeholder
-    $font-color:  map-read($config_palette, "accent-primary-color")
-    font-weight: 500 !important
-    color: $font-color !important
-    +vendor("transition", "all 0.5s ease !important")
-  &:focus::placeholder
-    $font-color: map-read($config_palette, "accent-tertiary-color")
-    color: $font-color !important
-  &::selection
-    $background-color: map-read($config_palette, "accent-quaternary-color")
-    background-color: $background-color !important
-  &:hover:not([disabled]), &:focus:not([disabled])
-    $width: $width + 50px
-    $border-color: map-read($config_palette, "accent-primary-color")
-    width: $width !important
-    border-color: $border-color !important
-
-.widget-element-button-container
-  $width: 375px
-  width: $width
-  min-width: $width
-  max-width: $width
+  .widget-element-button-container
+    $width: 375px
+    width: $width
+    min-width: $width
+    max-width: $width
