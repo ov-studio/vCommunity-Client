@@ -60,8 +60,16 @@
         stroke: $font-color !important
         filter: saturate(100%) !important
         transform: scale($scale*1.1, $scale*1.1) rotate(360deg) !important
-  .widget-element-button-container
+  .widget-element-input-container, .widget-element-button-container
     $width: 375px
-    width: $width
-    min-width: $width
-    max-width: $width
+    width: $width !important
+    min-width: $width !important
+    max-width: $width !important
+  .widget-element-input-container
+    $margin-vertical: 7px
+    margin-bottom: $margin-vertical !important
+    &:hover:not([disabled]), &:focus:not([disabled])
+      $width: calc($width + 50px)
+      width: $width !important
+      min-width: $width !important
+      max-width: $width !important

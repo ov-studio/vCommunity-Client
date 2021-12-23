@@ -22,6 +22,10 @@ $config_fonts: (
 
 $config_element: (
   // Elements //
+  "input": (
+    width: 375px,
+    height: 30px
+  ),
   "button": (
     height: 21px
   ),

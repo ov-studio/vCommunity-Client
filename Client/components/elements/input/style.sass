@@ -1,19 +1,19 @@
 @import "@/assets/import"
 
 .widget-element-input-container
-  margin-bottom: 7px
-  $width: 400px
-  $height: 30px
+  $width: map-read($config_element, "input", "width")
+  $height: map-read($config_element, "input", "height")
   $font-size: 20px
+  $font-weight: 500
   $font-color: map-read($config_palette, "accent-quinary-color")
   $border-width: 2px
-  $border-color: rgba(map-read($config_palette, "accent-primary-color"), 1)
+  $border-color: map-read($config_palette, "accent-primary-color")
   width: $width !important
   height: calc($height - $border-width)
   line-height: calc($height - $border-width) !important
   +vendor("text-align", "center !important")
   font-size: $font-size !important
-  font-weight: 500 !important
+  font-weight: $font-weight !important
   color: $font-color !important
   background-color: rgba(0, 0, 0, 0) !important
   border-radius: 0px !important
@@ -23,8 +23,8 @@
   border-color: $border-color !important
   +vendor("transition", "all 0.5s ease !important")
   &::placeholder
-    $font-color:  map-read($config_palette, "accent-primary-color")
-    font-weight: 500 !important
+    $font-color: map-read($config_palette, "accent-primary-color")
+    font-weight: $font-weight !important
     color: $font-color !important
     +vendor("transition", "all 0.5s ease !important")
   &:focus::placeholder
