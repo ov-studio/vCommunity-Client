@@ -62,7 +62,7 @@
         padding-left: $padding-horizontal !important
       .container-header
         $height: map-read($config_element, "channel-bar", "category", "size")
-        $font-size: 14px
+        $font-size: 13px
         $font-spacing: 2px
         $font-color: map-read($config_palette, "accent-primary-color")
         $border-width: 2px
@@ -81,14 +81,14 @@
         border-style: solid !important
         border-color: $border-color !important
         .channel-adder
-          $font-size: 25px
+          $font-size: 24px
           $font-stroke: 0.4px
           $font-color: map-read($config_palette, "accent-primary-color")
-          +vendor("transition", "all 0.5s ease !important")
           font-size: $font-size !important
           stroke-width: $font-stroke !important
           color: $font-color !important
           stroke: $font-color !important
+          +vendor("transition", "all 0.5s ease !important")
           &:hover
             $font-color: map-read($config_palette, "accent-secondary-color")
             $rotation: 360deg
