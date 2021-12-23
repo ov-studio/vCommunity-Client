@@ -17,7 +17,7 @@
   border-width: 0px !important
   transform: skewx($skew) scale(1, 1) !important
   +vendor("transition", "all 0.25s ease !important")
-  &:hover:not([disabled])
+  &:hover:not([isDisabled])
     $font-color: map-read($config_palette, "wrapper-secondary-color")
     $background-color: map-read($config_palette, "accent-quinary-color")
     $scale: 1.1

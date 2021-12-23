@@ -13,7 +13,7 @@
 ------------->
 
 <template>
-  <div class="position-relative disable-selection overflow-hidden widget-element-button-container" @click.prevent="clickElement">
+  <div class="position-relative disable-selection overflow-hidden widget-element-button-container" :isDisabled="isDisabled" @click.prevent="clickElement">
     <div class="button-text">
       <slot></slot>
     </div>
