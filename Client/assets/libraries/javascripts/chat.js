@@ -13,6 +13,7 @@
 -----------*/
 
 const vue = require("vue").default
+const utilityHandler = require("./utility")
 
 
 /*--------------------
@@ -32,8 +33,8 @@ module.exports = {
       isContainerInvalid = isContainerInvalid || isOwnerValid
 
       if (!isContainerInvalid) {
-        //const parsedMS = importedJS.Library.Utility.parseMS((new Date(messageData.createdAt)) - (new Date(containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].createdAt)))
-        //if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerInvalid = true
+        const parsedMS = utilityHandler.parseMS((new Date(messageData.createdAt)) - (new Date(containerREF.ownerMessages[(Object.keys(containerREF.ownerMessages)[0])].createdAt)))
+        if ((parsedMS.hours > 0) || (parsedMS.minutes > 5)) isContainerInvalid = true
       }
       if (isContainerInvalid) {
         const appendData = {
