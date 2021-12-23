@@ -28,18 +28,24 @@ export default {
 
     viewHeader() {
       if (this.$store.state.app.serverGroup.group) {
-        return ''
+        const selectedGroup = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)]
+        const selectedChannel = (selectedGroup && selectedGroup.channels[(this.$store.state.app.serverGroup.channel)]) || false
+        return (selectedChannel && selectedChannel.description) || ""
       } else if (this.$store.state.app.personalGroup) {
-        const participantUID = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].participantUID
+        const selectedGroup = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)]
+        const participantUID = selectedGroup.participantUID
         return "@" + (this.$store.getters["users/getUserData"](participantUID, "username") || participantUID)
       }
     },
 
     viewMessages() {
       if (this.$store.state.app.serverGroup.group) {
-        return (this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)] && this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)].channels[(this.$store.state.app.serverGroup.channel)] && this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)].channels[(this.$store.state.app.serverGroup.channel)].messages) || false
+        const selectedGroup = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)]
+        const selectedChannel = (selectedGroup && selectedGroup.channels[(this.$store.state.app.serverGroup.channel)]) || false
+        return (selectedChannel && selectedChannel.messages) || false
       } else if (this.$store.state.app.personalGroup) {
-        return (this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)] && this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)].messages) || false
+        const selectedGroup = this.$store.state.groups.personal.userGroups[(this.$store.state.app.personalGroup)]
+        return (selectedGroup && selectedGroup.messages) || false
       }
       return false
     }
