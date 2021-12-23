@@ -97,7 +97,10 @@ export default {
       if (event.target.scrollTop > 0) return false
 
       if (this.$store.state.app.serverGroup.group) {
-
+        this.$store.commit("groups/personal/onClientFetchMessages", {
+          UID: this.$store.state.app.serverGroup.grouo,
+          channelUID: this.$store.state.app.serverGroup.channel
+        })
       }
       else if (this.$store.state.app.personalGroup) {
         this.$store.commit("groups/personal/onClientFetchMessages", {
