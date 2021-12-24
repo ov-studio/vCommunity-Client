@@ -3,22 +3,28 @@
 .element-dropdown-container
   //$width: map-read($config_element, "dropdown", "width")
   //$height: map-read($config_element, "dropdown", "height")
-  $font-size: 20px
+  margin-left: 100px !important
+  $font-size: 17px
   $font-weight: 500
-  $font-color: map-read($config_palette, "accent-quinary-color")
+  $font-color: map-read($config_palette, "accent-secondary-color")
+  $background-color: map-read($config_palette, "wrapper-secondary-color")
+  $border-radius: 5px
   $border-width: 2px
-  $border-color: map-read($config_palette, "accent-primary-color")
+  $border-color: map-read($config_palette, "wrapper-primary-color")
+  width: 200px !important
+  height: 300px !important
   //width: $width !important
   //height: calc($height - $border-width)
   //line-height: calc($height - $border-width) !important
   +vendor("text-align", "center !important")
+  font-family: "Megi Sans" !important
   font-size: $font-size !important
   font-weight: $font-weight !important
   color: $font-color !important
-  background-color: rgba(0, 0, 0, 0) !important
-  border-radius: 0px !important
-  border-width: 0px !important
+  background-color: $background-color !important
+  border-radius: $border-radius !important
+  border-width: $border-width !important
   border-style: solid !important
-  border-bottom-width: $border-width !important
+  //border-bottom-width: $border-width !important
   border-color: $border-color !important
   +vendor("transition", "all 0.5s ease !important")

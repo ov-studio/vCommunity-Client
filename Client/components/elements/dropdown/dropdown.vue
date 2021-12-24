@@ -13,7 +13,13 @@
 ------------->
 
 <template>
-  <h1 class="position-relative disable-selection overflow-hidden element-dropdown-container">HI, TESTING DROPDOWN WIDGET</h1>
+  <div class="position-relative d-flex flex-column align-items-left justify-content-start disable-selection overflow-hidden element-dropdown-container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+    <div>Item 4</div>
+    <div>Item 5</div>
+  </div>
 </template>
 
 
