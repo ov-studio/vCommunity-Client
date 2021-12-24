@@ -75,7 +75,9 @@
       &:first-child
         margin-top: 0px !important
       &:hover
+        $margin-horizontal: 15px
         $font-color: map-read($config_palette, "wrapper-secondary-color")
         $background-color: map-read($config_palette, "accent-secondary-color")
+        margin-left: $margin-horizontal !important
         color: $font-color !important
         background-color: $background-color !important
