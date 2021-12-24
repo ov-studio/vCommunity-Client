@@ -1,6 +1,6 @@
 @import "@/assets/import"
 
-.element-dropdown-container
+.element-dropdown-container22
   //$width: map-read($config_element, "dropdown", "width")
   //$height: map-read($config_element, "dropdown", "height")
   margin-left: 100px !important
@@ -28,3 +28,53 @@
   //border-bottom-width: $border-width !important
   border-color: $border-color !important
   +vendor("transition", "all 0.5s ease !important")
+
+.element-dropdown
+  z-index: 1 !important
+  left: 370px !important
+  top: 55px !important
+  //background-color: map-read($config_palette, "wrapper-secondary-color") !important
+  background-color: rgba(map-read($config_palette, "wrapper-primary-color"), 1) !important
+  //background-color: rgba(15, 15, 15, 1) !important
+  border-radius: 4px !important
+  //font-family: "Megi Sans" !important
+  font-size: 13px !important
+  font-weight: 700 !important
+  letter-spacing: 0px !important
+  width: 225px !important
+  padding: 0px 0px !important
+  border-width: 4px !important
+  border-style: solid !important
+  border-color: rgba(map-read($config_palette, "wrapper-secondary-color"), 1) !important
+  //box-shadow: -1px -1px 3px map-read($config_palette, "accent-tertiary-color") !important
+  > *
+    padding: 0px 10px !important
+    cursor: pointer !important
+    margin-top: 5px !important
+    height: 30px !important
+    color: map-read($config_palette, "accent-secondary-color") !important
+    line-height: 30px !important
+    border-radius: 2px !important
+    +vendor("text-align", "left !important")
+    +vendor("transition", "all 0.5s ease !important")
+    background-color: map-read($config_palette, "wrapper-tertiary-color") !important
+    &:first-child
+      margin-top: 0px !important
+    &:hover
+      color: map-read($config_palette, "wrapper-secondary-color") !important
+      background-color: map-read($config_palette, "accent-secondary-color") !important
+  .element-title
+    color: map-read($config_palette, "accent-primary-color") !important
+    //background-color: map-read($config_palette, "accent-primary-color") !important
+    background-color: map-read($config_palette, "wrapper-secondary-color") !important
+    border-radius: 0px !important
+    font-family: "Megi Sans"
+    font-weight: 800 !important
+    letter-spacing: 2px !important
+    border-width: 0px !important
+    border-bottom-width: 1px !important
+    border-style: solid !important
+    border-color: map-read($config_palette, "accent-primary-color") !important
+    &:hover
+      color: map-read($config_palette, "accent-primary-color") !important
+      background-color: map-read($config_palette, "wrapper-secondary-color") !important

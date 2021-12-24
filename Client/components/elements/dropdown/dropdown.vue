@@ -13,12 +13,15 @@
 ------------->
 
 <template>
-  <div class="position-relative d-flex flex-column align-items-left justify-content-start disable-selection overflow-hidden element-dropdown-container">
-    <div>Item 1</div>
-    <div>Item 2</div>
-    <div>Item 3</div>
-    <div>Item 4</div>
-    <div>Item 5</div>
+  <div class="position-fixed d-flex flex-column align-items-center justify-content-center element-dropdown">
+    <div class="w-100 element-title">SERVER OPTIONS</div>
+    <div class="w-100 element-dropdown-item">Option 1</div>
+    <div class="w-100 element-dropdown-item">Option 2</div>
+    <div class="w-100 element-dropdown-item">Option 3</div>
+    <div class="w-100 element-dropdown-item">Option 4</div>
+    <div class="w-100 element-dropdown-item">Option 5</div>
+    <div class="w-100 element-dropdown-item">Option 6</div>
+    <div class="w-100 element-dropdown-item">Option 7</div>
   </div>
 </template>
 

@@ -21,7 +21,6 @@
       </div>
     </div>
     <div class="d-flex flex-row align-items-center justify-content-center">
-      <element-dropdown></element-dropdown>
     </div>
   </div>
 </template>
