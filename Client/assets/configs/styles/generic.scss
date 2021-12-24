@@ -29,7 +29,13 @@ $config_element: (
     height: 21px
   ),
   "dropdown": (
-    width: 225px
+    width: 225px,
+    title: (
+      height: 28px
+    ),
+    option: (
+      height: 28px
+    )
   ),
 
   // Others //
