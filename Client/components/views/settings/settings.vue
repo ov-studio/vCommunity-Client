@@ -20,10 +20,9 @@
         <span class="menu-name">{{menuData.title}}</span>
       </div>
     </div>
-    <!--div class="d-flex flex-row align-items-center justify-content-center">
-      <b-avatar size="75px" class="mr-3"></b-avatar>
-      <h2 class="mr-auto">Aviril</h2>
-    </!--div-->
+    <div class="d-flex flex-row align-items-center justify-content-center">
+      <element-dropdown></element-dropdown>
+    </div>
   </div>
 </template>
 
