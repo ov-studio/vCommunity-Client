@@ -26,6 +26,10 @@ export default {
       return this.$store.state.app.serverGroup.channel == selection
     },
 
+    onClientServerOptionProcess() {
+      console.log("Trying to toggle server option..")
+    },
+
     onChannelCreatorProcess(isChannelCreation, isWidgetDestroyed) {
       if (isWidgetDestroyed) {
         this.creator.controlInput = ""
