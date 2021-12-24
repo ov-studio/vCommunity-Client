@@ -23,17 +23,33 @@
   border-style: solid !important
   border-color: $border-color !important
   +vendor("transition", "all 0.5s ease !important")
-
-
-  > *
+  .dropdown-title
+    $padding-horizontal: 10px
+    $font: "Megi Sans"
+    $font-weight: 800
+    $font-spacing: 2px
+    $font-color: map-read($config_palette, "accent-primary-color")
+    $background-color: map-read($config_palette, "wrapper-secondary-color")
+    $border-width: 1px
+    $border-color: map-read($config_palette, "accent-primary-color")
+    padding-left: $padding-horizontal !important
+    font-family: $font !important
+    font-weight: $font-weight !important
+    letter-spacing: $font-spacing !important
+    color: $font-color !important
+    background-color: $background-color !important
+    border-radius: 0px !important
+    border-width: 0px !important
+    border-bottom-width: $border-width !important
+    border-style: solid !important
+    border-color: $border-color !important
+wow > *
     padding: 0px 10px !important
     cursor: pointer !important
     margin-top: 5px !important
     height: 30px !important
-    color: map-read($config_palette, "accent-secondary-color") !important
     line-height: 30px !important
     border-radius: 2px !important
-    +vendor("text-align", "left !important")
     +vendor("transition", "all 0.5s ease !important")
     background-color: map-read($config_palette, "wrapper-tertiary-color") !important
     &:first-child
@@ -41,18 +57,3 @@
     &:hover
       color: map-read($config_palette, "wrapper-secondary-color") !important
       background-color: map-read($config_palette, "accent-secondary-color") !important
-  .element-title
-    color: map-read($config_palette, "accent-primary-color") !important
-    //background-color: map-read($config_palette, "accent-primary-color") !important
-    background-color: map-read($config_palette, "wrapper-secondary-color") !important
-    border-radius: 0px !important
-    font-family: "Megi Sans"
-    font-weight: 800 !important
-    letter-spacing: 2px !important
-    border-width: 0px !important
-    border-bottom-width: 1px !important
-    border-style: solid !important
-    border-color: map-read($config_palette, "accent-primary-color") !important
-    &:hover
-      color: map-read($config_palette, "accent-primary-color") !important
-      background-color: map-read($config_palette, "wrapper-secondary-color") !important
