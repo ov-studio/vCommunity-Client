@@ -3,12 +3,14 @@
 .element-button-container
   $padding-horizontal: 40px
   $margin-vertical: 13px
+  $width: map-read($config_element, "button", "width")
   $height: map-read($config_element, "button", "height")
   $background-color: map-read($config_palette, "accent-primary-color")
   $border-radius: 4px
   $skew: 20deg
   padding: 0px $padding-horizontal !important
   margin-top: $margin-vertical !important
+  width: $width !important
   min-width: fit-content !important
   height: $height !important
   line-height: $height !important

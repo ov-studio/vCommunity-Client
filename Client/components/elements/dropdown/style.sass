@@ -1,23 +1,19 @@
 @import "@/assets/import"
 
-.element-dropdown-container22
-  //$width: map-read($config_element, "dropdown", "width")
-  //$height: map-read($config_element, "dropdown", "height")
-  margin-left: 100px !important
-  $font-size: 17px
+.element-dropdown-container
+  $width: map-read($config_element, "dropdown", "width")
+  $font-size: 13px
   $font-weight: 500
   $font-color: map-read($config_palette, "accent-secondary-color")
-  $background-color: map-read($config_palette, "wrapper-secondary-color")
-  $border-radius: 5px
-  $border-width: 2px
-  $border-color: map-read($config_palette, "wrapper-primary-color")
-  width: 200px !important
-  height: 300px !important
-  //width: $width !important
-  //height: calc($height - $border-width)
-  //line-height: calc($height - $border-width) !important
-  +vendor("text-align", "center !important")
-  font-family: "Megi Sans" !important
+  $background-color: map-read($config_palette, "wrapper-primary-color")
+  $border-radius: 4px
+  $border-width: 4px
+  $border-color: map-read($config_palette, "wrapper-secondary-color")
+  z-index: 1 !important
+  left: 370px !important
+  top: 55px !important
+  width: $width !important
+  +vendor("text-align", "left !important")
   font-size: $font-size !important
   font-weight: $font-weight !important
   color: $font-color !important
@@ -25,28 +21,10 @@
   border-radius: $border-radius !important
   border-width: $border-width !important
   border-style: solid !important
-  //border-bottom-width: $border-width !important
   border-color: $border-color !important
   +vendor("transition", "all 0.5s ease !important")
 
-.element-dropdown
-  z-index: 1 !important
-  left: 370px !important
-  top: 55px !important
-  //background-color: map-read($config_palette, "wrapper-secondary-color") !important
-  background-color: rgba(map-read($config_palette, "wrapper-primary-color"), 1) !important
-  //background-color: rgba(15, 15, 15, 1) !important
-  border-radius: 4px !important
-  //font-family: "Megi Sans" !important
-  font-size: 13px !important
-  font-weight: 700 !important
-  letter-spacing: 0px !important
-  width: 225px !important
-  padding: 0px 0px !important
-  border-width: 4px !important
-  border-style: solid !important
-  border-color: rgba(map-read($config_palette, "wrapper-secondary-color"), 1) !important
-  //box-shadow: -1px -1px 3px map-read($config_palette, "accent-tertiary-color") !important
+
   > *
     padding: 0px 10px !important
     cursor: pointer !important

@@ -13,7 +13,7 @@
 ------------->
 
 <template>
-  <div class="position-fixed d-flex flex-column align-items-center justify-content-center element-dropdown">
+  <div class="position-fixed d-flex flex-column align-items-center justify-content-center element-dropdown-container">
     <div class="w-100 element-title">SERVER OPTIONS</div>
     <div class="w-100 element-dropdown-item">Option 1</div>
     <div class="w-100 element-dropdown-item">Option 2</div>
