@@ -16,10 +16,10 @@
     $padding-horizontal: 10px
     $height: map-read($config_element, "info-bar", "size")
     $font: "Typo Round"
-    $font-size: 13px
+    $font-size: 14px
     $font-weight: 800
     $font-spacing: 2px
-    $font-color: map-read($config_palette, "wrapper-primary-color")
+    $font-color: map-read($config_palette, "wrapper-secondary-color")
     $background-color: map-read($config_palette, "accent-secondary-color")
     $border-width: 5px
     $border-color: map-read($config_palette, "wrapper-secondary-color")
@@ -40,6 +40,20 @@
     border-bottom-width: $border-width !important
     border-style: solid !important
     border-color: $border-color !important
+    .server-option
+      $margin-horizontal: 0px
+      $font-size: 17px
+      $font-stroke: 0.25px
+      $font-color: map-read($config_palette, "accent-tertiary-color")
+      margin-right: $margin-horizontal !important
+      font-size: $font-size !important
+      stroke-width: $font-stroke !important
+      color: $font-color !important
+      stroke: $font-color !important
+      +vendor("transition", "all 0.5s ease !important")
+      &:hover
+        $font-color: map-read($config_palette, "wrapper-secondary-color")
+        color: $font-color !important
   .channelbar-container
     $font: "Megi Sans"
     $font-size: 10px
