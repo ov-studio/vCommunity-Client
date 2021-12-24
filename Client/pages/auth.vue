@@ -20,7 +20,7 @@
       <b-alert fade :show="alertDatas.eta" class="auth-alert" @dismissed="alertDatas.eta = 0" @dismiss-count-down="onClientAlertTick">
         <small>{{alertDatas.message}}</small>
         <div class="progress auth-progress">
-          <div class="progress-bar" :style="{'width': 'calc(' + (alertDatas.eta - 1) + '%/'+ (alertDatas.duration - 1) + '*100)'}"/>
+          <div class="progress-bar" :style="{'width': 'calc(' + (alertDatas.eta - 1) + '%/'+ (alertDatas.duration - 1) + '*100) !important'}"/>
         </div>
       </b-alert>
 

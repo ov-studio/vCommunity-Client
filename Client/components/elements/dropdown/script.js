@@ -3,16 +3,16 @@ export default {
 
   data() {
     return {
-      isVisible: false
+      isVisible: false,
+      position: [0, 0]
     }
   },
 
   methods: {
     createWidget(posX, posY) {
-      console.log(posX)
       if (!posX || !posY || this.isVisible) return false
-      console.log("Trying to open server option..")
 
+      this.position = [posX, posY]
       this.isVisible = true
       this.$emit("created")
     },
@@ -21,6 +21,7 @@ export default {
       if (!this.isVisible) return false
 
       this.isVisible = false
+      this.position = [0, 0]
       this.$emit("destroyed")
     }
   }
