@@ -2,8 +2,10 @@
 
 .element-dropdown-container
   $width: map-read($config_element, "dropdown", "width")
+  $font: "Megi Sans"
   $font-size: 13px
-  $font-weight: 500
+  $font-weight: 800
+  $font-spacing: 2px
   $font-color: map-read($config_palette, "accent-secondary-color")
   $background-color: map-read($config_palette, "wrapper-primary-color")
   $border-radius: 4px
@@ -14,8 +16,10 @@
   top: 55px !important
   width: $width !important
   +vendor("text-align", "left !important")
+  font-family: $font !important
   font-size: $font-size !important
   font-weight: $font-weight !important
+  letter-spacing: $font-spacing !important
   color: $font-color !important
   background-color: $background-color !important
   border-radius: $border-radius !important
@@ -28,7 +32,6 @@
     $height: map-read($config_element, "dropdown", "title", "height")
     $font: "Megi Sans"
     $font-weight: 800
-    $font-spacing: 2px
     $font-color: map-read($config_palette, "accent-primary-color")
     $background-color: map-read($config_palette, "wrapper-secondary-color")
     $border-width: 1px
@@ -38,11 +41,11 @@
     height: $height !important
     min-height: $height !important
     max-height: $height !important
-    line-height:  $height !important
+    line-height: $height !important
+    +vendor("white-space", "nowrap")
     font-family: $font !important
     font-size: $font-size !important
     font-weight: $font-weight !important
-    letter-spacing: $font-spacing !important
     color: $font-color !important
     background-color: $background-color !important
     border-radius: 0px !important
@@ -51,9 +54,10 @@
     border-style: solid !important
     border-color: $border-color !important
   .dropdown-container
+    $margin-vertical: 5px
+    margin-top: $margin-vertical !important
     > *
       $padding-horizontal: 10px
-      $margin-vertical: 5px
       $height: map-read($config_element, "dropdown", "option", "height")
       $background-color: map-read($config_palette, "wrapper-tertiary-color")
       $border-radius: 2px
@@ -63,12 +67,15 @@
       height: $height !important
       min-height: $height !important
       max-height: $height !important
-      line-height:  $height !important
+      line-height: $height !important
+      +vendor("white-space", "nowrap")
       background-color: $background-color !important
       border-radius: $border-radius !important
       +vendor("transition", "all 0.5s ease !important")
       &:first-child
         margin-top: 0px !important
       &:hover
-        color: map-read($config_palette, "wrapper-secondary-color") !important
-        background-color: map-read($config_palette, "accent-secondary-color") !important
+        $font-color: map-read($config_palette, "wrapper-secondary-color")
+        $background-color: map-read($config_palette, "accent-secondary-color")
+        color: $font-color !important
+        background-color: $background-color !important
