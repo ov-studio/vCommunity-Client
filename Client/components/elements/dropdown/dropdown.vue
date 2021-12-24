@@ -16,13 +16,7 @@
   <div class="position-fixed d-flex flex-column align-items-center justify-content-center element-dropdown-container">
     <div class="w-100 min-w-100 max-w-100 overflow-hidden dropdown-header">SERVER OPTIONS</div>
     <div class="w-100 min-w-100 max-w-100 overflow-hidden dropdown-container">
-      <div class="w-100 element-dropdown-item">Option 1</div>
-      <div class="w-100 element-dropdown-item">Option 2</div>
-      <div class="w-100 element-dropdown-item">Option 3</div>
-      <div class="w-100 element-dropdown-item">Option 4</div>
-      <div class="w-100 element-dropdown-item">Option 5</div>
-      <div class="w-100 element-dropdown-item">Option 6</div>
-      <div class="w-100 element-dropdown-item">Option 7</div>
+      <slot class="w-100"></slot>
     </div>
   </div>
 </template>

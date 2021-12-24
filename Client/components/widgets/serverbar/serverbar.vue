@@ -18,7 +18,15 @@
       <img class="disable-selection server" src="https://cdn.discordapp.com/attachments/780432225815625768/921033051893563422/noserver.png" :isSelected="isGroupSelected(false)" @click.prevent="onClientSelectGroup(false)">
       <img v-for="(serverGroup, groupUID) in serverGroups" :key="groupUID" class="disable-selection server" src="https://avatars.githubusercontent.com/u/92739628?s=400&u=bdd3e78f102ac3d1da615208c1beb55908d99064&v=4" :isSelected="isGroupSelected(groupUID)" @click.prevent="onClientSelectGroup(groupUID)">
     </span>
-    <element-dropdown></element-dropdown>
+    <element-dropdown>
+      <div>Option 1</div>
+      <div>Option 2</div>
+      <div>Option 3</div>
+      <div>Option 4</div>
+      <div>Option 5</div>
+      <div>Option 6</div>
+      <div>Option 7</div>
+    </element-dropdown>
     <span class="d-flex flex-column align-items-center option-container">
       <b-icon icon="plus" class="option" @click.prevent="onGroupCreatorProcess()"/>
     </span>
