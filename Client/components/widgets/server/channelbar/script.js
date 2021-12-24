@@ -29,7 +29,7 @@ export default {
     onClientServerOptionProcess(element) {
       if (!element) return false
       const elementRect = element.getBoundingClientRect()
-      this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 5, elementRect.top + 5)
+      this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 8, elementRect.top + 3)
     },
 
     onChannelCreatorProcess(isChannelCreation, isWidgetDestroyed) {
