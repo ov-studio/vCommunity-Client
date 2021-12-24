@@ -8,7 +8,8 @@ export default {
   },
 
   methods: {
-    createWidget() {
+    createWidget(posX, posY) {
+      //if (!posX || !posY || this.isVisible) return false
       if (this.isVisible) return false
 
       this.isVisible = true

@@ -13,7 +13,7 @@
 ------------->
 
 <template>
-  <div class="position-fixed d-flex flex-column align-items-center justify-content-center element-dropdown-container">
+  <div v-if="isVisible" class="position-fixed d-flex flex-column align-items-center justify-content-center element-dropdown-container">
     <div v-if="dropdownHeader" class="w-100 min-w-100 max-w-100 overflow-hidden dropdown-header">{{dropdownHeader}}</div>
     <div class="w-100 min-w-100 max-w-100 overflow-hidden dropdown-container">
       <slot class="w-100"></slot>
