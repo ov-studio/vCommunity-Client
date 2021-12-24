@@ -49,7 +49,7 @@ exports.clearObjectStrings = function(object, isRecursive) {
   Object.entries(object).forEach(function(objectData) {
     const dataType = typeof(objectData[1])
     if (dataType == "object") {
-      clearObjectStrings(objectData[1], isRecursive)
+      exports.clearObjectStrings(objectData[1], isRecursive)
     } else if (dataType == "string") {
       object[(objectData[0])] = ""
     }
@@ -76,7 +76,7 @@ exports.isDateValid = function(date) {
 }
 
 exports.isAgeValid = function(date, age) {
-  if (!isDateValid(date) || !age || !Number.isInteger(age) || age <= 0) return false
+  if (!exports.isDateValid(date) || !age || !Number.isInteger(age) || age <= 0) return false
 
   const nDate = new Date(), cDate = new Date(date.year + "/" + date.month + "/" + date.day)
   const yearDifference = nDate.getFullYear() - cDate.getFullYear()

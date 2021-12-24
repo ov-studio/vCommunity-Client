@@ -29,13 +29,11 @@
     </div>
 
     <element-dropdown ref="server-options" dropdownHeader="Server Options">
-      <div>Option 1</div>
-      <div>Option 2</div>
-      <div>Option 3</div>
-      <div>Option 4</div>
-      <div>Option 5</div>
-      <div>Option 6</div>
-      <div>Option 7</div>
+      <div>Copy Invitation Code</div>
+      <div>Server Roles</div>
+      <div>Server Members</div>
+      <div>Server Settings</div>
+      <div>Leave Server</div>
     </element-dropdown>
     <widget-contentbox ref="server-channel-creator" @destroyed="onChannelCreatorProcess(null, true)">
       <element-input v-model="creator.controlInput" :inputHolder="creator.placeholder"/>
