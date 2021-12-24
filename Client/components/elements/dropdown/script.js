@@ -9,8 +9,9 @@ export default {
 
   methods: {
     createWidget(posX, posY) {
-      //if (!posX || !posY || this.isVisible) return false
-      if (this.isVisible) return false
+      console.log(posX)
+      if (!posX || !posY || this.isVisible) return false
+      console.log("Trying to open server option..")
 
       this.isVisible = true
       this.$emit("created")

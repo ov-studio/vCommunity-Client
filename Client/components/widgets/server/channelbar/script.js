@@ -26,8 +26,10 @@ export default {
       return this.$store.state.app.serverGroup.channel == selection
     },
 
-    onClientServerOptionProcess() {
-      console.log("Trying to toggle server option..")
+    onClientServerOptionProcess(element) {
+      if (!element) return false
+      const elementRect = element.getBoundingClientRect()
+      this.$refs["server-options"].createWidget(elementRect.left, elementRect.top)
     },
 
     onChannelCreatorProcess(isChannelCreation, isWidgetDestroyed) {
