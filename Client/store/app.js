@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------
-     Resource: vClient (Server)
+     Resource: vCommunity-Client
      Script: store: app.js
      Author: vStudio
      Developer(s): Aviril, Mario, Tron

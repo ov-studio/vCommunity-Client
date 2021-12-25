@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------
-     Resource: vClient (Server)
+     Resource: vCommunity-Client
      Script: assets: libraries: javascripts: socket.js
      Author: vStudio
      Developer(s): Aviril, Mario, Tron

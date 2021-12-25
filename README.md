@@ -1,2 +1,2 @@
-# vClient--Client
-vClient: Client Module
+# vCommunity-Client
+vCommunity: Client Module

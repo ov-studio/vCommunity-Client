@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------
-     Resource: vClient (Server)
+     Resource: vCommunity-Client
      Script: assets: configs: javascripts: generic.js
      Author: vStudio
      Developer(s): Aviril, Mario, Tron

@@ -1,5 +1,5 @@
 <!---------------------------------------------------------------
-     Resource: vClient (Server)
+     Resource: vCommunity-Client
      Script: components: views: contacts.vue
      Author: vStudio
      Developer(s): Aviril, Mario, Tron

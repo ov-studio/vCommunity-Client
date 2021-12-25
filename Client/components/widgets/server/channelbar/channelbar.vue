@@ -1,5 +1,5 @@
 <!---------------------------------------------------------------
-     Resource: vClient (Server)
+     Resource: vCommunity-Client
      Script: components: widgets: server: channelbar: channelbar.vue
      Author: vStudio
      Developer(s): Aviril, Mario, Tron

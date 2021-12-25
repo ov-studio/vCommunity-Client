@@ -1,5 +1,5 @@
 <!---------------------------------------------------------------
-     Resource: vClient (Server)
+     Resource: vCommunity-Client
      Script: components: widgets: menubar: menubar.vue
      Author: vStudio
      Developer(s): Aviril, Mario, Tron

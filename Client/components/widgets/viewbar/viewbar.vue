@@ -1,5 +1,5 @@
 <!---------------------------------------------------------------
-     Resource: vClient (Server)
+     Resource: vCommunity-Client
      Script: components: widgets: viewbar: viewbar.vue
      Author: vStudio
      Developer(s): Aviril, Mario, Tron
