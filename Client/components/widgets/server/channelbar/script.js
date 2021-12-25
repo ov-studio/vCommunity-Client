@@ -10,7 +10,7 @@ export default {
       },
 
       serverOptions: {
-        "copy-inv": {
+        "copy-invitation": {
           name: "Copy Invitation Code"
         },
         "server-roles": {
@@ -45,9 +45,14 @@ export default {
     },
 
     onClientServerOptionProcess(optionType, element) {
-    console.log("CLCIKE..")
       if (optionType) {
-        console.log("CLICKED OPTION TYPE " + optionType)
+        const selectedGroup = this.$store.state.groups.server.userGroups[(this.$store.state.app.serverGroup.group)] || false
+        if (selectedGroup) {
+          if (optionType == "copy-invitation") {
+            navigator.clipboard.writeText(selectedGroup.REF)
+          }
+        }
+        this.$refs["server-options"].destroyWidget()
       } else if (element) {
         const elementRect = element.getBoundingClientRect()
         this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 8, elementRect.top + 3)
