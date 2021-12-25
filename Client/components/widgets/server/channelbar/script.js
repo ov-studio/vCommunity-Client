@@ -55,7 +55,7 @@ export default {
         this.$refs["server-options"].destroyWidget()
       } else if (element) {
         const elementRect = element.getBoundingClientRect()
-        this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 8, elementRect.top + 3)
+        this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 10, elementRect.top + 5)
       }
     },
 
