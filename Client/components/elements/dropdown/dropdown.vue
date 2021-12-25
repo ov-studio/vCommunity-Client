@@ -16,7 +16,7 @@
   <div v-if="isVisible" class="position-fixed d-flex flex-column align-items-center justify-content-center element-dropdown-container" :style="{'left': position[0] + 'px !important', 'top': position[1] + 'px !important'}">
     <div v-if="dropdownHeader" class="w-100 min-w-100 max-w-100 overflow-hidden dropdown-header">{{dropdownHeader}}</div>
     <div class="w-100 min-w-100 max-w-100 overflow-hidden dropdown-container">
-      <slot class="w-100"></slot>
+      <div v-for="(optionData, optionIndex) in dropdownOptions" :key="optionIndex" class="w-100" @click.prevent="dropdownOptionHandler(optionIndex)">{{optionData.name}}</div>
     </div>
   </div>
 </template>

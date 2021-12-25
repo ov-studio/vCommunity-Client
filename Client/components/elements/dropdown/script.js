@@ -1,5 +1,5 @@
 export default {
-  props: ["dropdownHeader"],
+  props: ["dropdownHeader", "dropdownOptions", "dropdownOptionHandler"],
 
   data() {
     return {

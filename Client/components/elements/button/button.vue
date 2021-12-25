@@ -15,7 +15,7 @@
 <template>
   <div class="position-relative disable-selection overflow-hidden element-button-container" :isDisabled="isDisabled" @click.prevent="clickElement">
     <div class="button-text">
-      <slot></slot>
+      <slot/>
     </div>
   </div>
 </template>

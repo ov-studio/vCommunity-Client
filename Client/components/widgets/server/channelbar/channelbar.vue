@@ -16,7 +16,7 @@
   <div class="position-relative w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 d-flex flex-column align-self-start align-items-center justify-content-start overflow-hidden disable-selection widget-server-channelbar-container">
     <div class="w-100 min-w-100 max-w-100 d-flex flex-row align-items-center justify-content-center overflow-hidden channelbar-header">
       <div class="w-100">{{containerHeader}}</div>
-      <div class="server-option" @click.self="onClientServerOptionProcess($event.target)"><b-icon icon="grip-vertical" style="pointer-events: none !important;"/></div>
+      <div class="server-option" @click.self="onClientServerOptionProcess(null, $event.target)"><b-icon icon="grip-vertical" style="pointer-events: none !important;"/></div>
     </div>
     <div class="w-100 h-100 min-w-100 min-h-100 max-w-100 max-h-100 hide-scroller channelbar-container">
       <div class="d-flex flex-column align-items-center justify-content-start channel-container">
@@ -28,13 +28,7 @@
       </div>
     </div>
 
-    <element-dropdown ref="server-options" dropdownHeader="Server Options">
-      <div>Copy Invitation Code</div>
-      <div>Server Roles</div>
-      <div>Server Members</div>
-      <div>Server Settings</div>
-      <div>Leave Server</div>
-    </element-dropdown>
+    <element-dropdown ref="server-options" dropdownHeader="Server Options" :dropdownOptions="serverOptions" :dropdownOptionHandler="onClientServerOptionProcess"/>
     <widget-contentbox ref="server-channel-creator" @destroyed="onChannelCreatorProcess(null, true)">
       <element-input v-model="creator.controlInput" :inputHolder="creator.placeholder"/>
       <element-button :isDisabled="false" @click.native="onChannelCreatorProcess(true)">{{creator.text}}</element-button>

@@ -7,6 +7,24 @@ export default {
         controlInput: "",
         placeholder: "Enter Channel Name",
         text: "Create Channel"
+      },
+
+      serverOptions: {
+        "copy-inv": {
+          name: "Copy Invitation Code"
+        },
+        "server-roles": {
+          name: "Server Roles"
+        },
+        "server-members": {
+          name: "Server Members"
+        },
+        "server-settings": {
+          name: "Server Settings"
+        },
+        "leave-server": {
+          name: "Leave Server"
+        }
       }
     }
   },
@@ -26,11 +44,14 @@ export default {
       return this.$store.state.app.serverGroup.channel == selection
     },
 
-    onClientServerOptionProcess(element) {
-      if (!element) return false
-
-      const elementRect = element.getBoundingClientRect()
-      this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 8, elementRect.top + 3)
+    onClientServerOptionProcess(optionType, element) {
+    console.log("CLCIKE..")
+      if (optionType) {
+        console.log("CLICKED OPTION TYPE " + optionType)
+      } else if (element) {
+        const elementRect = element.getBoundingClientRect()
+        this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 8, elementRect.top + 3)
+      }
     },
 
     onChannelCreatorProcess(isChannelCreation, isWidgetDestroyed) {
