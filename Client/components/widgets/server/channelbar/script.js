@@ -28,6 +28,7 @@ export default {
 
     onClientServerOptionProcess(element) {
       if (!element) return false
+
       const elementRect = element.getBoundingClientRect()
       this.$refs["server-options"].createWidget(elementRect.left + elementRect.width + 8, elementRect.top + 3)
     },
