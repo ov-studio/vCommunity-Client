@@ -2,9 +2,18 @@ export default {
   data() {
     return {
       clientOptions: {
-        "client-contacts": {
-          name: "View Contacts",
-          selectMenu: "contacts"
+        "app-store": {
+          name: "View Store",
+        },
+        "open-engine": {
+          name: "Launch vEngine",
+        },
+        "view-documentations": {
+          name: "View Documentations",
+        },
+        "client-applications": {
+          name: "View Applications",
+          selectMenu: "applications"
         },
         "client-settings": {
           name: "View Settings",
