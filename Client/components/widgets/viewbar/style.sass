@@ -9,14 +9,15 @@
   background-color: $background-color !important
   overflow-x: scroll !important
   overflow-y: hidden !important
-  .menu-headerIcon
+  .menu-icon
     $font-size: 12px
+    $font-stroke: 2px
     $font-color: map-read($config_palette, "accent-primary-color")
     height: $height !important
     line-height: $height !important
     font-size: $font-size !important
     color: $font-color !important
-    stroke-width: 2px !important
+    stroke-width: $font-stroke !important
     color: $font-color !important
     stroke: $font-color !important
   .menu-header
@@ -36,60 +37,27 @@
     color: $font-color !important
     +vendor("text-transform", "uppercase !important")
   .viewbar-container
-    $padding-horizontal: 7px
-    padding: 0px $padding-horizontal !important
     height: $height !important
     > *
       $margin-horizontal: 7px
       $padding-horizontal: 10px
-      $height: $height - 25px
       $font: "Typo Round"
-      $font-size: 12px
+      $font-size: 20px
       $font-weight: 800
+      $font-stroke: 0.4px
       $font-spacing: 2px
-      $font-color: map-read($config_palette, "wrapper-secondary-color")
-      $background-color: rgba(map-read($config_palette, "accent-tertiary-color"), 0.5)
-      $border-radius: 25px
+      $font-color: map-read($config_palette, "accent-tertiary-color")
       margin-left: $margin-horizontal !important
       padding: 0px $padding-horizontal !important
-      height: $height !important
-      line-height: $height !important
       +vendor("white-space", "nowrap")
-      font-family: $font !important
-      font-size: $font-size !important
-      font-weight: $font-weight !important
-      letter-spacing: $font-spacing !important
-      color: $font-color !important
-      stroke: $font-color !important
-      background-color: $background-color !important
-      border-radius: $border-radius !important
-      +vendor("transition", "all 0.25s ease !important")
-      &:first-child
-        margin-left: 0px !important
-      &[isSelected="true"], &:hover
-        $background-color: map-read($config_palette, "accent-secondary-color")
-        background-color: $background-color !important
-    .option-container
-      $font-stroke: 0.7px
-      stroke-width: $font-stroke !important
-      &:hover
-        $padding-horizontal: 20px
-        padding: 0px $padding-horizontal !important
-    .client-name
-      $padding-horizontal: 5px
-      $font: "Typo Round"
-      $font-size: 14px
-      $font-color: map-read($config_palette, "accent-secondary-color")
-      padding: 0px !important
-      padding-right: $padding-horizontal !important
       +vendor("text-align", "left !important")
       font-family: $font !important
       font-size: $font-size !important
+      font-weight: $font-weight !important
+      stroke-width: $font-stroke !important
+      letter-spacing: $font-spacing !important
       color: $font-color !important
-      background-color: rgba(0, 0, 0, 0) !important
-      .client-subscriber
-        $font-color: map-read($config_palette, "accent-secondary-color")
-        padding-right: $padding-horizontal !important
-        color: $font-color !important
-        stroke: $font-color !important
-        background-color: rgba(0, 0, 0, 0) !important
+      stroke: $font-color !important
+      +vendor("transition", "all 0.25s ease !important")
+      &:first-child
+        margin-left: 0px !important

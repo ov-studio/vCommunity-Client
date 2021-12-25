@@ -29,7 +29,7 @@
     </div>
 
     <element-dropdown ref="server-options" dropdownHeader="Server Options" :dropdownOptions="serverOptions" :dropdownOptionHandler="onClientServerOptionProcess"/>
-    <widget-contentbox ref="server-channel-creator" @destroyed="onChannelCreatorProcess(null, true)">
+    <widget-contentbox ref="channel-creator" @destroyed="onChannelCreatorProcess(null, true)">
       <element-input v-model="creator.controlInput" :inputHolder="creator.placeholder"/>
       <element-button :isDisabled="false" @click.native="onChannelCreatorProcess(true)">{{creator.text}}</element-button>
     </widget-contentbox>

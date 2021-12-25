@@ -64,7 +64,7 @@ export default {
         this.creator.controlInput = ""
         return true
       } else if (!isChannelCreation) {
-        this.$refs["server-channel-creator"].createWidget()
+        this.$refs["channel-creator"].createWidget()
         return true
       }
       if (this.creator.controlInput.length <= 0) return false
@@ -73,7 +73,7 @@ export default {
         UID: this.$store.state.app.serverGroup.group,
         name: this.creator.controlInput
       })
-      this.$refs["server-channel-creator"].destroyWidget()
+      this.$refs["channel-creator"].destroyWidget()
     },
 
     onClientSelectChannel(selection) {
