@@ -28,8 +28,8 @@ export default {
 
       this.isVisible = false
       this.position = [0, 0]
-      this.$emit("destroyed")
       removeEventListener("click", this.verifyClick)
+      this.$emit("destroyed")
     },
 
     verifyClick(event) {
