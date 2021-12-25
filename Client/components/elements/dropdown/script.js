@@ -15,6 +15,12 @@ export default {
       this.position = [posX, posY]
       this.isVisible = true
       this.$emit("created")
+      this.$nextTick(() => {
+        const componentInstance = this
+        setTimeout(function() {
+          addEventListener("click", componentInstance.verifyClick)
+        }, 1, 1)
+      })
     },
 
     destroyWidget() {
@@ -23,6 +29,12 @@ export default {
       this.isVisible = false
       this.position = [0, 0]
       this.$emit("destroyed")
+      removeEventListener("click", this.verifyClick)
+    },
+
+    verifyClick(event) {
+      if (!this.isVisible) return false
+      if (!this.$el.contains(event.target)) this.destroyWidget()
     }
   }
 }
