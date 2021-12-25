@@ -24,7 +24,6 @@ export default {
 
     onClientOptionProcess(optionType, element) {
       if (optionType) {
-        if (!clientOptions[optionType]) return false
         if (this.clientOptions[optionType].selectMenu) {
           this.$store.commit("app/setMenuSelection", this.clientOptions[optionType].selectMenu)
         } 
